@@ -1,0 +1,15 @@
+﻿<div class="panel-warning">
+    <div class="panel-heading" translate>
+        COMMON.CONFIRM
+    </div>
+    <div class="panel-body corporate-color"  >
+        {{c.message}}
+    </div>
+    <div class="panel-footer">
+        <div class="btn-toolbar">
+            <button class="btn btn-danger btn-outline horizontal-alignment-right {{c.posting?'disabled':''}}" translate ng-click="c.cancelClick()"><i class="fa fa-times"></i></button>
+            <button class="btn btn-success btn-outline horizontal-alignment-right {{c.posting?'disabled':''}}" translate ng-click="c.okClick()"><i class="fa fa-check"></i></button>
+        </div>
+    </div>
+</div>
+

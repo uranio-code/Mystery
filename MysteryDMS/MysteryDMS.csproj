@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AAAC80F6-A978-4E11-9D69-BE9EE755A091}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MysteryDMS</RootNamespace>
+    <AssemblyName>MysteryDMS</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MongoDB.Bson, Version=2.4.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Bson.2.4.4\lib\net45\MongoDB.Bson.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=2.4.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.2.4.4\lib\net45\MongoDB.Driver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core, Version=2.4.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.4.4\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activation" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Actions\DMSAddUserGroup.cs" />
+    <Compile Include="Actions\DMSAddCommentAction.cs" />
+    <Compile Include="Actions\DMSAddVersion.cs" />
+    <Compile Include="Actions\DMSApproveWithCommentsAction.cs" />
+    <Compile Include="Actions\DMSCreateNewDocument.cs" />
+    <Compile Include="Actions\DMSCreateNewDocumentFromFile.cs" />
+    <Compile Include="Actions\DMSDeleteSubgroup.cs" />
+    <Compile Include="Actions\DMSCreateSubgroup.cs" />
+    <Compile Include="Actions\DMSCreateNewFolder.cs" />
+    <Compile Include="Actions\DMSDeleteDocument.cs" />
+    <Compile Include="Actions\DMSDeleteFolder.cs" />
+    <Compile Include="Actions\DMSDeleteVersion.cs" />
+    <Compile Include="Actions\DMSDisapprove_with_comments.cs" />
+    <Compile Include="Actions\DMSFinalizeAction.cs" />
+    <Compile Include="Actions\DMSRemoveWorkflowStatusAction.cs" />
+    <Compile Include="Actions\DMSReviewed_KOAction.cs" />
+    <Compile Include="Actions\DMSReviewed_OKAction.cs" />
+    <Compile Include="Actions\DMSInWorkAction.cs" />
+    <Compile Include="Actions\DMSVersionDownload.cs" />
+    <Compile Include="Actions\DMSGetComments.cs" />
+    <Compile Include="Actions\DMSObsoleteVersionAction.cs" />
+    <Compile Include="Actions\DMSResetChildrenSecurity.cs" />
+    <Compile Include="Actions\DMSSignAction.cs" />
+    <Compile Include="Actions\GetDmsPathsAction.cs" />
+    <Compile Include="Providers\DMSVersionActionListProvider.cs" />
+    <Compile Include="Actions\DMSVersionApproveAction.cs" />
+    <Compile Include="Actions\DMSVersionDisapproveAction.cs" />
+    <Compile Include="Actions\DMSVersionSetActive.cs" />
+    <Compile Include="Actions\DMSVersionUnderReviewAction.cs" />
+    <Compile Include="Providers\DMSVersionWorkflowActionProvider.cs" />
+    <Compile Include="Actions\GetFolderDocumentVersionsAction.cs" />
+    <Compile Include="Actions\ResetChildrenOwner.cs" />
+    <Compile Include="ApplicationProvider.cs" />
+    <Compile Include="DMSConstants.cs" />
+    <Compile Include="DMSEnumerations.cs" />
+    <Compile Include="FolderTree\GetDMSFolderTree.cs" />
+    <Compile Include="Model\AddCommentInput.cs" />
+    <Compile Include="Model\DMSAttachment.cs" />
+    <Compile Include="Providers\DMSFolderActionProvider.cs" />
+    <Compile Include="Model\DMSComment.cs" />
+    <Compile Include="Model\DMSRecycleBin.cs" />
+    <Compile Include="Model\DMSTag.cs" />
+    <Compile Include="Model\DMSTrainingFolder.cs" />
+    <Compile Include="Model\DMSUserGroup.cs" />
+    <Compile Include="Model\DMSVersion.cs" />
+    <Compile Include="Model\DMSFolder.cs" />
+    <Compile Include="Providers\DMSVersionActionProvider.cs" />
+    <Compile Include="Model\DMSWorkflowType.cs" />
+    <Compile Include="Model\IDMSContent.cs" />
+    <Compile Include="Providers\DMSUserGroupActionProvider.cs" />
+    <Compile Include="MysteryDMSService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Routes\CommentsViewListRoute.cs" />
+    <Compile Include="StartPage\StartPageActions.cs" />
+    <Compile Include="StartPage\StartRouteProvider.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\MysteryWebLogic\MysteryWebLogic.csproj">
+      <Project>{5F4D061E-BCE0-410C-A17C-FA1223E945BF}</Project>
+      <Name>MysteryWebLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mystery\Mystery.csproj">
+      <Project>{135E21B0-0D77-4180-BE2B-B6D04071BF80}</Project>
+      <Name>Mystery</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="WebContent\DMSAddUserGroup.html" />
+    <Content Include="WebContent\DMSAddUserGroupController.js" />
+    <Content Include="WebContent\dms_disapprove_w_comments_controller.js" />
+    <Content Include="WebContent\dms_approve_w_commments_controller.js" />
+    <Content Include="WebContent\dms_version_add_controller.js" />
+    <Content Include="WebContent\comments_view_list.html" />
+    <Content Include="WebContent\comments_view_list_controller.js" />
+    <Content Include="WebContent\dms_folder_tree.html" />
+    <Content Include="WebContent\dms_folder_tree_node.html" />
+    <Content Include="WebContent\dms_folder_view_controller.js" />
+    <Content Include="WebContent\dms_folder_tree_controller.js" />
+    <Content Include="WebContent\dms_folder_view.html" />
+    <Content Include="WebContent\dms_side_nav.html" />
+    <Content Include="WebContent\dms_side_nav_controller.js" />
+    <Content Include="WebContent\dms_start_page.html" />
+    <Content Include="WebContent\dms_start_page_controller.js" />
+    <Content Include="WebContent\dms_version_add.html" />
+    <Content Include="WebContent\dms_version_view.html" />
+    <Content Include="WebContent\add_comment_modal.html" />
+    <Content Include="WebContent\add_comment_controller.js" />
+    <Content Include="WebContent\dms_version_view.js" />
+    <Content Include="WebContent\Folder\History.html" />
+    <Content Include="WebContent\Folder\Comments.html" />
+    <Content Include="WebContent\Folder\Documents.html" />
+    <Content Include="WebContent\DMSUserGroups.html" />
+    <Content Include="WebContent\DMSUserGroupView.html" />
+    <Content Include="WebContent\DMSUserGroupViewController.js" />
+    <Content Include="WebContent\Folder\Permissions.html" />
+    <Content Include="WebContent\Version\DmsDocumentVersionWorkflowBox.html" />
+    <Content Include="WebContent\Version\DmsDocumentVersionWorkflowBoxController.js" />
+    <Content Include="WebContent\Version\MetaData.html" />
+    <Content Include="WebContent\Version\Comments.html" />
+    <Content Include="WebContent\Version\VersionCreatedHistoryEntry.html" />
+    <Content Include="WebContent\Version\VersionCreatedHistoryEntryController.js" />
+    <Content Include="WebContent\Version\Workflow.html" />
+    <Content Include="WebContent\Version\Preview.html" />
+    <Content Include="WebContent\Version\History.html" />
+    <Content Include="WebContent\Version\workflow_diagram.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

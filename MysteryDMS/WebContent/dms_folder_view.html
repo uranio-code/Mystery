@@ -1,0 +1,81 @@
+﻿<div id="wrapper">
+    <mystery-navigation></mystery-navigation>
+    <dms-side-nav content="rc.content"></dms-side-nav>
+    <div class="container-fluid " ng-controller="dmsFolderViewController as c" ng-init="c.init(rc.content)" id="page-wrapper">
+
+        <div class="row" ng-show="c.path_loading">
+            <div class="col">
+                <ol class="breadcrumb">
+                    <li>&nbsp;</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="row" ng-repeat="path in c.paths">
+            <div class="col">
+                <ol class="breadcrumb">
+                    <li ng-repeat="node in path"><a href="{{node.url}}">{{node.title}}</a></li>
+                </ol>
+            </div>
+        </div>
+        
+             
+        <div class="form-group input-group no-margin-border-padding"
+                ng-show="c.DragAndDropVisible">
+            <span class="form-control form-control-active glowing-border size-text-box-auto padding-left-xsmall">
+
+                <input mystery-single-file-input
+                        multiple
+                        type="file"
+                        data-preview-file-type="text"
+                        data-min-file-count="1"
+                        drop-zone-title="Drag and drop files here"
+                        drop-zone-title-class="upload-drop-zone"
+                        max-file-count="10"/>
+
+            </span>
+            <span class="input-group-addon btn btn-outline btn-danger glowing-border form-control-active" ng-click="c.toggleDragAndDrop()" translate><i class="fa fa-times form-control-active"></i></span>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <mystery-content-action-menu content="rc.content"></mystery-content-action-menu>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6 horizontal-alignment-right">
+                <button ng-click="c.toggleDragAndDrop()" class="fa fa-upload fa-icons-size-big btn btn-success btn-outline">&nbsp;<i class="fa fa-files-o"></i></button>
+                <mystery-share-content content="rc.content"></mystery-share-content>            
+            </div>
+        </div>
+        <div class="row">
+            &nbsp;
+        </div>
+        
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <ul class="nav nav-tabs">
+                    <li ng-repeat="tab in c.tabs" class="{{tab.active?'active':''}}" ng-click="c.selectTab(tab)">
+                        <a class="{{tab.active?'active-tab':'border-tab'}}">
+                            <span translate>{{tab.label}}</span>
+                            &nbsp;
+                            <i class="{{tab.icon_class}}"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div ng-include="c.active_tab.templateUrl">
+        </div>
+        <div class="row">
+            <hr class="no-margins-divider">
+            <mystery-property-view content="rc.content" property-name="'title'"></mystery-property-view>
+        </div>
+        <div class="row">
+            <hr class="no-margins-divider">
+            <mystery-property-view content="rc.content" property-name="'description'"></mystery-property-view>
+        </div>
+        <div class="row">
+            <hr class="no-margins-divider">
+            <mystery-property-view content="rc.content" property-name="'tags'"></mystery-property-view>
+        </div>
+    </div>
+</div>

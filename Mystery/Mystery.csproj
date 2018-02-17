@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{135E21B0-0D77-4180-BE2B-B6D04071BF80}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Mystery</RootNamespace>
+    <AssemblyName>Mystery</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Graph, Version=1.5.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Graph.1.5.1\lib\net45\Microsoft.Graph.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Graph.Core, Version=1.6.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Graph.Core.1.6.1\lib\net45\Microsoft.Graph.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=1.1.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.1.1.4\lib\net451\Microsoft.IdentityModel.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.1.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.5.1.4\lib\net451\Microsoft.IdentityModel.Tokens.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Bson, Version=2.4.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Bson.2.4.4\lib\net45\MongoDB.Bson.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=2.4.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.2.4.4\lib\net45\MongoDB.Driver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core, Version=2.4.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.4.4\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGrid, Version=9.4.1.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sendgrid.9.5.0\lib\net452\SendGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGrid.CSharp.HTTP.Client, Version=3.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SendGrid.CSharp.HTTP.Client.3.3.0\lib\SendGrid.CSharp.HTTP.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.1.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.1.4\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activation" />
+    <Reference Include="System.ServiceModel.Channels" />
+    <Reference Include="System.ServiceModel.Routing" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccessHistory\RegisterAccessAction.cs" />
+    <Compile Include="AccessHistory\UserAccessHistory.cs" />
+    <Compile Include="Applications\ApplicationsService.cs" />
+    <Compile Include="Applications\GetApplicationsActions.cs" />
+    <Compile Include="Applications\IApplicationProvider.cs" />
+    <Compile Include="Applications\MysteryApplication.cs" />
+    <Compile Include="Authentication\DownloadLiveIDInfoAction.cs" />
+    <Compile Include="Authentication\LiveIDConfiguration.cs" />
+    <Compile Include="Authentication\LiveIDLoginHandler.cs" />
+    <Compile Include="Authentication\Login.cs" />
+    <Compile Include="Authentication\MicrosowftTokenCache.cs" />
+    <Compile Include="Authentication\MysteryMicrosoftGraph.cs" />
+    <Compile Include="Comment\Comment.cs" />
+    <Compile Include="Configuration\MongoDbConfigurationProvider.cs" />
+    <Compile Include="Configuration\ServerModuleConfiguration.cs" />
+    <Compile Include="Content\Containers\ContentContainerCache.cs" />
+    <Compile Include="Content\Containers\IContentDispatcher.cs" />
+    <Compile Include="Content\Containers\InMemoryContainer.cs" />
+    <Compile Include="Content\Creation\ContentCreator.cs" />
+    <Compile Include="Content\Creation\GlobalContentCreator.cs" />
+    <Compile Include="Content\Creation\IUidProvider.cs" />
+    <Compile Include="Content\Definition\ContentExtensions.cs" />
+    <Compile Include="Content\Edit\SingleReferencePropertyValuesProvider.cs" />
+    <Compile Include="Content\Edit\MultiReferencePropertyValuesProvider.cs" />
+    <Compile Include="Encryption\EncryptedMessage.cs" />
+    <Compile Include="Files\AddFilesAction.cs" />
+    <Compile Include="Files\DownloadFileAction.cs" />
+    <Compile Include="Files\FileService.cs" />
+    <Compile Include="Files\FileUrl.cs" />
+    <Compile Include="Files\IFileRepository.cs" />
+    <Compile Include="Files\MongoFsFileRepository.cs" />
+    <Compile Include="Files\MysteryFile.cs" />
+    <Compile Include="History\GetContentHistoryAction.cs" />
+    <Compile Include="History\HistoryPublishedActionSerializer.cs" />
+    <Compile Include="History\MongoDBHistoryRepository.cs" />
+    <Compile Include="History\HistoryEntry.cs" />
+    <Compile Include="History\HistoryRepository.cs" />
+    <Compile Include="History\HistoryUserJsonConverter.cs" />
+    <Compile Include="History\IHistoryRepository.cs" />
+    <Compile Include="Instance\SearchAction.cs" />
+    <Compile Include="Instance\GetInstanceInfoAction.cs" />
+    <Compile Include="Instance\InstanceService.cs" />
+    <Compile Include="Instance\MysteryInstance.cs" />
+    <Compile Include="Json\BllJsonContractResolver.cs" />
+    <Compile Include="Json\ContentsDatabase.cs" />
+    <Compile Include="Json\GuidValueJsonConverter.cs" />
+    <Compile Include="Json\DatePropertyValueJsonConverter.cs" />
+    <Compile Include="Json\MongoCollection.cs" />
+    <Compile Include="Json\ReferencePropertyValueJsonBLLConverter.cs" />
+    <Compile Include="Content\Messaging\BaseCodifiedMessage.cs" />
+    <Compile Include="Content\Messaging\BaseCodifiedMessageTemplate.cs" />
+    <Compile Include="Content\Messaging\DefaultMessageManager.cs" />
+    <Compile Include="Content\Messaging\ICodifiedMessage.cs" />
+    <Compile Include="Content\Messaging\IMessageManager.cs" />
+    <Compile Include="Content\Messaging\ShareContentAction.cs" />
+    <Compile Include="MysteryAction\HistoryMessageDataSerializer.cs" />
+    <Compile Include="MysteryAction\PublishedAction.cs" />
+    <Compile Include="TOTPAuthentication\TOTPAuthenticator.cs" />
+    <Compile Include="UI\ContentGetWorkflowActionInfoAction.cs" />
+    <Compile Include="UI\ContentWorkflowActionMenuAction.cs" />
+    <Compile Include="UI\FavoriteAction.cs" />
+    <Compile Include="UI\MysteryJsonUiConverter.cs" />
+    <Compile Include="Json\MysteryMongoDb.cs" />
+    <Compile Include="Json\TypeConverter.cs" />
+    <Compile Include="Json\ContentConverter.cs" />
+    <Compile Include="Json\MysteryJsonConverter.cs" />
+    <Compile Include="Json\ReferencePropertyValueJsonUiConverter.cs" />
+    <Compile Include="Content\Messaging\DefaultNotifier.cs" />
+    <Compile Include="Content\Messaging\IMessage.cs" />
+    <Compile Include="Content\Messaging\INotifier.cs" />
+    <Compile Include="Content\Messaging\MongoMockNotifier.cs" />
+    <Compile Include="Content\Messaging\NotifierChain.cs" />
+    <Compile Include="Content\Messaging\SendGridNotifier.cs" />
+    <Compile Include="Register\AssemblyRegister.cs" />
+    <Compile Include="Register\IRegistrationActor.cs" />
+    <Compile Include="Content\Definition\BaseContent.cs" />
+    <Compile Include="Content\Creation\BaseContentCreators.cs" />
+    <Compile Include="Content\Definition\ContentProperty.cs" />
+    <Compile Include="Content\Definition\ContentReference.cs" />
+    <Compile Include="Content\Definition\ContentType.cs" />
+    <Compile Include="Content\Creation\IGlobalContentCreator.cs" />
+    <Compile Include="Content\Definition\ReferenceText.cs" />
+    <Compile Include="Content\Definition\SearchText.cs" />
+    <Compile Include="Content\Definition\StringPropertyDict.cs" />
+    <Compile Include="MysteryAction\BaseMysteryAction.cs" />
+    <Compile Include="UI\ContentListActionAction .cs" />
+    <Compile Include="UI\ContentListAction.cs" />
+    <Compile Include="UI\ContentTypeTableAction.cs" />
+    <Compile Include="UI\ContentTypeTable.cs" />
+    <Compile Include="UI\JsSortValue.cs" />
+    <Compile Include="UI\PropertyColumn.cs" />
+    <Compile Include="UI\WhoWhatWhen.cs" />
+    <Compile Include="Users\AddUser.cs" />
+    <Compile Include="Users\MyUserProperties.cs" />
+    <Compile Include="Users\TOTPAuthenticationKeyAction.cs" />
+    <Compile Include="Users\UserActivityStream.cs" />
+    <Compile Include="Users\UserSuggestionsAction.cs" />
+    <Compile Include="Users\UserFavorite.cs" />
+    <Compile Include="Users\UserService.cs" />
+    <Compile Include="Web\AutoRegisteredWebServiceHostFactory.cs" />
+    <Compile Include="Web\AutoRegisteringService.cs" />
+    <Compile Include="UI\Button.cs" />
+    <Compile Include="UI\ContentActionMenuAction.cs" />
+    <Compile Include="UI\ContentDeleteAction.cs" />
+    <Compile Include="MysteryAction\ContentDelete.cs" />
+    <Compile Include="MysteryAction\ContentTypeListingAction.cs" />
+    <Compile Include="MysteryAction\ContentTypeListing.cs" />
+    <Compile Include="MysteryAction\ContentAccess.cs" />
+    <Compile Include="UI\ContentAction.cs" />
+    <Compile Include="UI\ContentGetActionInfoAction.cs" />
+    <Compile Include="UI\ContentTypeButton.cs" />
+    <Compile Include="UI\ContentTypeView.cs" />
+    <Compile Include="UI\ContentView.cs" />
+    <Compile Include="UI\ContentViewAction.cs" />
+    <Compile Include="UI\Directive.cs" />
+    <Compile Include="UI\Modal.cs" />
+    <Compile Include="UI\MysteryUiContentConverter.cs" />
+    <Compile Include="UI\MysteryUrl.cs" />
+    <Compile Include="UI\PropertyEdit.cs" />
+    <Compile Include="UI\MultiReferenceSuggestionsAction.cs" />
+    <Compile Include="UI\SigleReferenceSuggestionsAction.cs" />
+    <Compile Include="UI\PropertyEditAction.cs" />
+    <Compile Include="UI\PropertyView.cs" />
+    <Compile Include="Users\DBAuthetication.cs" />
+    <Compile Include="Users\IAuthetication.cs" />
+    <Compile Include="Users\IUser.cs" />
+    <Compile Include="Users\User.cs" />
+    <Compile Include="Orgins\CRUD.cs" />
+    <Compile Include="Content\Containers\LightContentReference.cs" />
+    <Compile Include="Orgins\Exceptions\CrazyImplementation.cs" />
+    <Compile Include="Register\FastActivator.cs" />
+    <Compile Include="Register\GlobalAvalibleObject.cs" />
+    <Compile Include="Orgins\IClientProgress.cs" />
+    <Compile Include="Configuration\IConfigurationProvider.cs" />
+    <Compile Include="Content\Definition\IContent.cs" />
+    <Compile Include="Content\Containers\IContentContainer.cs" />
+    <Compile Include="Orgins\Memory\ContentMemory.cs" />
+    <Compile Include="Register\Mystery.cs" />
+    <Compile Include="Register\MysteryAttribute.cs" />
+    <Compile Include="MysteryExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Orgins\Utils\BarcodeGenerator.cs" />
+    <Compile Include="Orgins\WCF\WebMessage.cs" />
+    <Compile Include="Register\RegisterExstension.cs" />
+    <Compile Include="Web\MysteryServer.cs" />
+    <Compile Include="Web\MysteryActionRoute.cs" />
+    <Compile Include="Web\MysteryServiceRoute.cs" />
+    <Compile Include="Web\MysteryWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Web\ServerLogin.cs" />
+    <Compile Include="Web\Session.cs" />
+    <Compile Include="Web\WebActionExecutor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Content\ContentDiagram.cd" />
+    <None Include="History\HistoryClassDiagram.cd" />
+    <None Include="Orgins\app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

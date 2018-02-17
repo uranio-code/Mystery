@@ -1,0 +1,45 @@
+﻿<div class="navbar-default sidebar" role="navigation" ng-controller="dmsSideNavController as c" style="overflow-x:auto;overflow-y:auto">
+    <div class="sidebar-nav navbar-collapse">
+        <ul class="nav" id="side-menu" ng-metis>
+            <li>
+                <a href="start"><i class="fa fa-bar-chart-o fa-fw size-fa"></i> <span translate>COMMON.DASHBOARD</span></a>
+            </li>
+            <!-- Dashboard -->
+            <li>
+                <a href="#"><i class="fa fa-star-o fa-fw size-fa"></i> <span translate>COMMON.FAVORITES</span><span class="fa arrow" ng-show="c.favorites.length>0"></span></a>
+                <ul class="nav nav-second-level">
+                    <li ng-repeat="favorite in c.favorites">
+                        <span ng-show="favorite.ContentType=='DMSFolder'" class="folders-tree-size-small text-vertical-alignment-middle"><a href="{{favorite.url}}" title="ID: {{favorite.tiny_guid}}"><span class="btn-xs fa fa-folder"></span>{{favorite.ReferenceText}}</a></span>
+                        <span ng-show="favorite.ContentType=='User'" class="folders-tree-size-small text-vertical-alignment-middle"><a href="{{favorite.url}}" title="ID: {{favorite.tiny_guid}}"><i class="btn-xs fa fa-user"></i>{{favorite.ReferenceText}}</a></span>
+                        <span ng-show="favorite.ContentType=='DMSVersion'" class="folders-tree-size-small text-vertical-alignment-middle"><a href="{{favorite.url}}" title="ID: {{favorite.tiny_guid}}"><i class="btn-xs fa fa-file-text"></i>{{favorite.ReferenceText}}</a></span>
+                        <span ng-show="favorite.ContentType=='DMSUserGroup'" class="folders-tree-size-small text-vertical-alignment-middle"><a href="{{favorite.url}}" title="ID: {{favorite.tiny_guid}}"><i class="btn-xs fa fa-users"></i>{{favorite.ReferenceText}}</a></span>
+                    </li>
+                </ul>
+            </li>
+            <!-- Favorites -->
+            <li>
+                <a href="#"><i class="fa fa-vcard-o fa-fw size-fa"></i><span translate>COMMON.USERS</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a class="folders-tree-size-small text-vertical-alignment-middle" href="Type/User">
+                            <i class="btn-xs fa fa-user"></i><span translate>COMMON.USERS</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="folders-tree-size-small text-vertical-alignment-middle" href="Type/DMSUserGroup">
+                            <i class="btn-xs fa fa-users"></i><span translate>COMMON.USERGROUP</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- Users -->
+            <li class="active">
+                <a href="start"><i class="fa fa-sitemap fa-fw size-fa"></i> <span translate>DMS.DOCUMENTATION</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><dms-folder-tree content="c.content"></dms-folder-tree></li>
+                </ul>
+            </li>
+            <!-- Folder-tree -->
+        </ul>
+    </div>
+</div>

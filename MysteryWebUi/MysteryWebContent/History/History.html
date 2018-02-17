@@ -1,0 +1,8 @@
+﻿<div class="no-margin-border-padding" ng-controller="mysteryHistoryController as c">
+    <ul class="list-group table-border">
+        <li class="list-group-item headerstyle"><div >{{c.header}}</div></li>
+        <li class="list-group-item" ng-repeat="entry in c.data">
+            <div class="font-size-sm" ng-include="entry.history_message_template_url"></div>
+        </li>
+    </ul>
+</div>

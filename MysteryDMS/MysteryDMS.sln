@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MysteryDMS", "MysteryDMS.csproj", "{AAAC80F6-A978-4E11-9D69-BE9EE755A091}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMSTest", "..\DMSTests\DMSTest.csproj", "{1FBD3BF6-0BB4-4719-A303-2B350BCECF03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mystery", "..\Mystery\Mystery.csproj", "{135E21B0-0D77-4180-BE2B-B6D04071BF80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MysteryWebLogic", "..\MysteryWebLogic\MysteryWebLogic.csproj", "{5F4D061E-BCE0-410C-A17C-FA1223E945BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMSWeb", "..\DMSWeb\DMSWeb.csproj", "{D9F8F053-F673-4EAB-AE51-30942CB1A077}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AAAC80F6-A978-4E11-9D69-BE9EE755A091}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAAC80F6-A978-4E11-9D69-BE9EE755A091}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAAC80F6-A978-4E11-9D69-BE9EE755A091}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAAC80F6-A978-4E11-9D69-BE9EE755A091}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FBD3BF6-0BB4-4719-A303-2B350BCECF03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FBD3BF6-0BB4-4719-A303-2B350BCECF03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FBD3BF6-0BB4-4719-A303-2B350BCECF03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FBD3BF6-0BB4-4719-A303-2B350BCECF03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{135E21B0-0D77-4180-BE2B-B6D04071BF80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{135E21B0-0D77-4180-BE2B-B6D04071BF80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{135E21B0-0D77-4180-BE2B-B6D04071BF80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{135E21B0-0D77-4180-BE2B-B6D04071BF80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F4D061E-BCE0-410C-A17C-FA1223E945BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F4D061E-BCE0-410C-A17C-FA1223E945BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F4D061E-BCE0-410C-A17C-FA1223E945BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F4D061E-BCE0-410C-A17C-FA1223E945BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9F8F053-F673-4EAB-AE51-30942CB1A077}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9F8F053-F673-4EAB-AE51-30942CB1A077}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9F8F053-F673-4EAB-AE51-30942CB1A077}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9F8F053-F673-4EAB-AE51-30942CB1A077}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45;..\packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;..\packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
+	EndGlobalSection
+EndGlobal

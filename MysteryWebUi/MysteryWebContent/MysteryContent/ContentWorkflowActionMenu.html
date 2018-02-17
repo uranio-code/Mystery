@@ -1,0 +1,14 @@
+﻿<div ng-controller="MysteryContentWorkflowActionMenuController as c" style="margin-bottom:20px">
+    <div class="btn-toolbar">
+
+        <div ng-show="c.loading" class="btn btn-default disabled">
+            <span> loading actions </span>
+            <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+        </div>
+
+        <div ng-repeat="item in c.actions" >
+            <mystery-content-workflow-action-button content="c.content" action="item"></mystery-content-workflow-action-button>
+        </div>
+    </div>
+        
+</div>

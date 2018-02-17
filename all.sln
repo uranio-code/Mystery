@@ -1,0 +1,73 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mystery", "Mystery\Mystery.csproj", "{135E21B0-0D77-4180-BE2B-B6D04071BF80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MysteryWebUi", "MysteryWebUi\MysteryWebUi.csproj", "{4423470D-EEE1-42AB-A4CE-2DD4681CD853}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MysteryWebLogic", "MysteryWebLogic\MysteryWebLogic.csproj", "{5F4D061E-BCE0-410C-A17C-FA1223E945BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MysteryWebLogicTests", "MysteryWebLogicTests\MysteryWebLogicTests.csproj", "{35192AB0-1E6A-4ADB-8A2E-CECC8369FA92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MysteryTests", "MysteryTests\MysteryTests.csproj", "{EEBAB166-D208-4F7A-A50E-899FC00C5B1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{05A6E8C4-CF91-4AC3-930E-D0F3B3ADF7FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MysteryDMS", "MysteryDMS\MysteryDMS.csproj", "{AAAC80F6-A978-4E11-9D69-BE9EE755A091}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMSTest", "DMSTests\DMSTest.csproj", "{1FBD3BF6-0BB4-4719-A303-2B350BCECF03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMSWeb", "DMSWeb\DMSWeb.csproj", "{D9F8F053-F673-4EAB-AE51-30942CB1A077}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{135E21B0-0D77-4180-BE2B-B6D04071BF80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{135E21B0-0D77-4180-BE2B-B6D04071BF80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{135E21B0-0D77-4180-BE2B-B6D04071BF80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{135E21B0-0D77-4180-BE2B-B6D04071BF80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4423470D-EEE1-42AB-A4CE-2DD4681CD853}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4423470D-EEE1-42AB-A4CE-2DD4681CD853}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4423470D-EEE1-42AB-A4CE-2DD4681CD853}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4423470D-EEE1-42AB-A4CE-2DD4681CD853}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F4D061E-BCE0-410C-A17C-FA1223E945BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F4D061E-BCE0-410C-A17C-FA1223E945BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F4D061E-BCE0-410C-A17C-FA1223E945BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F4D061E-BCE0-410C-A17C-FA1223E945BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35192AB0-1E6A-4ADB-8A2E-CECC8369FA92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35192AB0-1E6A-4ADB-8A2E-CECC8369FA92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35192AB0-1E6A-4ADB-8A2E-CECC8369FA92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35192AB0-1E6A-4ADB-8A2E-CECC8369FA92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEBAB166-D208-4F7A-A50E-899FC00C5B1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEBAB166-D208-4F7A-A50E-899FC00C5B1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEBAB166-D208-4F7A-A50E-899FC00C5B1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEBAB166-D208-4F7A-A50E-899FC00C5B1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05A6E8C4-CF91-4AC3-930E-D0F3B3ADF7FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05A6E8C4-CF91-4AC3-930E-D0F3B3ADF7FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05A6E8C4-CF91-4AC3-930E-D0F3B3ADF7FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05A6E8C4-CF91-4AC3-930E-D0F3B3ADF7FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAAC80F6-A978-4E11-9D69-BE9EE755A091}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAAC80F6-A978-4E11-9D69-BE9EE755A091}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAAC80F6-A978-4E11-9D69-BE9EE755A091}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAAC80F6-A978-4E11-9D69-BE9EE755A091}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FBD3BF6-0BB4-4719-A303-2B350BCECF03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FBD3BF6-0BB4-4719-A303-2B350BCECF03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FBD3BF6-0BB4-4719-A303-2B350BCECF03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FBD3BF6-0BB4-4719-A303-2B350BCECF03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9F8F053-F673-4EAB-AE51-30942CB1A077}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9F8F053-F673-4EAB-AE51-30942CB1A077}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9F8F053-F673-4EAB-AE51-30942CB1A077}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9F8F053-F673-4EAB-AE51-30942CB1A077}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
+	EndGlobalSection
+EndGlobal

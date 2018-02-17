@@ -1,0 +1,35 @@
+﻿<div class="form-horizontal">
+    <div class="form-group">
+        
+        <div ng-controller="mysteryDatePropertyController as c"
+             ng-init="c.init(cp)"
+             ng-mouseover="cp.mouseover = true "
+             ng-mouseleave="cp.mouseover = false"
+             ng-click="cp.enterEditMode()">
+
+            <div class="form-control no-border" ng-show="!cp.showEdit()" translate>
+                {{cp.data.content[cp.data.name]|date:'dd MMMM yyyy'}}
+            </div>
+
+            <div ng-show="cp.showEdit()">
+
+                <p class="input-group">
+                    <span class="input-group-addon" 
+                          uib-datepicker-popup="{{c.format}}"
+                          ng-model="c.dt" is-open="c.status.opened"
+                          min-date="c.minDate" max-date="c.maxDate"
+                          ng-required="false" close-text="Close"
+                          ng-change="c.commit()" 
+                          ng-click="c.open()">
+                        <i class="glyphicon glyphicon-calendar" ></i>
+                    </span>
+
+                    <span class="form-control" translate>
+                        {{cp.data.content[cp.data.name]|date:'dd MMMM yyyy'}}
+                    </span>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>

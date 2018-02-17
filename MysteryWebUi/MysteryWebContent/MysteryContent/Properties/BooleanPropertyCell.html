@@ -1,0 +1,31 @@
+﻿<div ng-mouseover="cp.mouseover = true "
+     ng-mouseleave="cp.mouseover = false">
+
+    <div class="form-group input-group no-margin-border-padding" ng-show="(!cp.mouseover&&!cp.showEdit())||(cp.mouseover&&!cp.data.can_edit)">
+        <span class="form-control form-control-inactive size-text-box-auto padding-left-xsmall"><a translate>{{cp.data.content[cp.data.name]?'BASE_VALUES.TRUE':'BASE_VALUES.FALSE'}}</a></span>
+        <span class="input-group-addon btn-outline btn-warning glowing-border form-control-inactive"><i class="fa fa-pencil form-control-inactive"></i></span>
+    </div>
+
+    <div class="form-group input-group no-margin-border-padding" ng-show="cp.mouseover&&!cp.showEdit()&&cp.data.can_edit" title="{{'COMMON.EDIT'|translate}}" ng-click="cp.enterEditMode()">
+        <span class="form-control form-control-active glowing-border size-text-box-auto padding-left-xsmall" translate>{{cp.data.content[cp.data.name]?'BASE_VALUES.TRUE':'BASE_VALUES.FALSE'}}</span>
+        <span class="input-group-addon btn btn-outline btn-warning glowing-border form-control-active"><i class="fa fa-pencil"></i></span>
+    </div>
+
+    <div class="form-group input-group no-margin-border-padding" ng-show="cp.showEdit()">
+        <span class="form-control glowing-border size-text-box-auto padding-left-xsmall" focus-me="cp.input_focus" translate>
+            {{cp.current_value?'BASE_VALUES.TRUE':'BASE_VALUES.FALSE'}}
+        </span>
+        <span class="input-group-addon form-control-active glowing-border size-text-box-auto">
+            <input class="btn btn-outline" type="checkbox" id="{{cp.uid}}"
+                   ng-init="cp.current_value = cp.data.content[cp.data.name]"
+                   ng-model="cp.current_value"
+                   focus-me="cp.input_focus"
+                   onblur="this.focus()"
+                   ui-keyup="{esc: 'cp.cancel()', enter: 'cp.commit()'}"/>
+        </span>
+        <span class="input-group-addon btn btn-outline btn-success glowing-border" title="{{'COMMON.SAVE'|translate}}" ng-click="cp.commit()"><i class="fa fa-check"></i></span>
+        <span class="input-group-addon btn-outline btn-danger glowing-border" title="{{'COMMON.CANCEL'|translate}}" ng-click="cp.cancel()"><i class="fa fa-times"></i></span>
+    </div>
+
+</div>
+

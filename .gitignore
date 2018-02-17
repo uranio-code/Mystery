@@ -1,0 +1,10 @@
+*/obj/*
+*/bin/*
+TestResults/
+.vs/
+Modules/*.dll
+MysteryWebUi/Modules/*.dll
+*.csproj.user
+MysteryWebUi/Properties/PublishProfiles/local.pubxml
+*.~vsdx
+packages/*

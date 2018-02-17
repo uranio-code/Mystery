@@ -1,0 +1,29 @@
+﻿<div class="form-inline no-margin-border-padding"
+     ng-controller="UsersSelectionController as c">
+
+    <form class="input-group" ng-repeat="content in c.selected_contents">
+        <span class="form-control glowing-border size-text-box-auto">{{content.ReferenceText}}</span>
+        <span class="input-group-addon btn btn-outline btn-default glowing-border" ng-click="c.removeSelection(content)">
+            <span class="fa fa-trash" />
+        </span>
+    </form>
+
+    <form class="input-group">
+        <input class="form-control glowing-border size-text-box-auto" type="text" ng-model="c.typing_text"
+               uib-typeahead="item as item.ReferenceText  for item in c.avalible|filter:{ReferenceText:$viewValue}| limitTo:8"
+               typeahead-template-url="MysteryWebContent/MysteryContent/Properties/contentSelectionTemplate.html"
+               typeahead-on-select="c.onSelect($item)"
+               typeahead-editable="false">
+        <span class="input-group-addon btn btn-outline btn-default glowing-border" title="{{'COMMON.DELETE'|translate}}"
+              ng-show="!c.selected"
+              ng-click="c.removeSelection()">
+            <i class="fa fa-trash"></i>
+        </span>
+
+        <span class="input-group-addon btn btn-outline btn-danger glowing-border" title="{{'COMMON.CANCEL'|translate}}"
+              ng-show="!c.selected"
+              ng-click="cp.cancel()">
+            <i class="fa fa-times"></i>
+        </span>
+    </form>
+</div>

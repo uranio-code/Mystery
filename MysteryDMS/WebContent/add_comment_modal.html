@@ -1,0 +1,15 @@
+﻿<div class="panel-warning corporate-color">
+    <div class="panel-heading corporate-color" translate>
+        DMS.VERSION.ADD_COMMENT
+    </div>
+    <div class="panel-body">
+        <textarea class="form-control glowing-border textarea-newcomment" type="text" rows="10" ng-model="c.comment_body" ng-change="c.adjustTextareaHeightDynamic(c.comment_body)" id="{{c.id}}"></textarea>
+    </div>
+    <div class="panel-footer">
+        <div class="btn-toolbar">
+            <button class="btn btn-danger btn-outline horizontal-alignment-right {{c.posting?'disabled':''}}" translate ng-click="c.cancel()"><i class="fa fa-times"></i></button>
+            <button class="btn btn-success btn-outline horizontal-alignment-right {{c.posting?'disabled':''}}" translate ng-click="c.commit()"><i class="fa fa-check"></i></button>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,11 @@
+﻿<mystery-navigation></mystery-navigation>
+
+<mystery-content-action-menu content="rc.content" ></mystery-content-action-menu>
+<div class="container-fluid">
+    <div class="row" ng-repeat="(key, value) in rc.content.propertiesUi">
+        <mystery-property-view content="rc.content" property-name="key"></mystery-property-view>
+
+    </div>
+
+</div>
+

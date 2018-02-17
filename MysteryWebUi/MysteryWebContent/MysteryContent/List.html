@@ -1,0 +1,43 @@
+﻿<div ng-controller="MysteryContentListController as c">
+    <div ng-show="c.loading">
+        <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+    </div>
+
+    <div class="col" ng-show="!c.loading">
+        <table class="table table-border rounded-corners-left rounded-corners-right" 
+               st-table="c.displayedCollection" 
+               st-set-filter="filter"
+               st-safe-src="c.options.contents" >
+            <thead>
+                <tr>
+                    <th class="headerstyle" colspan="{{c.options.columns.length+1}}">
+                        <input st-search="" class="form-control glowing-border corporate-color" placeholder="{{c.search_placeholder}}" type="text" />
+                    </th>
+                </tr>
+                <tr class="headerstyle">
+                    <th class="glowing-border mouse-pointer list-inside-borders"
+                        title="{{'COMMON.SORT'|translate}}"
+                        ng-repeat="col in c.options.columns"
+                        st-sort="c.getters[col.name]"
+                        translate>
+                        {{col.label}}
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="stripes-odd stripes-even">
+                <tr ng-repeat="item in c.displayedCollection" class="glowing-border">
+                    <td class="table-verticalalignment-middle no-padding no-margin list-inside-borders" ng-repeat="col in c.options.columns">
+                        <div ng-controller="ContentPropertyViewController as cp"
+                                ng-init="cp.initWithContent(item,col.name)"
+                                ng-include="col.cell_template_url" />
+                    </td>
+                    <td>
+                        <mystery-content-list-action content="item"></mystery-content-list-action>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+</div>

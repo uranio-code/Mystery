@@ -1,0 +1,27 @@
+﻿<div ng-mouseover="cp.mouseover = true "
+     ng-mouseleave="cp.mouseover = false">
+
+    <div class="form-group input-group no-margin-border-padding" ng-show="(!cp.mouseover&&!cp.showEdit())||(cp.mouseover&&!cp.data.can_edit)">
+        <span class="form-control form-control-inactive size-text-box-auto padding-left-xsmall"><a>{{cp.data.content[cp.data.name]}}</a></span>
+        <span class="input-group-addon btn-warning glowing-border form-control-inactive"><i class="fa fa-pencil form-control-inactive"></i></span>
+    </div>
+
+    <div class="form-group input-group no-margin-border-padding" ng-show="cp.mouseover&&!cp.showEdit()&&cp.data.can_edit" title="{{'COMMON.EDIT'|translate}}" ng-click="cp.enterEditMode(); cp.adjustTextareaHeight($event, cp.data.uid)">
+        <span class="form-control form-control-active glowing-border size-text-box-auto padding-left-xsmall">{{cp.data.content[cp.data.name]}}</span>
+        <span class="input-group-addon btn btn-outline btn-warning glowing-border form-control-active"><i class="fa fa-pencil"></i></span>
+    </div>
+
+    <div class="form-group input-group no-margin-border-padding" ng-show="cp.showEdit()" ng-disabled="cp.posting">
+        <textarea class="form-control glowing-border size-text-box-auto padding-left-xsmall" id="{{cp.data.uid}}"
+                ng-init="cp.current_value = cp.data.content[cp.data.name]"
+                ng-model="cp.current_value"
+                focus-me="cp.input_focus"
+                ng-change="cp.adjustTextareaHeightDynamic(cp.data.uid)"
+                ng-trim="false"
+                  ng-blur="cp.commit()"
+                ui-keydown="{esc: 'cp.cancel()'}" />
+        <span class="input-group-addon btn btn-outline btn-success glowing-border" title="{{'COMMON.SAVE'|translate}}" ng-click="cp.commit()"><i class="fa fa-check"></i></span>
+        <span class="input-group-addon btn btn-outline btn-danger glowing-border" title="{{'COMMON.CANCEL'|translate}}" ng-click="cp.cancel()"><i class="fa fa-times"></i></span>
+    </div>
+
+</div>

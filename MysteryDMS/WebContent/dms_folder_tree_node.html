@@ -1,0 +1,73 @@
+﻿<div class="ng-cloak folders-no-bottom-margin-border-padding no-padding-right padding-left-small" ng-controller="dmsFolderTreeNodeController as nc">
+    <div class="row">
+        <div class="col no-margin-border-padding folders-display-inline folders-tree-size-small">
+            <!--open close, nothing-->
+            <span class="mouse-pointer btn-xs fa fa-caret-right fa-fw"
+                  ng-show="!nc.node.nav_data.open&&nc.node.nav_data.can_open"
+                  ng-click="nc.open(nc.node)"></span>
+            <span class="mouse-pointer btn-xs fa fa-caret-down fa-fw"
+                  ng-show="nc.node.nav_data.open&&nc.node.nav_data.can_open"
+                  ng-click="nc.node.nav_data.open=false"></span>
+            <span class="fa fa-fw folders-display-inline" ng-show="!nc.node.nav_data.can_open"></span>
+            <!--icon-->
+            <span class="btn btn-xs btn-warning btn-outline glowing-border fa fa-folder"
+                  ng-show="!nc.node.nav_data.open"
+                  ng-click="nc.open(nc.node)"></span>
+            <span class="btn btn-xs btn-warning btn-outline glowing-border fa fa-folder-open"
+                  ng-show="nc.node.nav_data.open"
+                  ng-click="nc.node.nav_data.open=false"></span>
+        </div>
+        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 folders-display-inline no-margin-border-padding"
+             ng-controller="ContentPropertyViewController as cp"
+             ng-init="nc.loadPropertyInfoInNodeTitleEditController(cp)"
+             ng-mouseover="cp.mouseover = true "
+             ng-mouseleave="cp.mouseover = false">
+            <div class="form-group input-group no-margin-border-padding" ng-show="!cp.mouseover&&!cp.showEdit()">
+                <span class="form-control form-control-inactive folders-tree-size-text-box-auto folders-tree-size-small padding-left-xsmall text-vertical-alignment-middle"><u><a class="no-padding-left" ng-href="{{nc.node.url}}" title="Click to show metadata">{{nc.node.ReferenceText}}</a></u></span>
+                <span class="input-group-addon btn btn-outline btn-warning glowing-border form-control-inactive"><i class="fa fa-pencil form-control-inactive"></i></span>
+                <span class="input-group-addon btn btn-outline btn-danger glowing-border form-control-inactive"><i class="fa fa-trash form-control-inactive"></i></span>
+            </div>
+            <div class="form-group input-group no-margin-border-padding" ng-show="cp.mouseover&&!cp.showEdit()">
+                <span class="form-control form-control-active glowing-border folders-tree-size-text-box-auto folders-tree-size-small padding-left-xsmall text-vertical-alignment-middle"><u><a class="no-padding-left" ng-href="{{nc.node.url}}" title="Click to show metadata">{{nc.node.ReferenceText}}</a></u></span>
+                <span class="input-group-addon btn btn-outline btn-warning glowing-border form-control-active" title="Click to Edit" ng-click="cp.enterEditMode()"><i class="fa fa-pencil"></i></span>
+                <span class="input-group-addon btn btn-outline btn-danger glowing-border form-control-active" title="Click to Delete" ng-click="nc.deleteContent()"><i class="fa fa-trash"></i></span>
+            </div>
+            <div class="form-group input-group no-margin-border-padding" ng-show="cp.showEdit()" ng-disabled="cp.posting">
+                <span class="form-control form-control-active glowing-border folders-tree-size-text-box-auto folders-tree-size-small padding-left-xsmall text-vertical-alignment-middle">
+                    <input class="no-margin-border-padding no-outline" id="{{cp.uid}}"
+                           ng-model="cp.current_value"
+                           focus-me="cp.input_focus"
+                           ui-keypress="{13:'cp.commit()'}"
+                           ui-keydown="{esc: 'cp.cancel()'}" />
+                </span>
+                <span class="input-group-addon btn btn-outline btn-success glowing-border form-control-active" title="Click to save" ng-click="cp.commit()"><i class="fa fa-check"></i></span>
+                <span class="input-group-addon btn btn-outline btn-danger glowing-border" title="Click to cancel" ng-click="cp.cancel()"><i class="fa fa-times"></i></span>
+            </div>
+        </div>
+    </div>
+    <div class="list-group folders-no-bottom-margin-border-padding no-padding-right" ng-show="nc.node.nav_data.open">
+        <div class="row add-folder-transparent-50" ng-show="nc.add_new_folder_action">
+            <div class="col no-margin-border-padding folders-display-inline folders-tree-size-small">
+                <i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>
+                <span class="btn btn-xs btn-warning btn-outline glowing-border fa fa-folder"></span>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 folders-display-inline no-margin-border-padding">
+                <div class="form-group input-group no-margin-border-padding">
+                    <span class="form-control form-control-active glowing-border folders-tree-size-text-box-auto folders-tree-size-small padding-left-xsmall text-vertical-alignment-middle">
+                        <input type="text" class="no-margin-border-padding no-outline" ng-disabled="nc.adding_folder"
+                               ng-model="nc.new_folder_title"
+                               placeholder="{{'DMS.FOLDER.ADDFOLDER'|translate}}" 
+                               ui-keypress="{13:'nc.add_new_folder()'}"
+                               ui-keydown="{esc: 'nc.add_new_folder_cancel()'}"/>
+                    </span>
+                    <span class="input-group-addon btn btn-outline btn-success glowing-border form-control-active" 
+                          title="{{'DMS.FOLDER.ADDFOLDER'|translate}}" 
+                          ng-click="nc.add_new_folder()">
+                        <i class="fa fa-check"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <dms-folder-tree-node ng-repeat="subfolder in nc.node.nav_data.getSubFolderToRender()" content="subfolder"></dms-folder-tree-node>
+    </div>
+</div>

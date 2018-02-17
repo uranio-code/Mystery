@@ -1,0 +1,22 @@
+﻿<table class="table table-border" ng-controller="DmsDocumentVersionWorkflowBoxController as c">
+    <thead>
+        <tr class="table-headerstyle header-height headerstyle glowing-border">
+            <th>Version</th>
+            <th>Status</th>
+            <th>Active</th>
+        </tr>
+    </thead>
+    <tbody class="stripes-odd stripes-even centeredtext">
+        <tr ng-show="c.load_more_previous">
+            <td colspan="3" ng-click="c.loadMorePrevious()">
+                <div class="mouse-pointer"><b>Show more...</b></div>
+            </td>
+        </tr>
+        
+        <tr class="font-size-sm" ng-repeat="version in c.versions" ng-class="c.version == version ? 'selected-version' : ''">
+            <td><a href="/DMSWeb/DMSVersion/{{version.guid}}">{{version.version_number}}</a></td>
+            <td><a href="/DMSWeb/DMSVersion/{{version.guid}}">{{version.wf_Status}}</a></td>
+            <td><input type="radio"  class="mouse-pointer" ng-model="c.active_version" ng-value="version.guid" ng-change="c.setActive('{{version.guid}}')"></td>
+        </tr>
+    </tbody>
+</table>

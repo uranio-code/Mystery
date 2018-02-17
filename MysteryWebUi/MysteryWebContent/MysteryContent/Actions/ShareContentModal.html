@@ -1,0 +1,35 @@
+﻿<div class="panel-warning corporate-color">
+    <div class="panel-heading corporate-color" translate>
+        COMMON.SHARE
+    </div>
+    <div class="panel-body">
+        <div class="container-fluid">
+            <div class="row">
+                <label class="col control-label corporate-color" translate>COMMON.MESSAGE.RECEIVERS</label>
+            </div>
+            <div class="row">
+                <div class="col no-margin-border-padding">
+                    <mystery-user-selection selection="c.receivers"></mystery-user-selection>
+                </div>
+            </div>
+            <div>&nbsp;
+                <hr class="no-margins-divider">
+                &nbsp;
+            </div>
+            <div class="row">
+                <label class="control-label corporate-color" translate>COMMON.MESSAGE.BODY</label>
+            </div>
+            <div class="row">
+                <textarea class="form-control glowing-border textarea-newcomment" rows="5" ng-model="c.email_body" ng-change="c.adjustTextareaHeightDynamic(c.email_body)" id="{{c.id}}"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer" >
+        <div class="btn-toolbar">
+            <button class="btn btn-danger btn-outline horizontal-alignment-right" translate ng-click="c.cancel()"><i class="fa fa-times"></i></button>
+            <button class="btn btn-success btn-outline horizontal-alignment-right" translate ng-click="c.send()"><i class="fa fa-check"></i></button>
+        </div>
+    </div>
+
+</div>
+

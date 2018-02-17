@@ -1,0 +1,12 @@
+﻿<div ng-controller="mysteryTextPropertyController as c"
+     ng-init="c.init(cp)">
+    <div ng-mouseover="cp.mouseover = true "
+         ng-mouseleave="cp.mouseover = false"
+         ng-click="c.enterEditMode()">
+
+        <div class="form-control no-border"
+             style="background-color:blue;">{{cp.data.content[cp.data.name]}}</div>
+
+    </div>
+</div>
+

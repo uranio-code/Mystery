@@ -1,0 +1,16 @@
+﻿<div ng-controller="MysteryContentActionListController as c" class="folders-tree-size-text-box-auto">
+
+    <button type="button" ng-repeat="action in c.actions"
+       ng-controller="ContentActionButtonController as bc"
+       ng-show="!bc.loading" href="#"
+       ng-click="bc.click()" 
+       class="btn btn-{{bc.data.button.style}} btn-xs">
+        <span class="fa-stack font-size-sm">
+            <i ng-show="bc.data.button.font_awesome_icon" class="fa fa-{{bc.data.button.font_awesome_icon}} fa-stack-2x"></i>
+            <i ng-show="bc.data.button.font_awesome_icon_2" class="fa fa-{{bc.data.button.font_awesome_icon_2}} fa-stack-1x"></i>
+        </span>
+    </button>
+
+    
+
+</div>

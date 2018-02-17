@@ -1,0 +1,30 @@
+﻿<div ng-controller="dms_version_comments_view_list_controller as c" ng-cloak
+     ng-show="content.comments_visible">
+    <div class="panel panel-info add-comment-transparent-50"
+         ng-show="content.allow_comments">
+        <div class="panel-heading corporate-color corporate-background-color padding-left-xsmall font-size-sm">
+            <b>{{'COMMON.ADD_NEW_COMMENT'|translate}}</b>
+        </div>
+        <div class="panel-body corporate-color">
+            <div class="form-group input-group no-margin-border-padding">
+                <textarea class="form-control glowing-border size-text-box-auto padding-left-xsmall textarea-newcomment" id="newComment"
+                          ng-model="c.comment_body"
+                          ng-init="c.adjustTextareaHeight('newComment')"
+                          ng-change="c.adjustTextareaHeightDynamic('newComment')"
+                          ng-trim="false"/>
+                <span class="input-group-addon btn btn-outline btn-success glowing-border {{c.posting?'disabled':''}}" title="{{'COMMON.SAVE'|translate}}" ng-click="c.commit(); c.adjustTextareaHeight('newComment')"><i class="fa fa-check"></i></span>
+            </div>
+        </div>
+    </div>
+
+    <div ng-repeat="comment in c.comments">
+        <div class="panel panel-info">
+            <div class="panel-heading corporate-color corporate-background-color padding-left-xsmall font-size-sm">
+                <b>{{ comment.panel_title }}</b>
+            </div>
+            <div class="panel-body size-text-box-auto corporate-color font-size-sm">
+                {{ comment.comment_body }}
+            </div>
+        </div>
+    </div>
+</div>

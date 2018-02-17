@@ -1,0 +1,66 @@
+﻿<div >
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading corporate-background-color">
+                    <div class="row">
+                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                            <h3 class="panel-title corporate-color" translate>COMMON.PLEASE_SIGN_IN</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <form role="form">
+                        <fieldset>
+                            <div class="form-group">
+                                <input ng-model="c.email" placeholder="{{c.email_placeholder}}" 
+                                        class="form-control glowing-border" name="email" type="email" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <input ng-model="c.password" placeholder="{{c.password_placeholder}}"
+                                       class="form-control glowing-border" name="password" type="password" value="">
+                            </div>
+                            <div class="checkbox">
+                                <label class="corporate-color">
+                                    <input class="glowing-border" ng-model="c.remeberMe" name="remember" type="checkbox" >{{c.RememberMeLabel}}
+                                </label>
+                            </div>
+                            <!-- Change this to a button or input when using this as a form -->
+                            <button class="btn btn-lg btn-success btn-block glowing-border" translate ng-click="c.login()">COMMON.LOGIN</button>
+                            <div class="row">&nbsp;</div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading corporate-color corporate-background-color">
+                                        <p translate>COMMON.LOGINS</p>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                                <div ng-click="c.loginLiveId()">
+                                                    <button class="btn btn-outline btn-primary fa fa-windows glowing-border"></button>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                                <div ng-click="c.loginLiveId()">
+                                                    <button class="btn btn-outline btn-danger fa fa-google glowing-border" disabled="disabled"></button>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                                <div ng-click="c.loginLiveId()">
+                                                    <button class="btn btn-outline btn-default fa fa-apple glowing-border" disabled="disabled"></button>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                                <div ng-click="c.loginLiveId()">
+                                                    <button class="btn btn-outline btn-success fa fa-android glowing-border" disabled="disabled"></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+﻿<div ng-mouseover="cp.mouseover = true "
+     ng-mouseleave="cp.mouseover = false"
+     ng-controller="MultiReferenceController as c">
+
+    <div class="form-group input-group no-margin-border-padding" ng-show="(!cp.mouseover&&!cp.showEdit())||(cp.mouseover&&!cp.data.can_edit)" ng-click="cp.enterEditMode()" title="{{'COMMON.EDIT'|translate}}">
+        <span class="form-control form-control-inactive size-text-box-auto padding-left-xsmall"><span ng-repeat="content in cp.data.content[cp.data.name]"><a>{{content.ReferenceText}}<span ng-show="!$last">,&nbsp;</span></a></span></span>
+        <span class="input-group-addon btn-outline btn-warning glowing-border form-control-inactive"><i class="fa fa-pencil form-control-inactive"></i></span>
+    </div>
+
+    <div class="form-group input-group no-margin-border-padding" ng-show="cp.mouseover&&!cp.showEdit()&&cp.data.can_edit" ng-click="cp.enterEditMode()" title="{{'COMMON.EDIT'|translate}}">
+        <span class="form-control form-control-active glowing-border size-text-box-auto padding-left-xsmall"><span ng-repeat="content in cp.data.content[cp.data.name]">{{content.ReferenceText}}<span ng-show="!$last">,&nbsp;</span></span></span>
+        <span class="input-group-addon btn btn-outline btn-warning glowing-border form-control-active"><i class="fa fa-pencil"></i></span>
+    </div>
+
+    <div class="form-group input-group no-margin-border-padding front-layer"
+         ng-show="cp.showEdit()"
+         ng-disabled="cp.posting"
+         ng-init="c.init(cp)">
+
+        <div class="form-control form-inline glowing-border padding-left-xsmall height-100">
+
+            <span class="input-group" ng-repeat="content in c.selected_contents">
+                <span class="form-control form-control-active glowing-border size-text-box-auto padding-left-xsmall">{{content.ReferenceText}}</span>
+                <span class="input-group-addon btn btn-outline btn-danger glowing-border" ng-click="c.removeSelection(content)">
+                    <i class="fa fa-trash"></i>
+                </span>
+            </span>
+
+            <form class="input-group">
+                <input class="form-control glowing-border size-text-box-auto rounded-corners-right" type="text" ng-model="c.typing_text"
+                       uib-typeahead="item as item.ReferenceText for item in c.avalible|filter:{ReferenceText:$viewValue}| limitTo:8"
+                       typeahead-template-url="MysteryWebContent/MysteryContent/Properties/contentSelectionTemplate.html"
+                       typeahead-on-select="c.onSelect($item)"
+                       focus-me="cp.input_focus"
+                       onblur="this.focus()"
+                       ui-keyup="{esc: 'c.cancelSelection()'}"
+                       typeahead-editable="false">
+            </form>
+        </div>
+
+        <span class="input-group-addon btn btn-outline btn-default glowing-border" title="{{'COMMON.DELETE'|translate}}"
+              ng-show="!c.selected"
+              ng-click="c.removeAllItems()">
+            <i class="fa fa-trash"></i>
+        </span>
+
+        <span class="input-group-addon btn btn-outline btn-success glowing-border" title="{{'COMMON.SAVE'|translate}}"
+                ng-show="!c.selected"
+                ng-click="c.confirmAllSelections()">
+            <i class="fa fa-check"></i>
+        </span>
+
+        <span class="input-group-addon btn btn-outline btn-danger glowing-border" title="{{'COMMON.CANCEL'|translate}}"
+                ng-show="!c.selected"
+                ng-click="c.cancelSelection()">
+            <i class="fa fa-times"></i>
+        </span>
+    </div>
+</div>

@@ -1,0 +1,97 @@
+﻿<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0"
+     ng-controller="NavBarController as nbc">
+    <div class="navbar-header">
+        <ul class="nav navbar-top-links navbar-left">
+            <li class="dropdown" ng-show="nbc.applications.length>0">
+                <button class="btn btn-outline btn-primary size-navbar-top-left" data-toggle="dropdown" href="#">
+                    <i class="fa fa-navicon fa-icons-size-big"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-messages">
+                    <li ng-repeat="app in nbc.applications" class="{{app?'':'divider'}}">
+                        <a href="{{app.start_page}}" ng-show="app">
+                            <div>
+                                <strong translate>{{app.short_label}}</strong>
+                                <span class="pull-right text-muted">
+                                    <em translate>{{app.label}}</em>
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-messages -->
+            </li>
+            <li class="dropdown">
+                <a class="size-navbar-brand padding-brand-link dropdown" href="start">
+                    <div class="btn btn-outline btn-primary size-navbar-brand">
+                        <img ng-src="{{nbc.logo_path}}" height="37" class="img-rounded" >
+                    </div>
+                </a>
+            </li>
+            <li class="dropdown">
+                <button type="button" class="btn btn-outline btn-primary navbar-top-toggle fa fa-caret-down fa-icons-size-big" 
+                        data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <!-- /.navbar-header -->
+    <div>
+        <ul class="nav navbar-top-links navbar-right">
+            <li class="dropdown" ng-show="nbc.downloader.logged">
+                <form class="navbar-form margins-search" role="search">
+                    <div class="input-group">
+                        <input type="text" ng-model="nbc.search_text" autocomplete="off"
+                               uib-typeahead="item as item.ReferenceText  for item in nbc.search($viewValue)"
+                               typeahead-template-url="MysteryWebContent/Shared/NavBar/SearchResultTemplate.html"
+                               typeahead-on-select="nbc.onSelect($item)"
+                               typeahead-editable="false"
+                               class="form-control glowing-border " placeholder="Search" name="srch-term" id="srch-term">
+
+                        
+                        <div class="input-group-btn">
+                            <button class="btn btn-outline btn-primary size-magnifyer" type="submit">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </li>
+            
+            <li ng-show="nbc.downloader.logged" ng-model="nbc.downloader" class="corporate-color"><p><a class="no-padding" href="{{nbc.user.url}}"><b>{{nbc.user.fullname}}</b><i ng-show="nbc.user.account_type=='admin'">&nbsp;-&nbsp;{{nbc.user.account_type}}</i></a></p></li>
+
+            <!-- User -->
+            <li class="dropdown">
+                <div ng-show="!nbc.downloader.logged">
+                    <button class="btn btn-outline btn-primary size-navbar-top-left" data-toggle="tooltip" data-placement="bottom" title= "{{'COMMON.LOGIN'|translate}}" href="#" ng-click="nbc.login()">
+                        <i class="glyphicon glyphicon-log-in fa-icons-size-big"></i>
+                    </button>
+                    
+                </div>
+
+                
+
+                <div ng-show="nbc.downloader.logged">
+                    
+                    <button class="btn btn-outline btn-primary size-navbar-top-left dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-icons-size-big"></i> <i class="fa fa-caret-down fa-icons-size-big"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-user">
+                        
+                        <li ng-click="nbc.logout()">
+                            <a href="#"><i class="fa fa-sign-out fa-fw"></i><span translate>COMMON.LOGOUT</span></a>
+                        </li>
+                    </ul>
+
+                </div>
+
+                
+            </li>
+            
+        </ul>
+    </div>
+    
+</nav>

@@ -1,0 +1,13 @@
+﻿<div ng-controller="ContentWorkflowActionButtonController as c"
+     ng-show="c.checkWorkflowVisibility()">
+
+    <div ng-show="c.loading" class="btn btn-default disabled">
+        <span> loading actions </span>
+        <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+    </div>
+
+    <a ng-show="!c.loading" href="#" ng-click="c.click(c.data)" class="btn btn-{{c.data.button.style}}" style="margin-left:5px">
+        <span translate>{{c.data.button.label}}</span>
+        <span ng-show="c.data.button.font_awesome_icon" class="fa fa-{{c.data.button.font_awesome_icon}}"></span>
+    </a>
+</div>

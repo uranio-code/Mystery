@@ -1,0 +1,16 @@
+﻿<mystery-navigation></mystery-navigation>
+<dms-side-nav content="rc.content"></dms-side-nav>
+<div class="container-fluid" id="page-wrapper" >
+    <div>&nbsp;</div>
+    
+    <a ng-show="c.user.account_type=='admin'" href="#" ng-controller="AddUserController as c" ng-click="c.showAddModal()" class="btn btn-success btn-outline">
+        <span class="font-size-sm">
+            <i class="fa fa-user font-size-xlg"></i>
+            <i class="fa fa-plus text-vertical-alignment-super"></i>
+        </span>
+    </a>
+
+    <div>&nbsp;</div>
+
+    <mystery-content-list options="rc.content_type_table_options"></mystery-content-list>
+</div>

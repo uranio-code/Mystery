@@ -1,0 +1,69 @@
+﻿<div id="wrapper">
+    <mystery-navigation></mystery-navigation>
+    <mystery-unauthorized ng-show="!rc.content.authorized" content="rc.content"></mystery-unauthorized>
+    <div ng-show="rc.content.authorized">
+        <dms-side-nav content="rc.content"></dms-side-nav>
+
+        <div class="container-fluid " ng-controller="dmsVersionViewController as c"
+             ng-init="c.init(rc.content)" id="page-wrapper" ng-show="rc.content.authorized">
+            <div class="row" ng-show="c.path_loading">
+                <div class="col">
+                    <ol class="breadcrumb">
+                        <li>&nbsp;</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row" ng-repeat="path in c.paths">
+                <div class="col">
+                    <ol class="breadcrumb">
+                        <li ng-repeat="node in path"><a href="{{node.url}}">{{node.title}}</a></li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-9 col-md-9 col-lg-9">
+                    <ul class="nav nav-tabs">
+                        <li ng-repeat="tab in c.tabs" class="{{tab.active?'active':''}}" ng-click="c.selectTab(tab)">
+                            <a class="{{tab.active?'active-tab':'border-tab'}}">
+                                <span translate>{{tab.label}}</span>
+                                &nbsp;
+                                <i class="{{tab.icon_class}}"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <div>
+                        <div ng-include="c.active_tab.templateUrl">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3 table-position">
+                    <div class="row">
+                        <div class="col-sm-9 col-md-9 col-lg-9 no-padding">
+                            <mystery-content-action-menu content="rc.content"></mystery-content-action-menu>
+                        </div>
+                        <div class="col-sm-1 col-md-1 col-lg-1 no-padding">
+                            <mystery-share-content content="rc.content"></mystery-share-content>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        &nbsp;
+                    </div>
+                    <dms-document-version-workflow-box content="rc.content"></dms-document-version-workflow-box>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div>until we are done (normal mystery UI)</div>
+            <div>
+                <mystery-content-action-menu content="rc.content"></mystery-content-action-menu>
+                <div class="row" ng-repeat="(key, value) in rc.content.propertiesUi">
+                    <hr class="no-margins-divider">
+                    <mystery-property-view content="rc.content" property-name="key"></mystery-property-view>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+﻿<mystery-navigation></mystery-navigation>
+<dms-side-nav content="rc.content"></dms-side-nav>
+
+<div class="container-fluid" ng-controller="DMSUserGroupViewController as c" id="page-wrapper">
+
+    <div>&nbsp;</div>
+    <mystery-content-action-menu content="rc.content"></mystery-content-action-menu>
+    <div>&nbsp;</div>
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a class="active-tab">
+                        <i class="fa fa-user"></i>
+                    </a>
+                </li>
+            </ul>
+            <div class="row">
+                <hr class="no-margins-divider">
+                <mystery-property-view content="rc.content" property-name="'title'"></mystery-property-view>
+            </div>
+            <div class="row">
+                <hr class="no-margins-divider">
+                <mystery-property-view content="rc.content" property-name="'members'"></mystery-property-view>
+            </div>
+            <div class="row">
+                <hr class="no-margins-divider">
+                <mystery-property-view content="rc.content" property-name="'sub_groups'"></mystery-property-view>
+            </div>
+            <div class="row">
+                <hr class="no-margins-divider">
+                <mystery-property-view content="rc.content" property-name="'parent_group'"></mystery-property-view>
+            </div>
+            <div class="row">
+                <hr class="no-margins-divider">
+                <mystery-property-view content="rc.content" property-name="'all_members'"></mystery-property-view>
+            </div>
+        </div>
+    </div>
+    <div>&nbsp;</div>
+
+</div>

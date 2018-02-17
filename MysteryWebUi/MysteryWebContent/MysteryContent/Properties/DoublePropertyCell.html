@@ -1,0 +1,19 @@
+﻿<div class="form-horizontal">
+    <div class="form-group">
+        <div ng-mouseover="cp.mouseover = true "
+             ng-mouseleave="cp.mouseover = false"
+             ng-click="cp.enterEditMode()">
+
+            <div class="form-control no-border" ng-show="!cp.showEdit()">{{cp.data.content[cp.data.name]}}</div>
+
+            <div ng-show="cp.showEdit()" ng-disabled="cp.posting">
+                <input class="form-control " id="{{cp.uid}}"
+                       ng-init="cp.current_value = cp.data.content[cp.data.name]"
+                       ng-model="cp.current_value"
+                       ui-keypress="{13:'cp.commit()'}"
+                       ui-keydown="{esc: 'cp.cancel()'}" />
+            </div>
+
+        </div>
+    </div>
+</div>

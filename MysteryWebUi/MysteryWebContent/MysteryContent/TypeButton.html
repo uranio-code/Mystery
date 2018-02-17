@@ -1,0 +1,20 @@
+﻿<div class="panel panel-{{c.data.panel_type}}" >
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-3">
+                <i class="fa {{c.data.icon}} fa-5x"></i>
+            </div>
+            <div class="col-xs-9 text-right">
+                <div class="huge" translate>{{c.data.huge}}</div>
+                <div translate>{{c.data.text}}</div>
+            </div>
+        </div>
+    </div>
+    <a ng-href="{{c.data.url}}" ng-show="c.data.url.length>0">
+        <div class="panel-footer">
+            <span class="pull-left" translate>{{c.data.details}}</span>
+            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+            <div class="clearfix"></div>
+        </div>
+    </a>
+</div>
