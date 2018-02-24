@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\mysteryuranio\UranioWeb\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\mysteryuranio\UranioWeb\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -44,6 +45,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DnsClient">
+      <HintPath>..\..\mysteryuranio\UranioWeb\packages\DnsClient.1.0.7\lib\net45\DnsClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Log4Mongo, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\log4mongo-net.2.2.0\lib\net45\Log4Mongo.dll</HintPath>
       <Private>True</Private>
@@ -85,16 +90,20 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="MongoDB.Bson, Version=2.4.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MongoDB.Bson.2.4.4\lib\net45\MongoDB.Bson.dll</HintPath>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\..\mysteryuranio\UranioWeb\packages\MongoDB.Bson.2.5.0\lib\net45\MongoDB.Bson.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MongoDB.Driver, Version=2.4.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MongoDB.Driver.2.4.4\lib\net45\MongoDB.Driver.dll</HintPath>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\..\mysteryuranio\UranioWeb\packages\MongoDB.Driver.2.5.0\lib\net45\MongoDB.Driver.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MongoDB.Driver.Core, Version=2.4.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MongoDB.Driver.Core.2.4.4\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+    <Reference Include="MongoDB.Driver.Core">
+      <HintPath>..\..\mysteryuranio\UranioWeb\packages\MongoDB.Driver.Core.2.5.0\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Buffers">
+      <HintPath>..\..\mysteryuranio\UranioWeb\packages\System.Buffers.4.4.0\lib\netstandard1.1\System.Buffers.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -256,7 +265,6 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\bootstrap-fileinput\sass\fileinput.scss" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <Content Include="scripts\angular-ui\ui-bootstrap-tpls.js" />
     <Content Include="scripts\angular-ui\ui-bootstrap-tpls.min.js" />
@@ -272,21 +280,21 @@
     <Content Include="scripts\angular-cookies.min.js.map" />
     <Content Include="scripts\angular-route.min.js.map" />
     <Content Include="scripts\angular-sanitize.min.js.map" />
-    <None Include="scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\fileinput.js" />
     <Content Include="scripts\fileinput.min.js" />
-    <Content Include="scripts\jquery-3.1.1.js" />
-    <Content Include="scripts\jquery-3.1.1.min.js" />
-    <Content Include="scripts\jquery-3.1.1.slim.js" />
-    <Content Include="scripts\jquery-3.1.1.slim.min.js" />
+    <None Include="scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="scripts\jquery-3.3.1.js" />
+    <Content Include="scripts\jquery-3.3.1.min.js" />
+    <Content Include="scripts\jquery-3.3.1.slim.js" />
+    <Content Include="scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="scripts\locales\ar.js" />
     <Content Include="scripts\locales\az.js" />
     <Content Include="scripts\locales\bg.js" />
     <Content Include="scripts\locales\ca.js" />
     <Content Include="scripts\locales\cr.js" />
-    <Content Include="scripts\locales\cz.js" />
+    <Content Include="scripts\locales\cs.js" />
     <Content Include="scripts\locales\da.js" />
     <Content Include="scripts\locales\de.js" />
     <Content Include="scripts\locales\el.js" />
@@ -300,9 +308,11 @@
     <Content Include="scripts\locales\id.js" />
     <Content Include="scripts\locales\it.js" />
     <Content Include="scripts\locales\ja.js" />
+    <Content Include="scripts\locales\ka.js" />
     <Content Include="scripts\locales\kr.js" />
     <Content Include="scripts\locales\kz.js" />
     <Content Include="scripts\locales\LANG.js" />
+    <Content Include="scripts\locales\lt.js" />
     <Content Include="scripts\locales\nl.js" />
     <Content Include="scripts\locales\no.js" />
     <Content Include="scripts\locales\pl.js" />
@@ -328,17 +338,18 @@
     <Content Include="scripts\plugins\sortable.js" />
     <Content Include="scripts\plugins\sortable.min.js" />
     <Content Include="scripts\RecursionHelper.js" />
-    <Content Include="scripts\smart-table.js" />
-    <Content Include="scripts\smart-table.min.js" />
     <Content Include="MysteryWebContent\Shared\LoginService.js" />
     <Content Include="MysteryWebContent\Shared\Mystery.css" />
     <Content Include="MysteryWebContent\Shared\Mystery.js" />
     <Content Include="MysteryWebContent\Shared\MysteryServiceViewController.js" />
     <Content Include="MysteryWebContent\Shared\MysteryFormService.js" />
     <Content Include="MysteryWebContent\Shared\MysteryInstance.js" />
+    <Content Include="scripts\smart-table.js" />
+    <Content Include="scripts\smart-table.min.js" />
     <Content Include="scripts\smart-table.min.js.map" />
-    <Content Include="scripts\jquery-3.1.1.slim.min.map" />
-    <Content Include="scripts\jquery-3.1.1.min.map" />
+    <Content Include="scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="scripts\jquery-3.3.1.min.map" />
+    <Content Include="scripts\metisMenu.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -426,6 +437,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\..\mysteryuranio\UranioWeb\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\mysteryuranio\UranioWeb\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

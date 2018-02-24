@@ -20,8 +20,7 @@
     <link href="<%=ResolveUrl("~/Content/metisMenu.min.css") %>" rel="stylesheet" />
 
     <link href="<%=ResolveUrl("~/MysteryWebContent/Shared/Mystery.css") %>" rel="stylesheet" />
-    
-    <script src="scripts/jquery-3.1.1.min.js"></script>
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
     <script src="scripts/bootstrap.min.js"></script>
     
 
