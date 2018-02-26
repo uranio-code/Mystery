@@ -184,6 +184,8 @@
     <Compile Include="Content\Messaging\ShareContentAction.cs" />
     <Compile Include="MysteryAction\HistoryMessageDataSerializer.cs" />
     <Compile Include="MysteryAction\PublishedAction.cs" />
+    <Compile Include="Slack\SlackConfiguration.cs" />
+    <Compile Include="Slack\SlackMessager.cs" />
     <Compile Include="TOTPAuthentication\TOTPAuthenticator.cs" />
     <Compile Include="UI\ContentGetWorkflowActionInfoAction.cs" />
     <Compile Include="UI\ContentWorkflowActionMenuAction.cs" />
