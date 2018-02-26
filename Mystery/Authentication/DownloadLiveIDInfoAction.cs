@@ -24,7 +24,8 @@ namespace Mystery.Authentication
             if (string.IsNullOrEmpty(input))
                 return new ActionResult<User> { isSuccessfull = false, message = "code not given" };
 
-            LiveIdAccessTokenInfo access_token_info = LiveIdAccessTokenInfo.Aquire(input);
+            var liveIDconf = this.getGlobalObject<IConfigurationProvider>().getConfiguration<LiveIDConfiguration>();
+            LiveIdAccessTokenInfo access_token_info = LiveIdAccessTokenInfo.Aquire(input, liveIDconf);
 
             LiveIDAccountInfo account_info = access_token_info.getAccountInfo();
             
@@ -34,7 +35,7 @@ namespace Mystery.Authentication
             //first time in this instance
             if (user == null)
             {
-                var liveIDconf = this.getGlobalObject<IConfigurationProvider>().getConfiguration<LiveIDConfiguration>();
+                
                 if (!liveIDconf.allow_new_users)
                     return ActionResultTemplates<User>.UnAuthorized;
 

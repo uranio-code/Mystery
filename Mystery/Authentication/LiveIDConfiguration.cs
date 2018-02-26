@@ -23,11 +23,10 @@ namespace Mystery.Authentication
         public string access_token { get; set; }
 
         public static event LiveIdAccessTokenInfoReceivedHandler LiveIdAccessTokenInfoReceived;
-        public static LiveIdAccessTokenInfo Aquire(string code) {
+        public static LiveIdAccessTokenInfo Aquire(string code, LiveIDConfiguration liveIDconf) {
             if (string.IsNullOrEmpty(code))
                 return null;
 
-            var liveIDconf = code.getGlobalObject<IConfigurationProvider>().getConfiguration<LiveIDConfiguration>();
             var secret = code.getGlobalObject<IConfigurationProvider>().getConfiguration<LiveIDSecret>();
 
             var c = new WebClient();
