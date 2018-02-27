@@ -8,7 +8,20 @@ namespace Mystery.MysteryAction
     public interface IContentAccess {
         bool canAccess(IContent content, User user);
     }
-
+    public class AllCanAccess : IContentAccess
+    {
+        bool IContentAccess.canAccess(IContent content, User user)
+        {
+            return true;
+        }
+    }
+    public class OnlyAdminCanAccess : IContentAccess
+    {
+        bool IContentAccess.canAccess(IContent content, User user)
+        {
+            return user != null && user.account_type == UserType.admin;
+        }
+    }
 
     public class ContentAccessAttribute : MysteryDefaultClassAttribute
     {
@@ -31,12 +44,5 @@ namespace Mystery.MysteryAction
             return instance.canAccess(content, user);
         }
 
-        private class AllCanAccess : IContentAccess
-        {
-            bool IContentAccess.canAccess(IContent content,User user)
-            {
-                return true;
-            }
-        }
     }
 }
