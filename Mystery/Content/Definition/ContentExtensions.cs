@@ -208,6 +208,12 @@ namespace Mystery.Content
                     object target_value = tp.retrive(target_content);
                     if (source_value == null && target_value == null)
                         continue;
+                    //hating datetime a little more every day, when we store them in a db or js or anything on their way
+                    //back they might differe a little, equals compare the ticks so it is would have to be quite close.
+                    //in case of date we assume the same value if they differ for less than 1ms.
+                    if (source_value is DateTime && target_value is DateTime && source_value != null && target_value != null)
+                        if (((DateTime)source_value - (DateTime)target_value).TotalMilliseconds < 1)
+                            continue;
                     //one of them is not null, so what to use Equals class methods
                     if (source_value != null && !source_value.Equals(target_value))
                         return false;

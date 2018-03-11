@@ -170,7 +170,9 @@ namespace Mystery.UI
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            throw new NotImplementedException();
+            //ui json reading will use the same as BLL json
+            var converter = new ContentConverter();
+            return converter.ReadJson(reader, objectType, existingValue, serializer);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

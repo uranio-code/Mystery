@@ -27,7 +27,10 @@ namespace MysteryTests.Content.Definition
         public string the_reference_text { get; set; } 
 
         [ContentProperty(), PropertyView()]
-        public long a_integer { get; set; } 
+        public long a_integer { get; set; }
+
+        [ContentProperty(), PropertyView()]
+        public DateTime a_date { get; set; }
 
 
         [ContentProperty(), PropertyView()]
@@ -60,6 +63,7 @@ namespace MysteryTests.Content.Definition
             result.a_boolean = rnd.NextDouble() > 0.5;
             result.a_double = rnd.NextDouble();
             result.a_enum = (a_enum)rnd.Next(4);
+            result.a_date = DateTime.Now.AddDays(rnd.Next(-100,100));
             return result;
         }
 
@@ -105,6 +109,8 @@ namespace MysteryTests.Content.Definition
 
         public double  a_double { get; set; } 
 
+        public DateTime a_date { get; set; }
+
         public TestContentType single_reference { get; set; } 
 
         public List<TestContentType> multi_reference { get; set; } 
@@ -120,7 +126,8 @@ namespace MysteryTests.Content.Definition
             result.a_integer = rnd.Next();
             result.a_boolean = rnd.NextDouble() > 0.5;
             result.a_double = rnd.NextDouble();
-            
+            result.a_date = DateTime.Now.AddDays(rnd.Next(-100,100));
+
             if (rnd.NextDouble() > 0.5)
             {
                 result.single_reference = TestContentType.getARandomTestContentTypeWithoutreference();
