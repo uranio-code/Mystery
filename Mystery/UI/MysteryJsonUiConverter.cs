@@ -16,7 +16,7 @@ namespace Mystery.UI
             {
                 new MysteryUiContentConverter(),
                 new ReferencePropertyValueJsonUiConverter(),
-                new JavaScriptDateTimeConverter(),
+                new DatePropertyUiJsonConverter(),
                 new TypeConverter(),
                 new StringEnumConverter(),
                 new GuidValueJsonConverter(),

@@ -8,12 +8,16 @@ app.factory("ContentMem", function () {
 
     me.parseData = function (data) {
         if (!angular.isObject(data)) return data;
+        if (angular.isDefined(data.ddate))//we received a date from server
+            return new Date(Date.parse(data.value));
 
         angular.forEach(data, function (value, key) {
             //going recursive right on the received value, this should stop recursion
             //if a guid object is represent in parent tree node
             value = me.parseData(value);
-
+            //we replace the value with the parsed one, so dates are set.
+            //yet if turn out to be a content we will replace with the one in memory
+            data[key] = value;
             if (isContent(value)) {
 
                 if (angular.isDefined(me.memory[value.guid])) {
@@ -43,6 +47,7 @@ app.factory("ContentMem", function () {
                 }
 
             }
+
         });
 
         return data;
@@ -190,9 +195,31 @@ app.factory("MysteryDownloader", ['$http', 'MysteryLogin', '$rootScope', 'Conten
         });
         return deferred.promise;
     };
+    //this is the reverse function of parse data in the output
+    //when we send something to the server we need to replace the contents with a limited copy
+    //and we need to convert date into objects
+    function preparePost(data) {
+        if (angular.isDate(data)) {
+            return { value: data.toUTCString() };
+        }
+        if (!angular.isObject(data)) return data;
 
+        if (isContent(data)) {
+            //we replace the contents with their cutted copy or we would go recurisive for ever
+            data =  Mystery.limitedCopyContent(data);
+        }
+
+        //going recursive, looking for dates and content till the end
+        angular.forEach(data, function (value, key) {
+            data[key] = preparePost(value);
+        });
+
+        return data;
+    }
     me.post = function (url, input, callback) {
         if (angular.isUndefined(callback)) callback = function () { };
+        input = preparePost(input);
+
         $http.post(url, input).then(function (response) {
             var data = response.data;
             if (!me.isSuccessfullRespose(data)) {

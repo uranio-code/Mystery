@@ -15,14 +15,15 @@ namespace Mystery.Json
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            writer.WriteValue(value);
-            //var o = new helper() {value = (DateTime)value };
-            //writer.WriteValue(o);
+            JObject jo = JObject.FromObject(new helper() { value = (DateTime)value });
+            jo.WriteTo(writer);
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             DateTime result = DateTime.MinValue;
+            if (reader.TokenType == JsonToken.Null)
+                return result;
             if (reader.Value is DateTime)
             {
                 result = (DateTime)reader.Value;
@@ -31,7 +32,11 @@ namespace Mystery.Json
             {
                 result = DateTime.Parse((string)reader.Value);
             }
-            else if(!(reader.Value == null))
+            else if (reader.TokenType == JsonToken.StartObject) {
+                JObject jo = JObject.Load(reader);
+                result = jo[nameof(helper.value)].Value<DateTime>();
+            }
+            else if (!(reader.Value == null))
             {
                 throw new NotImplementedException(reader.Value.GetType().Name + " doesn't have an implementation for dates");
             }

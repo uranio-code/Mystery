@@ -16,7 +16,7 @@ Mystery.limitedCopyContent = function (content, current_level) {
         return content.map(function (x) { return Mystery.limitedCopyContent(x, current_level + 1);})
     }
 
-    if (!angular.isObject(content))
+    if (!angular.isObject(content)||angular.isDate(content))
         return content;
     
     var result = {};
