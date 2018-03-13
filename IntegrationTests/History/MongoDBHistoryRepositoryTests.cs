@@ -11,6 +11,13 @@ namespace Mystery.History.Tests
     [TestClass()]
     public class MongoDBHistoryRepositoryTests
     {
+        [TestInitialize()]
+        public void Initialize()
+        {
+            var repo = new MongoDBHistoryRepository();
+            repo.DropAllHistory();
+        }
+
         [TestMethod()]
         public void MongoDBHistoryRepositoryGetByFilterTest()
         {

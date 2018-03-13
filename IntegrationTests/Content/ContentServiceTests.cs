@@ -39,7 +39,7 @@ namespace IntegrationTests.Content
             var uid = c.guid.Tiny();
             var s = new ContentService();
             var service_result = s.ContentView(nameof(TestContentType),uid);
-            var converter = this.getGlobalObject<MysteryJsonConverter>();
+            var converter = this.getGlobalObject<MysteryJsonUiConverter>();
             Assert.IsTrue(converter.readJson<IContent>(service_result.json_output) is TestContentType);
         }
 
@@ -54,7 +54,7 @@ namespace IntegrationTests.Content
             var uid = c.guid.Tiny();
             var s = new ContentService();
             var service_result = s.ContentView(nameof(TestContentType),uid);
-            var converter = this.getGlobalObject<MysteryJsonConverter>();
+            var converter = this.getGlobalObject<MysteryJsonUiConverter>();
             var cui = converter.readJson<ContentUi>(service_result.json_output);
             foreach (PropertyView property_view in typeof(TestContentType).getMysteryPropertyAttributes<PropertyView>())
             {

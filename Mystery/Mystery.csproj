@@ -189,6 +189,7 @@
     <Compile Include="TOTPAuthentication\TOTPAuthenticator.cs" />
     <Compile Include="UI\ContentGetWorkflowActionInfoAction.cs" />
     <Compile Include="UI\ContentWorkflowActionMenuAction.cs" />
+    <Compile Include="UI\DatePropertyUiJsonConverter.cs" />
     <Compile Include="UI\FavoriteAction.cs" />
     <Compile Include="UI\MysteryJsonUiConverter.cs" />
     <Compile Include="Json\MysteryMongoDb.cs" />

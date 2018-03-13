@@ -13,7 +13,7 @@
 
     me.init = function (cp) {
         me.cp = cp;
-        if (cp.data.content[cp.data.name]) { me.dt = Date.parse(cp.data.content[cp.data.name]) }
+        if (cp.data.content[cp.data.name]) { me.dt = cp.data.content[cp.data.name]; }
         else { me.clear() }
     }
 

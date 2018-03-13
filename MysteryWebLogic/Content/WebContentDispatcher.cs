@@ -93,8 +93,10 @@ namespace MysteryWebLogic.Content
             switch (WebActionExecutor.current.status)
             {
                 case WebActionExecutorStatus.done:
-                case WebActionExecutorStatus.authorizing:
                     SuccessfullDispose();
+                    break;
+                case WebActionExecutorStatus.authorizing:
+                    ErroneousDispose();
                     break;
                 case WebActionExecutorStatus.error:
                     ErroneousDispose();

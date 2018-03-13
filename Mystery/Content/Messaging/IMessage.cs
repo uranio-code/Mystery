@@ -17,6 +17,7 @@ namespace Mystery.Messaging
         User from { get; set; }
         IEnumerable<User> to { get; set; }
         IEnumerable<User> cc { get; set; }
+        DateTime date { get; }
     }
 
     public class BaseMessage : IUserMessage
