@@ -114,11 +114,6 @@ namespace MysteryDMS.Model
         [PropertyEdit]
         public string  external_reference_id { get; set; } 
 
-        [ContentProperty(label = "DMS.VERSION.VISIBLE")]
-        [PropertyView]
-        [PropertyEdit]
-        public bool  visible { get; set; } 
-
         
         [ContentProperty(label = "DMS.VERSION.TAGS")]
         [PropertyView]
