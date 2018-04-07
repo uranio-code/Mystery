@@ -182,6 +182,8 @@
     <Compile Include="Content\Messaging\ICodifiedMessage.cs" />
     <Compile Include="Content\Messaging\IMessageManager.cs" />
     <Compile Include="Content\Messaging\ShareContentAction.cs" />
+    <Compile Include="Log\RaiseError.cs" />
+    <Compile Include="Log\SlackErrorLogAppender.cs" />
     <Compile Include="MysteryAction\HistoryMessageDataSerializer.cs" />
     <Compile Include="MysteryAction\PublishedAction.cs" />
     <Compile Include="Slack\SlackConfiguration.cs" />
@@ -295,7 +297,9 @@
     <Compile Include="Web\WebActionExecutor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Content\ContentDiagram.cd" />
     <None Include="History\HistoryClassDiagram.cd" />
     <None Include="Orgins\app.config" />

@@ -14,6 +14,10 @@ namespace MysteryWebLogic
     public class MysteryWebBoot
     {
 
+        public MysteryWebBoot() {
+            log4net.Config.XmlConfigurator.Configure();
+        }
+
         public  bool boot_done { get {
                 return _boot_done;
             } }
