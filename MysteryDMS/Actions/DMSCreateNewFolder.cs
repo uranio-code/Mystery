@@ -62,11 +62,6 @@ namespace MysteryDMS.Actions
             
             new_folder.title = "DMS.NEWFOLDERTITLE";
             
-            List<DMSTag> tags = new List<DMSTag>();
-            DMSTag t = new DMSTag();
-            t.title = folder.title;
-            tags.Add(t);
-            new_folder.tags = new MultiContentReference<DMSTag>(tags);
             new_folder.parent_folders.Add(folder);
             folder.subfolders.Add(new_folder);
 
