@@ -27,7 +27,7 @@ namespace Mystery.Messaging
                 // get it from the database
                 IContentDispatcher cd = this.getGlobalObject<IContentDispatcher>();
 
-                BaseCodifiedMessageTemplate _template = cd.GetAllByFilter<BaseCodifiedMessageTemplate>(x => x.code == code || x.language == language).FirstOrDefault();
+                BaseCodifiedMessageTemplate _template = cd.GetAllByFilter<BaseCodifiedMessageTemplate>(x => x.code == code && x.language == language).FirstOrDefault();
 
                 // not found
                 if (_template == null) return _message;
