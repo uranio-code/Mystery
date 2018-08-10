@@ -12,14 +12,14 @@
     </div>
 
     <div class="form-group input-group no-margin-border-padding" ng-show="cp.showEdit()" ng-disabled="cp.posting">
-        <textarea class="form-control glowing-border size-text-box-auto padding-left-xsmall" id="{{cp.data.uid}}"
-                ng-init="cp.current_value = cp.data.content[cp.data.name]"
-                ng-model="cp.current_value"
-                focus-me="cp.input_focus"
-                ng-change="cp.adjustTextareaHeightDynamic(cp.data.uid)"
-                ng-trim="false"
-                  ng-blur="cp.commit()"
-                ui-keydown="{esc: 'cp.cancel()'}" />
+        <input class="form-control glowing-border size-text-box-auto padding-left-xsmall" id="{{cp.data.uid}}"
+               ng-init="cp.current_value = cp.data.content[cp.data.name]"
+               ng-model="cp.current_value"
+               focus-me="cp.input_focus"
+               ng-blur="cp.commit()"
+               ui-keypress="{13:'cp.commit()'}"
+               ui-keydown="{esc: 'cp.cancel()'}" />
+        
         <span class="input-group-addon btn btn-outline btn-success glowing-border" title="{{'COMMON.SAVE'|translate}}" ng-click="cp.commit()"><i class="fa fa-check"></i></span>
         <span class="input-group-addon btn btn-outline btn-danger glowing-border" title="{{'COMMON.CANCEL'|translate}}" ng-click="cp.cancel()"><i class="fa fa-times"></i></span>
     </div>
