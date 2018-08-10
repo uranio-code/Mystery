@@ -41,13 +41,11 @@
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Graph, Version=1.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\mysteryuranio\UranioWeb\packages\Microsoft.Graph.1.7.0\lib\net45\Microsoft.Graph.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.Graph, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\source\repos\MysteryIter\packages\Microsoft.Graph.1.8.1\lib\net45\Microsoft.Graph.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Graph.Core, Version=1.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\mysteryuranio\UranioWeb\packages\Microsoft.Graph.Core.1.7.0\lib\net45\Microsoft.Graph.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.Graph.Core, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\source\repos\MysteryIter\packages\Microsoft.Graph.Core.1.8.1\lib\net45\Microsoft.Graph.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.IdentityModel.Logging, Version=5.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\mysteryuranio\UranioWeb\packages\Microsoft.IdentityModel.Logging.5.2.1\lib\net451\Microsoft.IdentityModel.Logging.dll</HintPath>
@@ -77,9 +75,8 @@
       <HintPath>..\..\mysteryuranio\UranioWeb\packages\MongoDB.Driver.Core.2.5.0\lib\net45\MongoDB.Driver.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\source\repos\MysteryIter\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="SendGrid, Version=9.8.0.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
       <HintPath>..\..\mysteryuranio\UranioWeb\packages\Sendgrid.9.9.0\lib\net452\SendGrid.dll</HintPath>

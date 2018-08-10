@@ -115,4 +115,6 @@ app.directive('focusMe',['$timeout', function ($timeout) {
     };
 }]);
 
+//puting this back because is used in angular-translate
+angular.lowercase = function (string) { return angular.isString(string) ? string.toLowerCase() : string; };
 
