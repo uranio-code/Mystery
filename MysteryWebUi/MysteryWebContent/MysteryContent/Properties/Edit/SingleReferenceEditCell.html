@@ -1,0 +1,34 @@
+﻿<div ng-mouseover="cp.mouseover = true "
+     ng-mouseleave="cp.mouseover = false">
+
+    <div class="form-group input-group no-margin-border-padding" 
+         ng-disabled="cp.posting"
+         ng-controller="SingleReferenceController as c"
+         ng-init="c.init(cp)">
+
+        <span class="form-control size-text-box-auto padding-left-xsmall front-layer">
+            <input type="text" ng-model="c.selected_content" ng-show="!c.selected"
+                    uib-typeahead="item as item.ReferenceText  for item in c.avalible|filter:{ReferenceText:$viewValue}| limitTo:8"
+                    typeahead-template-url="MysteryWebContent/MysteryContent/Properties/contentSelectionTemplate.html"
+                    typeahead-on-select="c.onSelect($item, $model, $label)"
+                    typeahead-editable="false"
+                    onblur="this.focus()"
+                    ui-keyup="{esc: 'c.cancelSelection()', enter: 'c.confirmSelection()'}"
+                    class="no-margin-border-padding no-outline">
+        </span>
+
+        <span class="input-group-addon btn btn-outline btn-default glowing-border" title="{{'COMMON.DELETE'|translate}}"
+                ng-show="!c.selected"
+                ng-click="c.removeSelection()">
+            <i class="fa fa-trash"></i>
+        </span>
+
+
+        <span class="input-group-addon btn btn-outline btn-danger glowing-border" title="{{'COMMON.CANCEL'|translate}}"
+              ng-show="!c.selected"
+              ng-click="c.cancelSelection()">
+            <i class="fa fa-times"></i>
+        </span>
+    </div>
+</div>
+

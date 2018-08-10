@@ -196,6 +196,15 @@
     <Content Include="MysteryWebContent\MysteryContent\Properties\contentSelectionTemplate.html" />
     <Content Include="MysteryWebContent\MysteryContent\Properties\DatePropertyCell.html" />
     <Content Include="MysteryWebContent\MysteryContent\Properties\DateProperty.html" />
+    <Content Include="MysteryWebContent\MysteryContent\Properties\Edit\ContentPropertyEditController.js" />
+    <Content Include="MysteryWebContent\MysteryContent\Properties\Edit\PropertyEditDirectives.js" />
+    <Content Include="MysteryWebContent\MysteryContent\Properties\Edit\PropertyEdit.html" />
+    <Content Include="MysteryWebContent\MysteryContent\Properties\Edit\SingleReferenceEdit.html" />
+    <Content Include="MysteryWebContent\MysteryContent\Properties\Edit\SingleReferenceEditCell.html" />
+    <Content Include="MysteryWebContent\MysteryContent\Properties\Edit\StringPropertyEdit.html" />
+    <Content Include="MysteryWebContent\MysteryContent\Properties\Edit\StringPropertyEditCell.html" />
+    <Content Include="MysteryWebContent\MysteryContent\Properties\Edit\TextPropertyEdit.html" />
+    <Content Include="MysteryWebContent\MysteryContent\Properties\Edit\TextPropertyEditCell.html" />
     <Content Include="MysteryWebContent\MysteryContent\Properties\StringPropertyLinkedCell.html" />
     <Content Include="MysteryWebContent\MysteryContent\Properties\TextPropertyNonModal.html" />
     <Content Include="MysteryWebContent\MysteryContent\Properties\TextPropertyNonModalCell.html" />

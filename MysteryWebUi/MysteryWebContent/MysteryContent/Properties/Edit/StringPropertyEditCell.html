@@ -1,0 +1,10 @@
+﻿<div class="form-group  " >
+    <input class="form-control  " id="{{cp.data.uid}}"
+           ng-init="cp.current_value = cp.data.content[cp.data.name]"
+           ng-model="cp.current_value"
+           focus-me="cp.input_focus"
+           ng-blur="cp.commit()"
+           ui-keypress="{13:'cp.commit()'}"
+           ui-keydown="{esc: 'cp.cancel()'}" />
+
+</div>

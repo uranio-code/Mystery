@@ -1,0 +1,8 @@
+﻿<div class="form-group ">
+    <textarea class="form-control " id="{{cp.data.uid}}"
+              ng-init="cp.current_value = cp.data.content[cp.data.name]"
+              ng-model="cp.current_value"
+              ng-change="cp.adjustTextareaHeightDynamic(cp.data.uid)"
+              ng-trim="false"
+              ui-keydown="{esc: 'cp.cancel()'}" />
+</div>
