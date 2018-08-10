@@ -1,7 +1,7 @@
 ﻿
 app.controller("SingleReferenceController", ['MysteryDownloader', '$scope', '$uibModal', function (MysteryDownloader, $scope, $uibModal) {
     var me = this;
-    me.originalUser = { guid: '', ReferenceText: '' };
+    me.original_selection = { guid: '', ReferenceText: '' };
     me.selected_content = { guid: '', ReferenceText: '' };
     me.loading = true;
     me.service_url = '';
@@ -26,7 +26,7 @@ app.controller("SingleReferenceController", ['MysteryDownloader', '$scope', '$ui
         {
             me.selected_content = cp.data.content[cp.data.name];
             me.selected = false;
-            me.originalUser = me.selected_content;
+            me.original_selection = me.selected_content;
         }
         
     };
@@ -45,17 +45,17 @@ app.controller("SingleReferenceController", ['MysteryDownloader', '$scope', '$ui
 
     me.confirmSelection = function () {
         if (me.selected_content == null) {
-            me.selected_content = me.originalUser;
-            me.cp.current_value = { guid: me.originalUser.guid, ContentType: me.originalUser.ContentType };
+            me.selected_content = me.original_selection;
+            me.cp.current_value = { guid: me.original_selection.guid, ContentType: me.original_selection.ContentType };
         }
         else{
-            me.originalUser = me.selected_content;
+            me.original_selection = me.selected_content;
         }
         me.cp.commit();
     }
 
     me.cancelSelection = function () {
-        me.selected_content = me.originalUser;
+        me.selected_content = me.original_selection;
         me.cp.cancel();
     }
 
