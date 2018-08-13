@@ -71,11 +71,13 @@ namespace Mystery.Configuration
             string json = this.getGlobalObject<MysteryJsonConverter>().getJson(conf);
             BsonDocument doc = BsonDocument.Parse(json);
             var update = new BsonDocument();
-            doc.Add(nameof(Type), conf.GetType().Name);
+            var conf_name = conf.GetType().Name;
+            doc.Add(nameof(Type), conf_name);
             doc.Add(nameof(env_name), env_name);
+            doc.Add("_id", env_name+"-"+ conf_name);
             update.Add("$set", doc);
             var builder = Builders<BsonDocument>.Filter;
-            var filter = builder.Eq(nameof(Type), conf.GetType().Name) &
+            var filter = builder.Eq(nameof(Type), conf_name) &
                 builder.Eq(nameof(env_name), env_name);
             collection.UpdateOne(filter, update, new UpdateOptions() { IsUpsert=true});
             lock (_lock)
