@@ -133,7 +133,7 @@ app.factory("MysteryDownloader", ['$http', 'MysteryLogin', '$rootScope', 'Conten
         result = ContentMem.parseData(result);
 
 
-        if (angular.isDefined(result.data.output) && result.data.output != null) {
+        if (angular.isDefined(result.data.output) && result.data.output !== null) {
             //let's see if some contents where deleted
             if (angular.isDefined(result.data.output.deleted_contents)) {
                 for (var index in result.data.output.deleted_contents) {
@@ -370,7 +370,7 @@ app.factory("MysteryDownloader", ['$http', 'MysteryLogin', '$rootScope', 'Conten
 
         var to_load = contents.map(x=>x.tiny_guid);
 
-        if(to_load.length ==0){
+        if(to_load.length ===0){
             deferred.resolve();
             callback();
         }
@@ -382,7 +382,7 @@ app.factory("MysteryDownloader", ['$http', 'MysteryLogin', '$rootScope', 'Conten
                     to_load.splice(index,1);
                     index = to_load.indexOf(loaded_content.tiny_guid);
                 };
-                if(to_load.length==0){
+                if(to_load.length===0){
                     deferred.resolve();
                     callback();
                 }
