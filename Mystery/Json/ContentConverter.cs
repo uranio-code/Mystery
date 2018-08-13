@@ -32,6 +32,21 @@ namespace Mystery.Json
             jo.WriteTo(writer);
         }
 
+        private Type readTypeByClassName(JObject jo) {
+            JToken type_token = jo.GetValue("ClassName");
+            if (type_token == null)
+                return null;
+            if (type_token.Type == JTokenType.Null)
+                return null;
+            Type type = this.getMystery().AssemblyRegister.getTypeByFullName(type_token.Value<string>());
+            if (type == null)
+                return null;
+            if (!typeof(IContent).IsAssignableFrom(type))
+                return null;
+            //good!
+            return type;
+        }
+
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             IContent result=null;
@@ -41,38 +56,26 @@ namespace Mystery.Json
 
             // Load JObject from stream
             JObject jo = JObject.Load(reader);
-            JToken ct_token = jo.GetValue(nameof(ContentType));
-
-            //ContentType is mandatory property
-            if (ct_token == null || ct_token.Type == JTokenType.Null)
-            {
-                //this converter doesn't work with recursion
-                if (!string.IsNullOrEmpty(reader.Path))
-                    return null;
-                throw new Exception("invalid json for content, " + nameof(ContentType) + " property missing");
-            }
-                
-
-            //if we know the Type than even better
-            JToken type_token = jo.GetValue("ClassName");
-            if (type_token != null && type_token.Type != JTokenType.Null)
-            {
-                Type type = this.getMystery().AssemblyRegister.getTypeByFullName(type_token.Value<string>());
-                if (type != null && typeof(IContent).IsAssignableFrom(type))
-                    result = (IContent)this.getGlobalObject<FastActivator>().createInstance(type);
-            }
 
             var activator = this.getGlobalObject<FastActivator>();
-            //otherwise we use the ContentType
-            if (result == null) {
 
-                
-                string ct_name = ct_token.Value<string>();
-                if (string.IsNullOrEmpty(ct_name) || ContentType.getType(ct_name) == null)
-                    throw new Exception("unrecognized " + nameof(ContentType) + ": " + ct_name);
-                Type type = ContentType.getType(ct_name);
-                result = (IContent)activator.createInstance(type);
+            //looking for the type, we go 3 ways
+            //first we try to see if in json there is a ClassName element
+            Type type = readTypeByClassName(jo);
+            //if we could not find it we go for the content_type attribute
+            if(type == null)
+                type = readTypeByContentType(jo);
+            //last hope is actually the type given
+            if (type == null) {
+                if (!objectType.IsAbstract &&
+                    objectType != typeof(BaseContent) &&
+                    typeof(IContent).IsAssignableFrom(objectType) &&
+                    objectType.getMysteryAttribute<ContentType>() != null)
+                    type = objectType;
             }
+            if (type == null)
+                throw new Exception("can't detect the content type from the json and " + objectType.FullName + " isn't a valid one");
+            result = (IContent)activator.createInstance(type);
 
             if (result is ISupportInitialize) {
                 ((ISupportInitialize)result).BeginInit();
@@ -103,6 +106,23 @@ namespace Mystery.Json
                 ((ISupportInitialize)result).EndInit();
             }
             return result;
+        }
+
+        private Type readTypeByContentType(JObject jo)
+        {
+            JToken ct_token = jo.GetValue(nameof(ContentType));
+
+            //ContentType is mandatory property
+            if (ct_token == null || ct_token.Type == JTokenType.Null)
+            {
+                return null;
+            }
+
+            string ct_name = ct_token.Value<string>();
+            if (string.IsNullOrEmpty(ct_name) || ContentType.getType(ct_name) == null)
+                throw new Exception("unrecognized " + nameof(ContentType) + ": " + ct_name);
+            Type type = ContentType.getType(ct_name);
+            return type;
         }
 
         public override bool CanRead

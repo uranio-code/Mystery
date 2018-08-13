@@ -37,7 +37,6 @@ namespace Mystery.Json
             var type = c.GetType();
             var ct = type.getMysteryAttribute<ContentType>();
             result.Add(nameof(ContentType), ct.name);
-            result.Add(nameof(Type), type.FullName);
             result.Add("tiny_guid", c.guid.Tiny());
             result.Add("data_url", "ContentService/ContentView/" + c.getContenTypeName()+"/" + c.guid.Tiny());
             if (type.getMysteryAttribute<ContentView>() != null)
