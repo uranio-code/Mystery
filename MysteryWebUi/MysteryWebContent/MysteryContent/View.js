@@ -77,6 +77,8 @@ app.controller("ContentPropertyViewController", ['$scope', 'MysteryDownloader', 
             MysteryFormService.activate(me);
         }
 
+        //to be used when the property control is a sigle form
+        //do not use for a form with multiple field or each one will be posted and applying only the last value in the interface
         me.commit = function () {
             me.posting = true;
             var input = {
@@ -88,6 +90,12 @@ app.controller("ContentPropertyViewController", ['$scope', 'MysteryDownloader', 
                 me.posting = false;
                 me.exitEditMode();
             });
+        }
+
+        //to be called whe you have multiple property control in 1 form
+        //to apply the selected value to the content
+        me.setContentPropertyValue = function () {
+            me.content[me.data.name] = me.current_value;
         }
 
         me.cancel = function () {
