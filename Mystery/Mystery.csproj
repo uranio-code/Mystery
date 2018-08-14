@@ -167,6 +167,8 @@
     <Compile Include="Instance\GetInstanceInfoAction.cs" />
     <Compile Include="Instance\InstanceService.cs" />
     <Compile Include="Instance\MysteryInstance.cs" />
+    <Compile Include="Jira\InMemoryTokenManager.cs" />
+    <Compile Include="Jira\JiraConsumer.cs" />
     <Compile Include="Json\BllJsonContractResolver.cs" />
     <Compile Include="Json\ContentsDatabase.cs" />
     <Compile Include="Json\GuidValueJsonConverter.cs" />
