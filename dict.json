@@ -1,0 +1,122 @@
+{
+    "_id" : ObjectId("578b7deac2acc329804fb4e8"),
+    "Type" : "LanguagesDictionaries",
+    "env_name" : "theNormalEnv",
+    "data" : {
+        "en" : {
+            "COMMON" : {
+                "DELETE" : "Delete",
+                "LOGIN" : "Login",
+                "LOGOUT" : "Logout",
+                "PLEASE_SIGN_IN" : "Please Sign In",
+                "EMAIL" : "E-mail",
+                "PASSWORD" : "Password",
+                "REMEMBER_ME" : "Remember Me",
+                "LOGINS" : "Other Login Method",
+                "CONFIRM" : "Confirm",
+                "OK" : "OK",
+                "CANCEL" : "Cancel",
+                "SAVE" : "Save",
+                "DELETE_MESSAGE" : "Are you sure to delete {{title}}?",
+                "DELETED_LOG" : "{{who.ReferenceText}} deleted {{what.ReferenceText}}",
+                "HISTORY_HEADING" : "Recent Actions",
+                "DASHBOARD" : "Dashboard",
+                "FAVORITES" : "Favorites",
+                "REMOVE_FROM_FAVORITE" : "Remove from favorites",
+                "SHARED_LOG" : "{{from.ReferenceText}} Shared with {{to}}"
+            },
+            "DMS" : {
+                "RECYCLEBIN" : "RECYCLEBIN",
+                "TRAININGFOLDER" : "TRAININGFOLDER",
+                "RESETCHILDRENSECURITY" : "RESETCHILDRENSECURITY",
+                "RESETSECURITYTOMATCHPARENT" : "RESETSECURITYTOMATCHPARENT",
+                "RESETCHILDRENOWNER" : "RESETCHILDRENOWNER",
+                "DMS" : "DMS",
+                "DMS_NAME" : "Document Management System",
+                "DOCUMENTATION" : "Documentation",
+                "VERSION" : {
+                    "TITLE" : "TITLE",
+                    "DESCRIPTION" : "DESCRIPTION",
+                    "CHANGEDESCRIPTION" : "CHANGEDESCRIPTION",
+                    "ORIGINAL_FILE" : "ORIGINAL_FILE",
+                    "ATTACHMENTS" : "ATTACHMENTS",
+                    "VERSION_NUMBER" : "VERSION_NUMBER",
+                    "AUTHOR" : "AUTHOR",
+                    "CO_AUTHORS" : "CO_AUTHORS",
+                    "SIGNATORIES" : "SIGNATORIES",
+                    "APPROVERS" : "APPROVERS",
+                    "EXTERNAL_REFERENCE_ID" : "EXTERNAL_REFERENCE_ID",
+                    "VISIBLE" : "VISIBLE",
+                    "SHORTCUTTABLE" : "SHORTCUTTABLE",
+                    "TAGS" : "TAGS",
+                    "STATUS" : "STATUS",
+                    "WF_STATUS" : "WF_STATUS",
+                    "COMMENTS" : "COMMENTS",
+                    "ALLOW_COMMENTS" : "ALLOW_COMMENTS",
+                    "VISIBLE_COMMENTS" : "VISIBLE_COMMENTS",
+                    "NEXT_VERSION" : "NEXT_VERSION",
+                    "PREVIOUS_VERSION" : "PREVIOUS_VERSION",
+                    "SUPERSEEDED_BY" : "SUPERSEEDED_BY",
+                    "PARENT_FOLDER" : "PARENT_FOLDER",
+                    "COMMENT_BODY" : "COMMENT_BODY",
+                    "ADD_COMMENT" : "ADD_COMMENT",
+                    "ADDVERSION" : "ADDVERSION",
+                    "APPROVE_WITH_COMMENT" : "APPROVE_WITH_COMMENT",
+                    "DELETEDOCUMENT" : "DELETEDOCUMENT",
+                    "DELETEVERSION" : "DELETEVERSION",
+                    "DISAPPROVE_WITH_COMMENT" : "DISAPPROVE_WITH_COMMENT",
+                    "OBSOLETE" : "OBSOLETE",
+                    "SIGN" : "SIGN",
+                    "APPROVE" : "APPROVE",
+                    "DISAPPROVE" : "DISAPPROVE",
+                    "UNDER_REVIEW" : "UNDER_REVIEW",
+                    "DOWNLOAD" : "Download",
+                    "METADATA" : "Metadata",
+                    "HISTORY" : "History",
+                    "PREVIEW" : "Preview",
+                    "WORKFLOW" : "Workflow"
+                },
+                "FOLDER" : {
+                    "TITLE" : "TITLE",
+                    "DESCRIPTION" : "DESCRIPTION",
+                    "FOLDERS" : "FOLDERS",
+                    "VERSIONS" : "VERSIONS",
+                    "VISIBLE" : "VISIBLE",
+                    "SHORTCUTTABLE" : "SHORTCUTTABLE",
+                    "TAGS" : "TAGS",
+                    "UID" : "UID",
+                    "OWNER" : "OWNER",
+                    "PARENT_FOLDER" : "PARENT_FOLDER",
+                    "ADD_PERMISSION" : "ADD_PERMISSION",
+                    "EDIT_PERMISSION" : "EDIT_PERMISSION",
+                    "VIEW_PERMISSION" : "VIEW_PERMISSION",
+                    "SUBFOLDERS" : "SUBFOLDERS",
+                    "ADDDOCUMENT" : "ADDDOCUMENT",
+                    "ADDFOLDER" : "ADDFOLDER",
+                    "DELETEFOLDER" : "Delete",
+                    "FOLDER_DELETED" : "Folder deleted",
+                    "DOCUMENTS" : "Documents",
+                    "HISTORY" : "History",
+                    "COMMENTS" : "Comments"
+                },
+                "TAGS" : {
+                    "TITLE" : "TITLE"
+                }
+            },
+            "MTG" : {
+                "MTG" : "mtg",
+                "DRAFT" : "Mtg drafts"
+            },
+            "BASE_VALUES" : {
+                "TRUE" : "Yes",
+                "FALSE" : "No"
+            },
+            "USER" : {
+                "ADD" : "Add User",
+                "DELETE" : "Delete User",
+                "ALREADY_EXISTING" : "user already existing"
+            }
+        }
+    },
+    "download_date" : "2017-08-21T14:14:23.1783963+02:00"
+}
