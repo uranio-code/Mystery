@@ -21,9 +21,19 @@ namespace Mystery.Web
 
         public Type input_type { get; private set; }
 
-        public PublishedAction(Type input_type)
+        public Type output_type { get; private set; }
+
+        /// <summary>
+        /// instance published action
+        /// </summary>
+        /// <param name="input_type"></param>
+        /// <param name="output_type">if left black ContentActionOutput will be assumed</param>
+        public PublishedAction(Type input_type = null,Type output_type = null)
         {
             this.input_type = input_type;
+            this.output_type = output_type;
+            if(this.output_type ==null)
+                this.output_type = typeof(ContentActionOutput);
         }
 
         public string url { get; set; }
@@ -38,13 +48,13 @@ namespace Mystery.Web
             if (input_type == null)
                 instance = (IRouteHandler)Activator
                 .CreateInstance(
-                    typeof(MysteryActionRoute<>)
-                    .MakeGenericType(this.used_in));
+                    typeof(MysteryActionRoute<,>)
+                    .MakeGenericType(this.used_in,this.output_type));
             else
                 instance = (IRouteHandler)Activator
                 .CreateInstance(
-                    typeof(MysteryActionRoute<,>)
-                    .MakeGenericType(this.used_in, input_type));
+                    typeof(MysteryActionRoute<,,>)
+                    .MakeGenericType(this.used_in, input_type, this.output_type));
 
             RouteTable.Routes.Add(new Route(url, instance));
         }
@@ -52,23 +62,23 @@ namespace Mystery.Web
 
 
 
-    class MysteryActionRoute<T, InputType> : IRouteHandler where T : BaseMysteryAction<InputType, ContentActionOutput>, new()
+    class MysteryActionRoute<T, InputType, ActionResultType> : IRouteHandler where T : BaseMysteryAction<InputType, ActionResultType>, new()
     {
         public IHttpHandler GetHttpHandler(RequestContext requestContext)
         {
-            return new MysteryActionRouteHandler<T, InputType>();
+            return new MysteryActionRouteHandler<T, InputType, ActionResultType>();
         }
     }
 
-    class MysteryActionRoute<T> : IRouteHandler where T : BaseMysteryAction<ContentActionOutput>, new()
+    class MysteryActionRoute<T,ActionResultType> : IRouteHandler where T : BaseMysteryAction<ActionResultType>, new()
     {
         public IHttpHandler GetHttpHandler(RequestContext requestContext)
         {
-            return new MysteryActionRouteHandler<T>();
+            return new MysteryActionRouteHandler<T, ActionResultType>();
         }
     }
 
-    public class MysteryActionRouteHandler<T, InputType> : IHttpHandler where T : BaseMysteryAction<InputType, ContentActionOutput>, new()
+    public class MysteryActionRouteHandler<T, InputType, ActionResultType> : IHttpHandler where T : BaseMysteryAction<InputType, ActionResultType>, new()
     {
 
 
@@ -103,7 +113,7 @@ namespace Mystery.Web
         }
     }
 
-    public class MysteryActionRouteHandler<T> : IHttpHandler where T : BaseMysteryAction<ContentActionOutput>, new()
+    public class MysteryActionRouteHandler<T, ActionResultType> : IHttpHandler where T : BaseMysteryAction<ActionResultType>, new()
     {
 
 
