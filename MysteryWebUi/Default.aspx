@@ -38,7 +38,7 @@
     <script src="scripts/smart-table.js"></script>
     <script src="scripts/fileinput.js"></script>
     <script src="scripts/RecursionHelper.js"></script>
-
+    <script src="scripts/event.js"></script>
 
     <script>
         var app = angular.module("Mystery", [
@@ -50,6 +50,7 @@
     'ngCookies',
     'smart-table',
     'RecursionHelper',
+    'ui.event',
         ]);
     </script>
 

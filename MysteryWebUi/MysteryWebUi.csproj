@@ -292,6 +292,8 @@
     <Content Include="scripts\angular-sanitize.min.js.map" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="scripts\event.js" />
+    <Content Include="scripts\event.min.js" />
     <Content Include="scripts\fileinput.js" />
     <Content Include="scripts\fileinput.min.js" />
     <None Include="scripts\jquery-3.3.1.intellisense.js" />
