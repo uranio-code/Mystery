@@ -132,24 +132,24 @@ app.factory("MysteryDownloader", ['$http', 'MysteryLogin', '$rootScope', 'Conten
         result.data = data;
         result = ContentMem.parseData(result);
 
-
+        var index;
         if (angular.isDefined(result.data.output) && result.data.output !== null) {
             //let's see if some contents where deleted
             if (angular.isDefined(result.data.output.deleted_contents)) {
-                for (var index in result.data.output.deleted_contents) {
+                for (index in result.data.output.deleted_contents) {
                     $rootScope.$broadcast("content_deleted", result.data.output.deleted_contents[index]);
                 };
             }
             //or new where created
             if (angular.isDefined(result.data.output.new_contents)) {
-                for (var index in result.data.output.new_contents) {
+                for (index in result.data.output.new_contents) {
                     $rootScope.$broadcast("new_content", result.data.output.new_contents[index]);
                 };
             }
 
             //or something could be interested of a change
             if (angular.isDefined(result.data.output.changed_contents)) {
-                for (var index in result.data.output.changed_contents) {
+                for (index in result.data.output.changed_contents) {
                     $rootScope.$broadcast("changed_content", result.data.output.changed_contents[index]);
                 };
             }
@@ -191,6 +191,17 @@ app.factory("MysteryDownloader", ['$http', 'MysteryLogin', '$rootScope', 'Conten
             dataProcess = function (data) { return data; };
         var deferred = $q.defer();
         me.get(url, function (data) {
+            deferred.resolve(dataProcess(data));
+        });
+        return deferred.promise;
+    };
+    me.postPromise = function (url,post_data, dataProcess) {
+        if (angular.isUndefined(dataProcess))
+            dataProcess = function (data) { return data; };
+        if (angular.isUndefined(post_data))
+            post_data = {};
+        var deferred = $q.defer();
+        me.post(url,post_data, function (data) {
             deferred.resolve(dataProcess(data));
         });
         return deferred.promise;
