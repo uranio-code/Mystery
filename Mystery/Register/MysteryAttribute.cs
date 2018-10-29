@@ -61,6 +61,22 @@ namespace Mystery.Register
 
         public abstract void setup();
 
+        public override int GetHashCode()
+        {
+            return used_in == null ? base.GetHashCode() : base.GetHashCode() + used_in.GetHashCode();
+        }
+        public override bool Equals(object obj)
+        {
+            if (!base.Equals(obj))
+                return false;
+
+            if (!(obj is MysteryPropertyAttribute))
+                return false;
+            var mpa = (MysteryPropertyAttribute)obj;
+
+            return used_in == null ? true : used_in.Equals(mpa.used_in);
+        }
+
     }
 
 
