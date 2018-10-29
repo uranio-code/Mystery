@@ -39,7 +39,8 @@ namespace MysteryWebLogic.Languanges
 
                 if (!needDownload())
                     return;
-
+                //we lost this implementation, we will need to replace it with something else
+                return;
                 var previous = ServicePointManager.ServerCertificateValidationCallback;
                 try
                 {
