@@ -12,8 +12,26 @@ public static class MysteryExtensions
             coll.Add(ele);
     }
 
-    //clone an object using json
+    /// <summary>
+    /// clone an object using json
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="current_object"></param>
+    /// <returns></returns>
     public static T Clone<T>(this T current_object) where T : new()
+    {
+        if (current_object == null)
+            return default(T);
+        var converter = current_object.getGlobalObject<MysteryJsonConverter>();
+        return converter.readJson<T>(converter.getJson(current_object));
+    }
+    /// <summary>
+    /// clone an object using json to a different type
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="current_object"></param>
+    /// <returns></returns>
+    public static T CloneTo<T>(this object current_object) where T : new()
     {
         if (current_object == null)
             return default(T);
