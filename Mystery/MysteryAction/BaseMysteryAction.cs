@@ -82,6 +82,8 @@ namespace Mystery.MysteryAction
         private bool _authorized = false;
         public bool authorized { get { return _authorized; } }
 
+        public ResultType output { get; private set; }
+
         protected abstract bool AuthorizeImplementation();
 
         public bool Authorize()
@@ -98,7 +100,9 @@ namespace Mystery.MysteryAction
         public ActionResult<ResultType> Execute()
         {
             if (!_authorized) return ActionResultTemplates<ResultType>.UnAuthorized;
-            return ActionImplemetation();
+            var result = ActionImplemetation();
+            output = result.output;
+            return result;
         }
 
         protected ActionResultType executeAction<ActionInputType, ActionResultType>(BaseMysteryAction<ActionInputType, ActionResultType> action, ActionInputType input)
