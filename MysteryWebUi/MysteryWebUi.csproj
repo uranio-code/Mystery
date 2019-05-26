@@ -370,8 +370,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="scripts\ai.0.15.0-build58334.js" />
-    <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="MysteryWebContent\Shared\MysteryAngular.js" />
     <Content Include="MysteryWebContent\Shared\MysteryDownloader.js" />
     <Content Include="MysteryWebContent\Shared\NavBar\CALEAN_icon.png" />
