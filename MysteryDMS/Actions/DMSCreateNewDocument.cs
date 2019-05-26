@@ -49,6 +49,7 @@ namespace MysteryDMS.Actions
                 return "DMS.FOLDER.ADDDOCUMENT";
             }
         }
+        public bool has_history { get; private set; } = true;
 
         /// <summary>
         /// This creates a new DMSVersion and redirects to its view page.

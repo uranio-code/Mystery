@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Mystery.Register;
 using Mystery.Content;
+using Mystery.Json;
 
 namespace Mystery.UI
 {
@@ -29,7 +30,8 @@ namespace Mystery.UI
         }
 
         public List<string> history_tags { get; private set; } = new List<string>();
-        
+
+        public bool has_history { get; private set; }
 
         protected override ActionResult<ContentActionOutput> ActionImplemetation()
         {
@@ -50,19 +52,29 @@ namespace Mystery.UI
             if (property == null)
                 return ActionResultTemplates<ContentActionOutput>.InvalidInput;
 
+            var converter = this.getGlobalObject<MysteryJsonConverter>();
+
+            //we make a json comparision to see if we actually edit it
+            var before = converter.getJson(content);
             property.save(content, input.property_value);
+            var after = converter.getJson(content);
+
+            has_history = before != after;
+
 
             var result = new ContentActionOutput();
-            result.changed_contents.Add(content);
+            if (has_history) {
+                result.changed_contents.Add(content);
 
-            history_message_data = new PropertyEditActionData()
-            {
-                property_name = input.property_name,
-                who = user.guid,
-                what = new ContentReference(content),
-            };
-            history_tags.Add(nameof(PropertyEditAction));
-            history_tags.Add(content.getContenTypeName());
+                history_message_data = new PropertyEditActionData()
+                {
+                    property_name = input.property_name,
+                    who = user.guid,
+                    what = new ContentReference(content),
+                };
+                history_tags.Add(nameof(PropertyEditAction));
+                history_tags.Add(content.getContenTypeName());
+            }
 
             return result;
         }

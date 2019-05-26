@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using Mystery.MysteryAction;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,9 @@ using System.Threading.Tasks;
 namespace Mystery.History
 {
 
+    /// <summary>
+    /// helper class to proxy action log deserialization
+    /// </summary>
     public class HistoryPublishedAction : IPublishedAction<Dictionary<string, object>>
     {
         public Dictionary<string,object> history_message_data { get; set; }
@@ -18,6 +22,9 @@ namespace Mystery.History
         public string history_message_template_url { get; set; }
 
         public List<string> history_tags { get; set; }
+
+        [JsonIgnore]
+        public bool has_history { get; private set; }
     }
 
     class HistoryPublishedActionSerializer : IBsonSerializer

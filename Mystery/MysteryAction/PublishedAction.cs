@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 using Mystery.Register;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization;
+using Newtonsoft.Json;
 
 namespace Mystery.MysteryAction
 {
 
     public interface IPublishedAction {
+        bool has_history { get; }
         string history_message_template_url { get; }
         List<string> history_tags { get; }
     }
@@ -21,6 +23,10 @@ namespace Mystery.MysteryAction
         T history_message_data { get; }
     }
 
+    /// <summary>
+    /// helper class to proxy action log serilization
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class PublishedActionLog<T> : IPublishedAction<T>
     {
 
@@ -35,6 +41,9 @@ namespace Mystery.MysteryAction
         public string history_message_template_url { get; set; }
 
         public List<string> history_tags { get; set; }
+
+        [JsonIgnore]
+        public bool has_history { get; set; }
     }
 
     public static class PublishedActionExtensions
@@ -48,6 +57,9 @@ namespace Mystery.MysteryAction
         {
             public override IPublishedAction CreateLog(BaseMysteryAction action) {
                 var input = (IPublishedAction<T>)action;
+                if (!input.has_history)
+                    return null;
+
                 return new PublishedActionLog<T> {
                     history_message_data = input.history_message_data,
                     history_message_template_url = input.history_message_template_url,

@@ -49,7 +49,7 @@ namespace Mystery.UI
         public WhoWhatWhen history_message_data { get; private set; }
 
         public List<string> history_tags { get; private set; } = new List<string>();
-
+        public bool has_history { get; private set; } = true;
         protected override ActionResult<ContentActionOutput> ActionImplemetation()
         {
             IContentDispatcher cd = this.getGlobalObject<IContentDispatcher>();

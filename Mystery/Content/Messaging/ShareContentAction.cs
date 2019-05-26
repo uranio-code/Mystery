@@ -37,7 +37,7 @@ namespace Mystery.Messaging
 
 
         public List<string> history_tags { get; private set; } = new List<string>();
-        
+        public bool has_history { get; private set; } = true;
 
         protected override ActionResult<ContentActionOutput> ActionImplemetation()
         {
@@ -68,6 +68,7 @@ namespace Mystery.Messaging
 
             INotifier notifier = this.getGlobalObject<INotifier>();
             notifier.sendMessage(message);
+            
 
             return ActionResultTemplates<ContentActionOutput>.ACK;
 
