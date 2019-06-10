@@ -4,7 +4,9 @@
              ng-mouseleave="cp.mouseover = false"
              ng-click="cp.enterEditMode()">
 
-            <div class="form-control no-border" ng-show="!cp.showEdit()">{{cp.data.content[cp.data.name]}}</div>
+            <div class="form-control form-control-active size-text-box-auto 
+              padding-left-xsmall no-border corporate-color" 
+                 ng-show="!cp.showEdit()">{{cp.data.content[cp.data.name]}}</div>
 
             <div ng-show="cp.showEdit()" ng-disabled="cp.posting">
                 <input class="form-control " id="{{cp.uid}}"
