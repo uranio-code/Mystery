@@ -8,3 +8,4 @@ MysteryWebUi/Modules/*.dll
 MysteryWebUi/Properties/PublishProfiles/local.pubxml
 *.~vsdx
 packages/*
+MigrationBackup/
