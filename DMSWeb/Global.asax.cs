@@ -7,6 +7,7 @@ using Mystery.Web;
 using Mystery.Applications;
 using MysteryWebLogic;
 using System.Collections.Generic;
+using Mystery.Configuration;
 
 namespace DMSWeb
 {
@@ -15,6 +16,7 @@ namespace DMSWeb
         private static MysteryWebBoot boot = new MysteryWebBoot();
         protected void Application_Start(object sender, EventArgs e)
         {
+            MongoDbConfigurationProvider.default_env_name = "DMSWeb";
             boot.Assemblies.Add(typeof(MysteryWebLogic.Routes.GetRoutes).Assembly);
             boot.Assemblies.Add(typeof(MysteryDMS.Model.DMSVersion).Assembly);
             boot.Assemblies.Add(this.GetType().Assembly);
