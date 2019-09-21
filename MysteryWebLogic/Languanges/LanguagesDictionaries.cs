@@ -39,8 +39,7 @@ namespace MysteryWebLogic.Languanges
 
                 if (!needDownload())
                     return;
-                //we lost this implementation, we will need to replace it with something else
-                return;
+                
                 var previous = ServicePointManager.ServerCertificateValidationCallback;
                 try
                 {
@@ -48,7 +47,7 @@ namespace MysteryWebLogic.Languanges
                     (object sender, X509Certificate certificate,
                     X509Chain chain, SslPolicyErrors sslPolicyErrors) => true;
                     var c = this.getGlobalObject<MysteryWebClient>();
-                    var dicts = c.DownloadString("https://calean.cloudapp.net/Mystery/LanguageService/Dictionaries?root_name=main");
+                    var dicts = c.DownloadString("https://uranio.eu/LanguageService/Dictionaries?root_name=main");
                     var converter = this.getGlobalObject<MysteryJsonConverter>();
                     this.data = converter.readJson<Dictionary<string,object>>(dicts);
                     this.download_date = DateTime.Now;
