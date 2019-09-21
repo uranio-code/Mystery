@@ -88,7 +88,7 @@ app.directive('ngMetis', ["$timeout", function($timeout) {
                 
             $timeout(function () {
                 var menu_argument = null;
-                if (angular.isDefined(atts.ngMetis) && atts.ngMetis.toString() != "")
+                if (angular.isDefined(atts.ngMetis) && atts.ngMetis.toString() !== "")
                     menu_argument = angular.fromJson(atts.ngMetis);
                 angular.element(el).metisMenu(menu_argument);
             }, 0,false);             

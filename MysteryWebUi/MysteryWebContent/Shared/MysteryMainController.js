@@ -23,7 +23,7 @@
                 };
 
                 MysteryDownloader.loadContent(me.content, function (content) {
-                    if (content != null) {
+                    if (content !== null) {
                         $rootScope.$broadcast("content_view_event", me.content);
                         MysteryDownloader.post('SessionService/RegisterAccess',
                             {
