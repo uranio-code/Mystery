@@ -242,6 +242,7 @@
     </Content>
     <Content Include="MysteryWebContent\Shared\MysteryMainController.js" />
     <Content Include="MysteryWebContent\Shared\MysteryUnauthorizedViewController.js" />
+    <Content Include="MysteryWebContent\Shared\NavBar\clomax-transparent.png" />
     <Content Include="MysteryWebContent\Shared\NavBar\SearchResultTemplate.html" />
     <Content Include="MysteryWebContent\TOTPAuthentication\TOTPAuthentication.html" />
     <Content Include="MysteryWebContent\TOTPAuthentication\TOTPAuthenticationController.js" />
@@ -372,7 +373,6 @@
   <ItemGroup>
     <Content Include="MysteryWebContent\Shared\MysteryAngular.js" />
     <Content Include="MysteryWebContent\Shared\MysteryDownloader.js" />
-    <Content Include="MysteryWebContent\Shared\NavBar\CALEAN_icon.png" />
     <Content Include="MysteryWebContent\Shared\NavBar\NavBar.html" />
     <Content Include="MysteryWebContent\Shared\NavBar\NavBar.js" />
     <Content Include="MysteryWebContent\Shared\ServiceView.html" />

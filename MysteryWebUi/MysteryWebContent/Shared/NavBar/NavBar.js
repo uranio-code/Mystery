@@ -18,9 +18,9 @@ app.controller("NavBarController", [
         MysteryDownloader.get('InstanceService/getInstance', function (data) {
             me.mystery_instance = data.output;
             if (angular.isDefined(me.mystery_instance.logo) && me.mystery_instance.logo!==null)
-                me.logo_path = 'InstanceService/getInstanceLogo'
+                me.logo_path = 'InstanceService/getInstanceLogo';
             else
-                me.logo_path = 'MysteryWebContent/Shared/NavBar/CALEAN_icon.png';
+                me.logo_path = 'MysteryWebContent/Shared/NavBar/clomax-transparent.png';
         });
 
         me.downloader = MysteryDownloader;
