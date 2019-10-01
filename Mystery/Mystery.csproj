@@ -63,11 +63,13 @@
     <Compile Include="Applications\IApplicationProvider.cs" />
     <Compile Include="Applications\MysteryApplication.cs" />
     <Compile Include="Authentication\DownloadLiveIDInfoAction.cs" />
+    <Compile Include="Authentication\GoogleIDConfiguration.cs" />
     <Compile Include="Authentication\LiveIDConfiguration.cs" />
     <Compile Include="Authentication\LiveIDLoginHandler.cs" />
     <Compile Include="Authentication\Login.cs" />
     <Compile Include="Authentication\MicrosowftTokenCache.cs" />
     <Compile Include="Authentication\MysteryMicrosoftGraph.cs" />
+    <Compile Include="Authentication\SocialLogin.cs" />
     <Compile Include="Comment\Comment.cs" />
     <Compile Include="Configuration\MongoDbConfigurationProvider.cs" />
     <Compile Include="Configuration\ServerModuleConfiguration.cs" />
@@ -159,6 +161,7 @@
     <Compile Include="Users\MyUserProperties.cs" />
     <Compile Include="Users\TOTPAuthenticationKeyAction.cs" />
     <Compile Include="Users\UserActivityStream.cs" />
+    <Compile Include="Users\UserSocialLogin.cs" />
     <Compile Include="Users\UserSuggestionsAction.cs" />
     <Compile Include="Users\UserFavorite.cs" />
     <Compile Include="Users\UserService.cs" />

@@ -52,7 +52,8 @@ namespace Mystery.Authentication
     {
         protected override ActionResult<User> ActionImplemetation()
         {
-            return new ActionResult<User>(this.getGlobalObject<MysterySession>().user);
+            var session = this.getGlobalObject<MysterySession>();
+            return session.user;
         }
 
         protected override bool AuthorizeImplementation()
