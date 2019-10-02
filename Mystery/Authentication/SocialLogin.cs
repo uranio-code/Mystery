@@ -67,6 +67,7 @@ namespace Mystery.Authentication
                 x => x.provider_name == "google" && x.user_unique_id == id).FirstOrDefault()?.user;
 
             var googleIDconf = this.getGlobalObject<IConfigurationProvider>().getConfiguration<GoogleIDConfiguration>();
+            var session = this.getGlobalObject<MysterySession>();
 
             //first time in this instance
             if (user == null)
@@ -81,14 +82,12 @@ namespace Mystery.Authentication
                 cd.Add(user);
 
                 var user_social_login = cc.getAndAddNewContent<UserSocialLogin>();
-                user_social_login.user = user;
+                user_social_login.user = session.authenticated_user;
                 user_social_login.user_unique_id = id;
                 user_social_login.provider_name = "google";
             }
 
             if (user != null) {
-                var session = this.getGlobalObject<MysterySession>();
-
                 session.authenticated_user = user;
             }
             
