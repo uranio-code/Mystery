@@ -63,6 +63,7 @@
     <Compile Include="Applications\IApplicationProvider.cs" />
     <Compile Include="Applications\MysteryApplication.cs" />
     <Compile Include="Authentication\DownloadLiveIDInfoAction.cs" />
+    <Compile Include="Authentication\FacebookIDConfiguration.cs" />
     <Compile Include="Authentication\GoogleIDConfiguration.cs" />
     <Compile Include="Authentication\LiveIDConfiguration.cs" />
     <Compile Include="Authentication\LiveIDLoginHandler.cs" />

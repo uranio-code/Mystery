@@ -32,6 +32,12 @@ namespace Mystery.Authentication
         public string sub { get; set; }
         public string exp { get; set; }
     }
+    public class FacebookToken
+    {
+        public string name { get; set; }
+        public string id { get; set; }
+    }
+
 
     [PublishedAction(input_type: typeof(SocialUser), output_type: typeof(User), url = nameof(SocialLogin))]
     public class SocialLogin : BaseMysteryAction<SocialUser, User>, ICanRunWithOutLogin
@@ -106,7 +112,72 @@ namespace Mystery.Authentication
                     return ActionResultTemplates<User>.InvalidInput;
                 return this.retriveGoogleAccount(google_id);
             }
+            if (input.provider == "facebook") {
+                var facebookIDconf = this.getGlobalObject<IConfigurationProvider>().getConfiguration<FacebookIDConfiguration>();
+                if (!facebookIDconf.enabled)
+                    return ActionResultTemplates<User>.UnAuthorized;
+
+                var facebook_id = validateFacebookToken();
+                if (string.IsNullOrWhiteSpace(facebook_id))
+                    return ActionResultTemplates<User>.InvalidInput;
+                return this.retriveFacebookAccount(facebook_id);
+            }
             throw new NotImplementedException();
+        }
+
+        private ActionResult<User> retriveFacebookAccount(string id)
+        {
+            //live id cookies
+            var cd = this.getGlobalObject<IContentDispatcher>();
+            User user = cd.GetAllByFilter<UserSocialLogin>(
+                x => x.provider_name == "facebook" && x.user_unique_id == id).FirstOrDefault()?.user;
+
+            var facebookIDconf = this.getGlobalObject<IConfigurationProvider>().getConfiguration<FacebookIDConfiguration>();
+            var session = this.getGlobalObject<MysterySession>();
+
+            //first time in this instance
+            if (user == null)
+            {
+                if (!facebookIDconf.allow_new_users)
+                    return ActionResultTemplates<User>.UnAuthorized;
+
+                var cc = this.getGlobalObject<IGlobalContentCreator>();
+                user = cc.getAndAddNewContent<User>();
+                user.username = "facebook:" + id;
+                user.fullname = "facebook:" + id;
+                cd.Add(user);
+
+                var user_social_login = cc.getAndAddNewContent<UserSocialLogin>();
+                user_social_login.user = session.authenticated_user;
+                user_social_login.user_unique_id = id;
+                user_social_login.provider_name = "facebook";
+            }
+
+            if (user != null)
+            {
+                session.authenticated_user = user;
+            }
+
+            return user;
+        }
+
+        private string validateFacebookToken()
+        {
+            var url = "https://graph.facebook.com/me?access_token=" + input.idToken;
+            var c = new WebClient();
+            try
+            {
+                var json = c.DownloadString(url);
+                var from_facebook = JsonConvert.DeserializeObject<FacebookToken>(json);
+                if (from_facebook.id == input.id)
+                    return from_facebook.id;
+                else
+                    return null;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         protected override bool AuthorizeImplementation()
