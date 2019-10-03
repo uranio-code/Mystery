@@ -82,10 +82,16 @@ namespace Mystery.Authentication
                     return ActionResultTemplates<User>.UnAuthorized;
 
                 var cc = this.getGlobalObject<IGlobalContentCreator>();
-                user = cc.getAndAddNewContent<User>();
-                user.username = "google:" + id;
-                user.fullname = "google:" + id;
-                cd.Add(user);
+                if (session.authenticated_user == null)
+                {
+                    user = cc.getAndAddNewContent<User>();
+                    user.username = "google:" + id;
+                    user.fullname = "google:" + id;
+                }
+                else
+                {
+                    user = session.authenticated_user;
+                }
 
                 var user_social_login = cc.getAndAddNewContent<UserSocialLogin>();
                 user_social_login.user = session.authenticated_user;
@@ -93,10 +99,8 @@ namespace Mystery.Authentication
                 user_social_login.provider_name = "google";
             }
 
-            if (user != null) {
-                session.authenticated_user = user;
-            }
-            
+            session.authenticated_user = user;
+
             return user;
         }
 
@@ -142,28 +146,32 @@ namespace Mystery.Authentication
                     return ActionResultTemplates<User>.UnAuthorized;
 
                 var cc = this.getGlobalObject<IGlobalContentCreator>();
-                user = cc.getAndAddNewContent<User>();
-                user.username = "facebook:" + id;
-                user.fullname = "facebook:" + id;
-                cd.Add(user);
 
+                if (session.authenticated_user == null)
+                {
+                    user = cc.getAndAddNewContent<User>();
+                    user.username = "facebook:" + id;
+                    user.fullname = "facebook:" + id;
+                }
+                else {
+                    user = session.authenticated_user;
+                }
+                
                 var user_social_login = cc.getAndAddNewContent<UserSocialLogin>();
-                user_social_login.user = session.authenticated_user;
+                user_social_login.user = user;
                 user_social_login.user_unique_id = id;
                 user_social_login.provider_name = "facebook";
+
             }
 
-            if (user != null)
-            {
-                session.authenticated_user = user;
-            }
+            session.authenticated_user = user;
 
             return user;
         }
 
         private string validateFacebookToken()
         {
-            var url = "https://graph.facebook.com/me?access_token=" + input.idToken;
+            var url = "https://graph.facebook.com/me?access_token=" + input.token;
             var c = new WebClient();
             try
             {
