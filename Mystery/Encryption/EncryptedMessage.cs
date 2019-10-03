@@ -233,6 +233,14 @@ namespace Mystery.Encryption
         {
             return encrypted.getGlobalObject<IMyRsaProvider>().getMySra().Decrypt(encrypted, false).getString();
         }
+        public static string decrypt(this string encrypted)
+        {
+            return encrypted.getGlobalObject<IMyRsaProvider>().getMySra().Decrypt(encrypted.getBytesBase64(), false).getString();
+        }
+        public static string encrypt(this string clear)
+        {
+            return clear.getGlobalObject<IMyRsaProvider>().getMySra().Encrypt(clear.getBytes(), false).getBase64();
+        }
     }
 }
 
