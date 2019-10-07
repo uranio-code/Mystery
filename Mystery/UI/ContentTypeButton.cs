@@ -40,6 +40,7 @@ namespace Mystery.UI
             get {
                 if (string.IsNullOrEmpty(_template_url))
                 {
+                    return "MysteryWebContent/MysteryContent/TypeButton.html";
                     ContentType ct = used_in.getMysteryAttribute<ContentType>();
                     if (ct != null) _template_url = "Directive/" + ct.name + "Button";
                     else throw new Exception(nameof(template_url) + " must be given for not ContentType Classes");
