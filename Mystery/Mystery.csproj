@@ -71,6 +71,8 @@
     <Compile Include="Authentication\MicrosowftTokenCache.cs" />
     <Compile Include="Authentication\MysteryMicrosoftGraph.cs" />
     <Compile Include="Authentication\SocialLogin.cs" />
+    <Compile Include="AutoDoc\AutoDocContentType.cs" />
+    <Compile Include="AutoDoc\AutoDocGenerate.cs" />
     <Compile Include="Comment\Comment.cs" />
     <Compile Include="Configuration\MongoDbConfigurationProvider.cs" />
     <Compile Include="Configuration\ServerModuleConfiguration.cs" />

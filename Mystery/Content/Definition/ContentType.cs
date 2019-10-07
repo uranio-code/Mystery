@@ -46,6 +46,9 @@ namespace Mystery.Content
         public static IEnumerable<Type> getAllContentTypes() {
             return map.Values;
         }
+        public static IEnumerable<string> getAllContentTypeNames() {
+            return map.Keys;
+        }
 
         public override void setUp()
         {
