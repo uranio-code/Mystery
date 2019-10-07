@@ -92,9 +92,10 @@ namespace Mystery.Authentication
                 {
                     user = session.authenticated_user;
                 }
+                session.authenticated_user = user;
 
                 var user_social_login = cc.getAndAddNewContent<UserSocialLogin>();
-                user_social_login.user = session.authenticated_user;
+                user_social_login.user = user;
                 user_social_login.user_unique_id = id;
                 user_social_login.provider_name = "google";
             }
@@ -156,7 +157,7 @@ namespace Mystery.Authentication
                 else {
                     user = session.authenticated_user;
                 }
-                
+                session.authenticated_user = user;
                 var user_social_login = cc.getAndAddNewContent<UserSocialLogin>();
                 user_social_login.user = user;
                 user_social_login.user_unique_id = id;
