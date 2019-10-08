@@ -25,6 +25,7 @@ namespace Mystery.UI
         public List<IContent> changed_contents { get; set; } = new List<IContent>();
         public List<IContent> deleted_contents { get; set; } = new List<IContent>();
         public List<IContent> contents { get; set; } = new List<IContent>();
+        public List<IContent> other_contents { get; set; } = new List<IContent>();
         public IContent main { get; set; }
         public string message { get; set; }
         public IMysteryUrl next_url { get; set; }

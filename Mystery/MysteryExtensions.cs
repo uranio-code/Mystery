@@ -8,6 +8,8 @@ public static class MysteryExtensions
 {
     public static void AddRange<T>(this ICollection<T> coll, IEnumerable<T> new_elements )
     {
+        if (new_elements == null||coll==null)
+            return;
         foreach (var ele in new_elements)
             coll.Add(ele);
     }
