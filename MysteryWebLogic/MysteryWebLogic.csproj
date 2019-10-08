@@ -59,10 +59,6 @@
     <Compile Include="Languanges\LanguagesDictionaries.cs" />
     <Compile Include="Modules\ModulesConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Routes\ModulesJsRoute.cs" />
-    <Compile Include="Routes\MysteryWebRoute.cs" />
-    <Compile Include="Routes\UrlToDirective.cs" />
-    <Compile Include="Routes\WebRouteJsHandler.cs" />
     <Compile Include="Content\WebContentDispatcher.cs" />
   </ItemGroup>
   <ItemGroup>

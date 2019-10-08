@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Routing;
 
-namespace MysteryWebLogic.Routes
+namespace Mystery.Routes
 {
     public class UrlToDirective : IRouteHandler
     {

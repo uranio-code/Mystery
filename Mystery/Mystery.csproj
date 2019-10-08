@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Web.Administration, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -122,6 +123,10 @@
     <Compile Include="Log\SlackErrorLogAppender.cs" />
     <Compile Include="MysteryAction\HistoryMessageDataSerializer.cs" />
     <Compile Include="MysteryAction\PublishedAction.cs" />
+    <Compile Include="Routes\ModulesJsRoute.cs" />
+    <Compile Include="Routes\MysteryWebRoute.cs" />
+    <Compile Include="Routes\UrlToDirective.cs" />
+    <Compile Include="Routes\WebRouteJsHandler.cs" />
     <Compile Include="Slack\SlackConfiguration.cs" />
     <Compile Include="Slack\SlackMessager.cs" />
     <Compile Include="TOTPAuthentication\TOTPAuthenticator.cs" />

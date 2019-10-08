@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Mystery.Content;
 using Mystery.UI;
 
-namespace Mystery.Web
+namespace Mystery.Routes
 {
     [ContentType()]
     public class MysteryWebRoute:BaseContent

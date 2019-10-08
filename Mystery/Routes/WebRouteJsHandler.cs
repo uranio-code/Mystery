@@ -4,11 +4,11 @@ using Mystery.Register;
 using Mystery.MysteryAction;
 using Mystery.UI;
 using Mystery.Web;
-using MysteryWebLogic.Authetication;
 using System;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Routing;
+using Mystery.Routes;
 
 namespace MysteryWebLogic.Routes
 {
