@@ -14,7 +14,7 @@ namespace MysteryWebLogic.Authetication
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
     [ServiceContract(Namespace = "")]
-    class SessionService
+    public class SessionService
     {
         [WebGet(ResponseFormat = WebMessageFormat.Json)]
         public string Hello()

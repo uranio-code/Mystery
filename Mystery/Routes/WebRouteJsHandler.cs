@@ -10,7 +10,7 @@ using System.Web;
 using System.Web.Routing;
 using Mystery.Routes;
 
-namespace MysteryWebLogic.Routes
+namespace Mystery.Routes
 {
 
     public class WebRouteJs: IRouteHandler

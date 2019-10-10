@@ -48,11 +48,11 @@ namespace MysteryWebLogic
             }
 
             RouteTable.Routes.Add(new Route("Dictionary", new MysteryWebLogic.Languanges.LanguagesRouteHandler()));
-            RouteTable.Routes.Add(new Route("Routes", new MysteryWebLogic.Routes.WebRouteJs()));
-            RouteTable.Routes.Add(new Route("ModulesJs", new MysteryWebLogic.Routes.ModuleJsRouteHandler()));
+            RouteTable.Routes.Add(new Route("Routes", new Mystery.Routes.WebRouteJs()));
+            RouteTable.Routes.Add(new Route("ModulesJs", new Mystery.Routes.ModuleJsRouteHandler()));
 
 
-            RouteTable.Routes.Add(new Route("Directive/{name}", new MysteryWebLogic.Routes.UrlToDirective()));
+            RouteTable.Routes.Add(new Route("Directive/{name}", new Mystery.Routes.UrlToDirective()));
             RouteTable.Routes.Add(new Route("Logged", new Mystery.Authentication.LiveIDLoginRoute()));
             if (RouteTable.Routes["singlePage"] == null)
                 RouteTable.Routes.MapPageRoute("singlePage", "{*path}", "~/Default.aspx");
