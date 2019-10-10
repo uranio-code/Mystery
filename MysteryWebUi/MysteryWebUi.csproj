@@ -163,6 +163,9 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="MysteryWebContent\AutoDocControls\AutoDocView.html" />
+    <Content Include="MysteryWebContent\AutoDocControls\GraphControl.js" />
+    <Content Include="MysteryWebContent\AutoDocControls\MysteryAutoDocController.js" />
     <Content Include="MysteryWebContent\History\ContentDeleted.html" />
     <Content Include="MysteryWebContent\History\ContentDeletedController.js" />
     <Content Include="MysteryWebContent\History\ContentHistoryRoute.html" />

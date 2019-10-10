@@ -74,6 +74,7 @@
     <Compile Include="Authentication\SocialLogin.cs" />
     <Compile Include="AutoDoc\AutoDocContentType.cs" />
     <Compile Include="AutoDoc\AutoDocGenerate.cs" />
+    <Compile Include="AutoDoc\AutoDocRoutes.cs" />
     <Compile Include="Comment\Comment.cs" />
     <Compile Include="Configuration\MongoDbConfigurationProvider.cs" />
     <Compile Include="Configuration\ServerModuleConfiguration.cs" />

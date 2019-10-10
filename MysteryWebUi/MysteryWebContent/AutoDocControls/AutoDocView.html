@@ -1,0 +1,12 @@
+﻿<div>autodoc</div>
+<!-- --------------------------------------------------------------------------------------------
+     The following static markup is used (via the ID) as the container of the graph. This doesn't
+     need to be changed to work with ASP.NET. The button is used to implement the save function,
+     which posts the current graph as XML to an ASP.NET handler. Note that the button and the
+     graph are wired up later, after the graph instance was created, using the unique ID of the
+     button to add its click handler which takes care of the encoding and posting.
+     -------------------------------------------------------------------------------------------- -->
+<div id="graphContainer" mxgraph="rc.xml"
+     style="overflow:hidden; background:url('/mxgraph/javascript/examples/editors/images/grid.gif')">
+</div>
+<div class="btn btn-primary" ng-click="rc.wipe()">wipe</div><div class="btn btn-default" ng-click="rc.load()">back</div>
