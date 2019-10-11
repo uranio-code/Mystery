@@ -28,6 +28,10 @@ namespace Mystery.AutoDoc
 
         [ContentProperty]
         [PropertyView]
+        public string type_full_name { get; set; }
+
+        [ContentProperty]
+        [PropertyView]
         public List<string> properties_names { get; set; }
 
         [ContentProperty]

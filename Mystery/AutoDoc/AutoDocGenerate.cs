@@ -51,6 +51,7 @@ namespace Mystery.AutoDoc
             var result = new ContentActionOutput();
             
             var auto_doc = getAutoDoc(content_type_name,result);
+            auto_doc.type_full_name = type.FullName;
 
 
             result.main = auto_doc;

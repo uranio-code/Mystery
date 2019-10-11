@@ -18,6 +18,12 @@ namespace Mystery.AutoDoc
                 controller = "MysteryAutoDocController",
                 templateUrl = "MysteryWebContent/AutoDocControls/AutoDocView.html"
             });
+            result.Add(new MysteryWebRoute
+            {
+                when = "/autodoc/:namespace",
+                controller = "MysteryAutoDocController",
+                templateUrl = "MysteryWebContent/AutoDocControls/AutoDocView.html"
+            });
             return result;
         }
     }

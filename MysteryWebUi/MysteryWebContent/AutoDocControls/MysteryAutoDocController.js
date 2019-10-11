@@ -171,7 +171,17 @@ function htmlEntities(str) {
 app.controller("MysteryAutoDocController",
     ['$scope', 'MysteryDownloader', '$translate', '$uibModal', '$location', '$sanitize',
         function ($scope, MysteryDownloader, $translate, $uibModal, $location, $sanitize) {
+
             var me = this;
+            //autodoc about a specific namespace?
+            var path_array = $location.path().split("/");
+            var auto_doc_index = path_array.indexOf('autodoc');
+            me.namespace_name = '';
+            if (auto_doc_index > -1 && path_array.length >= auto_doc_index + 1) {
+                me.namespace_name = path_array[auto_doc_index+1];
+            }
+
+            
             me.graph = null;
             me.editor = null;
             me.empty_xml = `<mxGraphModel>
@@ -206,23 +216,29 @@ app.controller("MysteryAutoDocController",
                 
             };
 
-            MysteryDownloader.post('DownloadAutoDocMxGraphData', {}, function (result) {
+            MysteryDownloader.post('DownloadAutoDocMxGraphData', {namespace_name: me.namespace_name}, function (result) {
 
                 var parent = me.graph.getDefaultParent();
                 var model = me.graph.getModel();
                 var tables = {};
+                var references = [];
 
                 //first the types
                 angular.forEach(result.output, function (autodoc, index) {
 
                     var content_type_table = model.cloneCell(table);
+                    angular.forEach(autodoc.properties_names, function (property_name, index) {
+                        // Adds field into table
+                        var a_property = column.clone();
 
-                    // Adds field into table
-                    var firstColumn = column.clone();
-
-                    firstColumn.value.name = autodoc.properties_names[0];
-                    content_type_table.insert(firstColumn);
-
+                        a_property.value.name = property_name;
+                        content_type_table.insert(a_property);
+                        if (angular.isDefined(autodoc.references[property_name])) {
+                            references.push({ source: a_property, target: autodoc.references[property_name].target_type });
+                            
+                        }
+                    });
+                    
                     tables[autodoc.name] = content_type_table;
                     model.beginUpdate();
                     try {
@@ -240,52 +256,30 @@ app.controller("MysteryAutoDocController",
                 });
 
                 //ready to connect!
-
-                angular.forEach(result.output, function (autodoc, index) {
-                    angular.forEach(autodoc.properties_names, function (property_name, index) {
-                        if (index === 0)
-                            return;//skip the first as it is already added before
-
-                        var property_cell = model.cloneCell(column);
-
+                angular.forEach(references, function (reference, index) {
+                    if (angular.isDefined(tables[reference.target])) {
                         model.beginUpdate();
                         try {
-                            property_cell.value.name = property_name;
-                            property_cell.geometry.x = 0;
-                            property_cell.geometry.y = 0;
-                            me.graph.addCell(property_cell, tables[autodoc.name]);
-
-                            if (angular.isDefined(autodoc.references[property_name])) {
-                                me.graph.insertEdge(
-                                    property_cell, null, property_name,
-                                    property_cell,
-                                    tables[autodoc.references[property_name].target_type]);
-                            }
-
+                            me.graph.insertEdge(
+                                reference.source, null, '',
+                                reference.source,
+                                tables[reference.target]);
                         }
                         finally {
                             model.endUpdate();
                         }
-
-
-                    });
+                    }
                 });
 
+                me.layout = new mxFastOrganicLayout(me.graph);
+                // Moves stuff wider apart than usual
+                me.layout.forceConstant = 80;
 
                 // Creates a layout algorithm to be used
                 // with the graph
-                var layout = new mxFastOrganicLayout(me.graph);
-                // Moves stuff wider apart than usual
-                layout.forceConstant = 80;
-                model.beginUpdate();
-                try {
-                    layout.execute(me.graph.getDefaultParent());
-                }
-                finally {
-                    model.endUpdate();
-                }
+                //me.layout =  new mxCircleLayout(me.graph);
                 
-                
+                me.applyLayout();
 
                 
             });
@@ -293,6 +287,22 @@ app.controller("MysteryAutoDocController",
             me.delete = function () {
                 var cell = me.graph.getSelectionCell();
                 me.editor.execute('delete', cell);
+            };
+
+            
+
+            me.applyLayout = function () {
+                // Creates a layout algorithm to be used
+                // with the graph
+                
+                var model = me.graph.getModel();
+                model.beginUpdate();
+                try {
+                    me.layout.execute(me.graph.getDefaultParent());
+                }
+                finally {
+                    model.endUpdate();
+                }
             };
 
 
