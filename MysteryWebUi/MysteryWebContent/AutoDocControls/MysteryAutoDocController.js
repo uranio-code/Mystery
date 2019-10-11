@@ -27,7 +27,6 @@
     style[mxConstants.STYLE_VERTICAL_ALIGN] = 'middle';
     style[mxConstants.STYLE_FONTSIZE] = '12';
     style[mxConstants.STYLE_FONTSTYLE] = 1;
-    style[mxConstants.STYLE_IMAGE] = 'images/icons48/table.png';
     // Looks better without opacity if shadow is enabled
     //style[mxConstants.STYLE_OPACITY] = '80';
     style[mxConstants.STYLE_SHADOW] = 1;
@@ -40,102 +39,273 @@
     style[mxConstants.STYLE_EDGE] = mxEdgeStyle.EntityRelation;
 };
 
+// Defines the column user object
+function Column(name) {
+    this.name = name;
+};
+
+Column.prototype.type = 'string';
+
+Column.prototype.primaryKey = false;
+
+Column.prototype.clone = function () {
+    return mxUtils.clone(this);
+};
+
+// Defines the table user object
+function Table(name) {
+    this.name = name;
+};
+
+Table.prototype.clone = function () {
+    return mxUtils.clone(this);
+};
+
 
 app.directive('mxgraph', ["$timeout", function ($timeout) {
     var directive = {
         restrict: 'A',
+        scope: { graph: "=graph", editor:"=editor"},
         link: function (scope, el, attrs) {
-            var app = Sys.Application;
-            app.add_init(function (sender, args) {
-                // Program starts here. Gets the DOM elements for the respective IDs so things can be
-                // created and wired-up.
-                var graphContainer = el[0];//$get('graphContainer
+            // Program starts here. Gets the DOM elements for the respective IDs so things can be
+            // created and wired-up.
+            var graphContainer = el[0];
 
-                if (!mxClient.isBrowserSupported()) {
-                    // Displays an error message if the browser is not supported.
-                    mxUtils.error('Browser is not supported!', 200, false);
-                }
-                else {
-                    // Creates an instance of the graph control, passing the graphContainer element to the
-                    // mxGraph constructor. The $create function is part of ASP.NET. It can take an ID for
-                    // creating objects so the new instances can later be found using the $find function.
-                    var graphControl = $create(aspnet.GraphControl, null, null, null, graphContainer);
+            if (!mxClient.isBrowserSupported()) {
+                // Displays an error message if the browser is not supported.
+                mxUtils.error('Browser is not supported!', 200, false);
+            }
+            else {
+                // Creates the graph inside the given container. The
+                // editor is used to create certain functionality for the
+                // graph, such as the rubberband selection, but most parts
+                // of the UI are custom in this example.
+                var editor = new mxEditor();
+                var graph = editor.graph;
+                scope.editor = editor;
+                scope.graph = graph;
+                var model = graph.model;
 
-                    scope.$watch(attrs.mxgraph, function (value) {
-                        var doc = mxUtils.parseXml(value);
+                // Disables some global features
+                graph.setConnectable(true);
+                graph.setCellsDisconnectable(false);
+                graph.setCellsCloneable(false);
+                graph.swimlaneNesting = false;
 
-                        // Adds cells to the model in a single step
-                        graphControl.get_graph().getModel().beginUpdate();
-                        try {
-                            graphControl.decode(doc.documentElement);
-                        }
-                        finally {
-                            // Updates the display
-                            graphControl.get_graph().getModel().endUpdate();
-                        }
-                    });
+                // Does not allow dangling edges
+                graph.setAllowDanglingEdges(false);
 
-                    configureStylesheet(graphControl.get_graph());
+                // Forces use of default edge in mxConnectionHandler
+                graph.connectionHandler.factoryMethod = null;
 
-                    
-                }
-            });
+                // Only tables are resizable
+                graph.isCellResizable = function (cell) {
+                    return this.isSwimlane(cell);
+                };
+
+                // Only tables are movable
+                graph.isCellMovable = function (cell) {
+                    return this.isSwimlane(cell);
+                };
+
+                configureStylesheet(graph);
+
+                // Sets the graph container and configures the editor
+                editor.setGraphContainer(graphContainer);
+
+                // Configures the automatic layout for the table columns
+                editor.layoutSwimlanes = true;
+                editor.createSwimlaneLayout = function () {
+                    var layout = new mxStackLayout(this.graph, false);
+                    layout.fill = true;
+                    layout.resizeParent = true;
+
+                    // Overrides the function to always return true
+                    layout.isVertexMovable = function (cell) {
+                        return true;
+                    };
+
+                    return layout;
+                };
+
+                // Text label changes will go into the name field of the user object
+                graph.model.valueForCellChanged = function (cell, value) {
+                    if (value.name !== null) {
+                        return mxGraphModel.prototype.valueForCellChanged.apply(this, arguments);
+                    }
+                    else {
+                        var old = cell.value.name;
+                        cell.value.name = value;
+                        return old;
+                    }
+                };
+
+                // Columns are dynamically created HTML labels
+                graph.isHtmlLabel = function (cell) {
+                    return !this.isSwimlane(cell) &&
+                        !this.model.isEdge(cell);
+                };
+
+                // Returns the name field of the user object for the label
+                graph.convertValueToString = function (cell) {
+                    if (cell.value !== null && cell.value.name !== null) {
+                        return cell.value.name;
+                    }
+
+                    return mxGraph.prototype.convertValueToString.apply(this, arguments); // "supercall"
+                };
+
+                
+
+            }
         }
     };
 
     return directive;
 }]);
 
+function htmlEntities(str) {
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+};
 
 app.controller("MysteryAutoDocController",
-    ['$scope', 'MysteryDownloader', '$translate', '$uibModal', '$location',
-        function ($scope, MysteryDownloader, $translate, $uibModal, $location) {
-            var me = this;
-            me.base_xml = `<mxGraphModel>
-  <root>
-    <mxCell id="0"/>
-    <mxCell id="1" parent="0"/>
-    <mxCell id="2" style="table" vertex="1" parent="1">
-      <Table name="TABLE1" as="value"/>
-      <mxGeometry x="90" y="190" width="200" height="80" as="geometry">
-        <mxRectangle width="200" height="28" as="alternateBounds"/>
-      </mxGeometry>
-    </mxCell>
-    <mxCell id="3" vertex="1" connectable="0" parent="2">
-      <Column name="TABLE1_ID" type="INTEGER" primaryKey="1" autoIncrement="1" as="value"/>
-      <mxGeometry y="28" width="200" height="26" as="geometry"/>
-    </mxCell>
-    <mxCell id="6" vertex="1" connectable="0" parent="2">
-      <Column name="TABLE2_ID" type="INTEGER" as="value"/>
-      <mxGeometry y="54" width="200" height="26" as="geometry"/>
-    </mxCell>
-    <mxCell id="4" style="table" vertex="1" parent="1">
-      <Table name="TABLE2" as="value"/>
-      <mxGeometry x="240" y="420" width="200" height="54" as="geometry">
-        <mxRectangle width="200" height="28" as="alternateBounds"/>
-      </mxGeometry>
-    </mxCell>
-    <mxCell id="5" vertex="1" connectable="0" parent="4">
-      <Column name="TABLE2_ID" type="INTEGER" primaryKey="1" autoIncrement="1" as="value"/>
-      <mxGeometry y="28" width="200" height="26" as="geometry"/>
-    </mxCell>
-    <mxCell id="7" edge="1" parent="1" source="6" target="5">
-      <mxGeometry relative="1" as="geometry"/>
-    </mxCell>
-  </root>
-</mxGraphModel>`;
-            me.xml = me.base_xml;
+    ['$scope', 'MysteryDownloader', '$translate', '$uibModal', '$location', '$sanitize',
+        function ($scope, MysteryDownloader, $translate, $uibModal, $location, $sanitize) {
 
-            me.wipe = function () {
-                me.xml = `<mxGraphModel>
+            var me = this;
+            //autodoc about a specific namespace?
+            var path_array = $location.path().split("/");
+            var auto_doc_index = path_array.indexOf('autodoc');
+            me.namespace_name = '';
+            if (auto_doc_index > -1 && path_array.length >= auto_doc_index + 1) {
+                me.namespace_name = path_array[auto_doc_index+1];
+            }
+
+            
+            me.graph = null;
+            me.editor = null;
+            me.empty_xml = `<mxGraphModel>
   <root>
     <mxCell id="0"/>
     <mxCell id="1" parent="0"/>
   </root>
 </mxGraphModel>`;
+            me.xml = me.empty_xml;
+
+            // the content type object
+            var tableObject = new Table('TABLENAME');
+            var table = new mxCell(tableObject, new mxGeometry(0, 0, 200, 28), 'table');
+            table.setVertex(true);
+
+            // Adds sidebar icon for the property object
+            var columnObject = new Column('COLUMNNAME');
+            var column = new mxCell(columnObject, new mxGeometry(0, 0, 0, 26));
+
+            column.setVertex(true);
+            column.setConnectable(false);
+
+
+            me.exportXml = function () {
+                var enc = new mxCodec(mxUtils.createXmlDocument());
+                var node = enc.encode(me.graph.getModel());
+                var xml = mxUtils.getPrettyXml(node);
+                $uibModal.open({
+                    animation: true,
+                    template: '<div >' + htmlEntities(xml)  + '</div>'
+                });
+                
             };
-            me.load = function () {
-                me.xml = me.base_xml;
+
+            MysteryDownloader.post('DownloadAutoDocMxGraphData', {namespace_name: me.namespace_name}, function (result) {
+
+                var parent = me.graph.getDefaultParent();
+                var model = me.graph.getModel();
+                var tables = {};
+                var references = [];
+
+                //first the types
+                angular.forEach(result.output, function (autodoc, index) {
+
+                    var content_type_table = model.cloneCell(table);
+                    angular.forEach(autodoc.properties_names, function (property_name, index) {
+                        // Adds field into table
+                        var a_property = column.clone();
+
+                        a_property.value.name = property_name;
+                        content_type_table.insert(a_property);
+                        if (angular.isDefined(autodoc.references[property_name])) {
+                            references.push({ source: a_property, target: autodoc.references[property_name].target_type });
+                            
+                        }
+                    });
+                    
+                    tables[autodoc.name] = content_type_table;
+                    model.beginUpdate();
+                    try {
+                        content_type_table.value.name = autodoc.name;
+                        content_type_table.geometry.x = 0;
+                        content_type_table.geometry.y = 0;
+
+                        me.graph.addCell(content_type_table, parent);
+                        content_type_table.geometry.alternateBounds = new mxRectangle(0, 0, content_type_table.geometry.width, content_type_table.geometry.height);
+
+                    }
+                    finally {
+                        model.endUpdate();
+                    }
+                });
+
+                //ready to connect!
+                angular.forEach(references, function (reference, index) {
+                    if (angular.isDefined(tables[reference.target])) {
+                        model.beginUpdate();
+                        try {
+                            me.graph.insertEdge(
+                                reference.source, null, '',
+                                reference.source,
+                                tables[reference.target]);
+                        }
+                        finally {
+                            model.endUpdate();
+                        }
+                    }
+                });
+
+                me.layout = new mxFastOrganicLayout(me.graph);
+                // Moves stuff wider apart than usual
+                me.layout.forceConstant = 80;
+
+                // Creates a layout algorithm to be used
+                // with the graph
+                //me.layout =  new mxCircleLayout(me.graph);
+                
+                me.applyLayout();
+
+                
+            });
+
+            me.delete = function () {
+                var cell = me.graph.getSelectionCell();
+                me.editor.execute('delete', cell);
             };
+
+            
+
+            me.applyLayout = function () {
+                // Creates a layout algorithm to be used
+                // with the graph
+                
+                var model = me.graph.getModel();
+                model.beginUpdate();
+                try {
+                    me.layout.execute(me.graph.getDefaultParent());
+                }
+                finally {
+                    model.endUpdate();
+                }
+            };
+
+
+            
 
         }]);
