@@ -27,7 +27,6 @@
     style[mxConstants.STYLE_VERTICAL_ALIGN] = 'middle';
     style[mxConstants.STYLE_FONTSIZE] = '12';
     style[mxConstants.STYLE_FONTSTYLE] = 1;
-    style[mxConstants.STYLE_IMAGE] = 'images/icons48/table.png';
     // Looks better without opacity if shadow is enabled
     //style[mxConstants.STYLE_OPACITY] = '80';
     style[mxConstants.STYLE_SHADOW] = 1;
@@ -44,12 +43,13 @@
 app.directive('mxgraph', ["$timeout", function ($timeout) {
     var directive = {
         restrict: 'A',
+        scope: { graph_control: "=graphControl", mxgraphxml:"=mxgraphxml"},
         link: function (scope, el, attrs) {
             var app = Sys.Application;
             app.add_init(function (sender, args) {
                 // Program starts here. Gets the DOM elements for the respective IDs so things can be
                 // created and wired-up.
-                var graphContainer = el[0];//$get('graphContainer
+                var graphContainer = el[0];
 
                 if (!mxClient.isBrowserSupported()) {
                     // Displays an error message if the browser is not supported.
@@ -60,23 +60,22 @@ app.directive('mxgraph', ["$timeout", function ($timeout) {
                     // mxGraph constructor. The $create function is part of ASP.NET. It can take an ID for
                     // creating objects so the new instances can later be found using the $find function.
                     var graphControl = $create(aspnet.GraphControl, null, null, null, graphContainer);
-
-                    scope.$watch(attrs.mxgraph, function (value) {
-                        var doc = mxUtils.parseXml(value);
-
-                        // Adds cells to the model in a single step
-                        graphControl.get_graph().getModel().beginUpdate();
-                        try {
-                            graphControl.decode(doc.documentElement);
-                        }
-                        finally {
-                            // Updates the display
-                            graphControl.get_graph().getModel().endUpdate();
-                        }
-                    });
+                    scope.graph_control = graphControl;
 
                     configureStylesheet(graphControl.get_graph());
 
+                    var doc = mxUtils.parseXml(scope.mxgraphxml);
+
+                    // Adds cells to the model in a single step
+                    graphControl.get_graph().getModel().beginUpdate();
+                    try {
+                        graphControl.decode(doc.documentElement);
+                    }
+                    finally {
+                        // Updates the display
+                        graphControl.get_graph().getModel().endUpdate();
+                    }
+                    
                     
                 }
             });
@@ -86,31 +85,74 @@ app.directive('mxgraph', ["$timeout", function ($timeout) {
     return directive;
 }]);
 
+function htmlEntities(str) {
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+};
 
 app.controller("MysteryAutoDocController",
-    ['$scope', 'MysteryDownloader', '$translate', '$uibModal', '$location',
-        function ($scope, MysteryDownloader, $translate, $uibModal, $location) {
+    ['$scope', 'MysteryDownloader', '$translate', '$uibModal', '$location', '$sanitize',
+        function ($scope, MysteryDownloader, $translate, $uibModal, $location, $sanitize) {
             var me = this;
+            me.graph_control = null;
+
             me.base_xml = `<mxGraphModel>
   <root>
     <mxCell id="0"/>
     <mxCell id="1" parent="0"/>
-    <mxCell id="2" style="table" vertex="1" parent="1">
-      <Table name="TABLE1" as="value"/>
+
+    <mxCell id="2" style="table" vertex="1" parent="1" value="carlo">
       <mxGeometry x="90" y="190" width="200" height="80" as="geometry">
         <mxRectangle width="200" height="28" as="alternateBounds"/>
       </mxGeometry>
     </mxCell>
-    <mxCell id="3" vertex="1" connectable="0" parent="2">
-      <Column name="TABLE1_ID" type="INTEGER" primaryKey="1" autoIncrement="1" as="value"/>
+
+
+    <mxCell id="3" vertex="1" connectable="0" parent="2" value="marco">
       <mxGeometry y="28" width="200" height="26" as="geometry"/>
     </mxCell>
+
+    
+  </root>
+</mxGraphModel>`;
+
+
+            me.base_xml = `<mxGraphModel><root><mxCell id="0" /><mxCell id="1" parent="0" />
+
+<mxCell id="2" value="MysteryServer" style="table" parent="1" vertex="1" >
+<mxGeometry width="200" height="80" as="geometry" >
+        <mxRectangle width="200" height="28" as="alternateBounds"/>
+      </mxGeometry></mxCell>
+
+<mxCell id="3" vertex="1" connectable="0" parent="2" value="marco">
+      <mxGeometry  y="28" width="200" height="26" as="geometry"/>
+    </mxCell>
+
+</root></mxGraphModel>`;
+
+
+
+            me.x_base_xml = `<mxGraphModel>
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+
+    <mxCell id="2" style="table" vertex="1" parent="1" value="carlo">
+      <mxGeometry x="90" y="190" width="200" height="80" as="geometry">
+        <mxRectangle width="200" height="28" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+
+
+    <mxCell id="3" vertex="1" connectable="0" parent="2" value="marco">
+      <mxGeometry y="28" width="200" height="26" as="geometry"/>
+    </mxCell>
+
     <mxCell id="6" vertex="1" connectable="0" parent="2">
       <Column name="TABLE2_ID" type="INTEGER" as="value"/>
       <mxGeometry y="54" width="200" height="26" as="geometry"/>
     </mxCell>
-    <mxCell id="4" style="table" vertex="1" parent="1">
-      <Table name="TABLE2" as="value"/>
+    <mxCell id="4" style="table" vertex="1" parent="1" value="alessia">
+      
       <mxGeometry x="240" y="420" width="200" height="54" as="geometry">
         <mxRectangle width="200" height="28" as="alternateBounds"/>
       </mxGeometry>
@@ -120,10 +162,15 @@ app.controller("MysteryAutoDocController",
       <mxGeometry y="28" width="200" height="26" as="geometry"/>
     </mxCell>
     <mxCell id="7" edge="1" parent="1" source="6" target="5">
+       
       <mxGeometry relative="1" as="geometry"/>
     </mxCell>
   </root>
 </mxGraphModel>`;
+
+
+            
+
             me.xml = me.base_xml;
 
             me.wipe = function () {
@@ -133,9 +180,43 @@ app.controller("MysteryAutoDocController",
     <mxCell id="1" parent="0"/>
   </root>
 </mxGraphModel>`;
+                me.updateGraph();
             };
             me.load = function () {
                 me.xml = me.base_xml;
+                me.updateGraph();
             };
+
+
+            me.updateGraph = function () {
+                var doc = mxUtils.parseXml(me.xml);
+                // Adds cells to the model in a single step
+                me.graph_control.get_graph().getModel().beginUpdate();
+                try {
+                    me.graph_control.decode(doc.documentElement);
+                }
+                finally {
+                    // Updates the display
+                    me.graph_control.get_graph().getModel().endUpdate();
+                }
+            };
+
+            me.exportXml = function () {
+                var enc = new mxCodec(mxUtils.createXmlDocument());
+                var node = enc.encode(me.graph_control.get_graph().getModel());
+                var xml = mxUtils.getPrettyXml(node);
+                $uibModal.open({
+                    animation: true,
+                    template: '<div >' + htmlEntities(xml)  + '</div>'
+                });
+                
+            };
+
+            MysteryDownloader.post('DownloadAutoDocMxGraphXml', {}, function (result) {
+                me.xml = result.output.xml;
+                me.updateGraph();
+            });
+
+            
 
         }]);

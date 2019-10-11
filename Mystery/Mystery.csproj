@@ -34,6 +34,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Web.Administration, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="mxgraph">
+      <HintPath>..\..\..\mxgraph\dotnet\bin\Debug\mxgraph.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -75,6 +78,8 @@
     <Compile Include="AutoDoc\AutoDocContentType.cs" />
     <Compile Include="AutoDoc\AutoDocGenerate.cs" />
     <Compile Include="AutoDoc\AutoDocRoutes.cs" />
+    <Compile Include="AutoDoc\DownloadAutoDocMxGraphData.cs" />
+    <Compile Include="AutoDoc\DownloadAutoDocMxGraphXml.cs" />
     <Compile Include="Comment\Comment.cs" />
     <Compile Include="Configuration\MongoDbConfigurationProvider.cs" />
     <Compile Include="Configuration\ServerModuleConfiguration.cs" />
