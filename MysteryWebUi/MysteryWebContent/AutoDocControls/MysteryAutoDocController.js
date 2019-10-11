@@ -155,36 +155,7 @@ app.directive('mxgraph', ["$timeout", function ($timeout) {
                     return mxGraph.prototype.convertValueToString.apply(this, arguments); // "supercall"
                 };
 
-                // Removes the source vertex if edges are removed
-                graph.addListener(mxEvent.REMOVE_CELLS, function (sender, evt) {
-                    var cells = evt.getProperty('cells');
-
-                    for (var i = 0; i < cells.length; i++) {
-                        var cell = cells[i];
-
-                        if (this.model.isEdge(cell)) {
-                            var terminal = this.model.getTerminal(cell, true);
-                            var parent = this.model.getParent(terminal);
-                            this.model.remove(terminal);
-                        }
-                    }
-                });
-
-                // Adds child columns for new connections between tables
-                graph.addEdge = function (edge, parent, source, target, index) {
-                    // Finds the primary key child of the target table
-                    var primaryKey = this.model.getChildAt(target, 0);
-                    
-                    this.model.beginUpdate();
-                    try {
-                        target = primaryKey;
-
-                        return mxGraph.prototype.addEdge.apply(this, arguments); // "supercall"
-                    }
-                    finally {
-                        this.model.endUpdate();
-                    }
-                };
+                
 
             }
         }
@@ -223,15 +194,6 @@ app.controller("MysteryAutoDocController",
             column.setVertex(true);
             column.setConnectable(false);
 
-            // Adds primary key field into table
-            var firstColumn = column.clone();
-
-            firstColumn.value.name = 'Guid';
-            firstColumn.value.type = 'Guid';
-            firstColumn.value.primaryKey = true;
-
-            table.insert(firstColumn);
-
 
             me.exportXml = function () {
                 var enc = new mxCodec(mxUtils.createXmlDocument());
@@ -254,6 +216,13 @@ app.controller("MysteryAutoDocController",
                 angular.forEach(result.output, function (autodoc, index) {
 
                     var content_type_table = model.cloneCell(table);
+
+                    // Adds field into table
+                    var firstColumn = column.clone();
+
+                    firstColumn.value.name = autodoc.properties_names[0];
+                    content_type_table.insert(firstColumn);
+
                     tables[autodoc.name] = content_type_table;
                     model.beginUpdate();
                     try {
@@ -274,6 +243,8 @@ app.controller("MysteryAutoDocController",
 
                 angular.forEach(result.output, function (autodoc, index) {
                     angular.forEach(autodoc.properties_names, function (property_name, index) {
+                        if (index === 0)
+                            return;//skip the first as it is already added before
 
                         var property_cell = model.cloneCell(column);
 
