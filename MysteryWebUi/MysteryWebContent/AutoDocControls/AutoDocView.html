@@ -6,9 +6,9 @@
      graph are wired up later, after the graph instance was created, using the unique ID of the
      button to add its click handler which takes care of the encoding and posting.
      -------------------------------------------------------------------------------------------- -->
-<div id="graphContainer" mxgraph mxgraphxml="rc.xml" graph-control="rc.graph_control"
+<div id="graphContainer" mxgraph graph="rc.graph" editor="rc.editor" 
      style="overflow:hidden; background:url('/mxgraph/javascript/examples/editors/images/grid.gif')">
 </div>
-<div class="btn btn-primary" ng-click="rc.wipe()">wipe</div>
-<div class="btn btn-default" ng-click="rc.load()">back</div>
+<div class="btn btn-primary" ng-click="rc.delete()">delete</div>
+
 <div class="btn btn-default" ng-click="rc.exportXml()">export</div>

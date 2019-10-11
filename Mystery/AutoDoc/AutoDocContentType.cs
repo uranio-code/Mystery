@@ -9,7 +9,11 @@ using System.Threading.Tasks;
 namespace Mystery.AutoDoc
 {
 
-
+    public class AutoDocContentTypeReference {
+        public string name { get; set; }
+        public bool multi { get; set; }
+        public string target_type { get; set; }
+    }
 
     [ContentType]
     [ContentTypeButton()]
@@ -28,11 +32,8 @@ namespace Mystery.AutoDoc
 
         [ContentProperty]
         [PropertyView]
-        public MultiContentReference<AutoDocContentType> single_references { get; set; }
+        public Dictionary<string, AutoDocContentTypeReference> references { get; set; } = new Dictionary<string, AutoDocContentTypeReference>();
 
-        [ContentProperty]
-        [PropertyView]
-        public MultiContentReference<AutoDocContentType> multi_references { get; set; }
-
+        
     }
 }
