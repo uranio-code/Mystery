@@ -49,6 +49,7 @@ namespace MysteryWebLogic
 
             RouteTable.Routes.Add(new Route("Dictionary", new MysteryWebLogic.Languanges.LanguagesRouteHandler()));
             RouteTable.Routes.Add(new Route("Routes", new Mystery.Routes.WebRouteJs()));
+            RouteTable.Routes.Add(new Route("TypeScript", new Mystery.TypeScript.TypeScriptRouteHandler()));
             RouteTable.Routes.Add(new Route("ModulesJs", new Mystery.Routes.ModuleJsRouteHandler()));
 
 

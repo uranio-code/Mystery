@@ -139,6 +139,12 @@ public static class MysteryExtensions
         if (string.IsNullOrEmpty(tiny_guid))
             return Guid.Empty;
 
+        //it might actually be a guid in a string
+        var result = Guid.Empty;
+        if (Guid.TryParse(tiny_guid, out result)) {
+            return result;
+        }
+
         if (tiny_guid.Length != 22) return Guid.Empty;
         tiny_guid = tiny_guid.Replace("-", "+").Replace("_", "/") + "==";
         try

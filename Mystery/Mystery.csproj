@@ -135,6 +135,8 @@
     <Compile Include="Slack\SlackConfiguration.cs" />
     <Compile Include="Slack\SlackMessager.cs" />
     <Compile Include="TOTPAuthentication\TOTPAuthenticator.cs" />
+    <Compile Include="TypeScript\TypeScriptClassGenerator.cs" />
+    <Compile Include="TypeScript\TypeScriptHandler.cs" />
     <Compile Include="UI\ContentGetWorkflowActionInfoAction.cs" />
     <Compile Include="UI\ContentWorkflowActionMenuAction.cs" />
     <Compile Include="UI\DatePropertyUiJsonConverter.cs" />
