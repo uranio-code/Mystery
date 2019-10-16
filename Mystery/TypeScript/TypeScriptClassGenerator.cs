@@ -83,12 +83,6 @@ namespace Mystery.TypeScript
                 return type_map[type];
             }
 
-            if (type.IsEnum) {
-                result = "string";
-                type_map[type] = result;
-                return result;
-            }
-
             //reference will be converted in the reffered type
             if (typeof(IReferenceProperty).IsAssignableFrom(type))
             {
@@ -139,6 +133,10 @@ namespace Mystery.TypeScript
                 return getTypeScriptForContentType();
             }
 
+            if (type.IsEnum) {
+                return getTypeScriptForEnum();
+            }
+
             StringBuilder builder = new StringBuilder();
             builder.Append($@"
 export class {getTypeScriptType(type)}
@@ -157,13 +155,34 @@ Object.assign(this, init);
             builder.Append(@"}
 ");
 
+            var result = builder.ToString();
+            return result;
+        }
 
-            builder.Append(@"}
+        private string getTypeScriptForEnum()
+        {
+            var type = typeof(T);
+
+            StringBuilder builder = new StringBuilder();
+            builder.Append($@"
+export enum {getTypeScriptType(type)}
+");
+            builder.Append(@"{
+");
+
+
+            foreach (var element in Enum.GetNames(type)) {
+                builder.Append(element+"='"+ element+ "', " + System.Environment.NewLine);
+            }
+
+            
+builder.Append(@"}
 ");
 
             var result = builder.ToString();
             return result;
         }
+
 
         private string getTypeScriptForContentType()
         {
@@ -191,7 +210,7 @@ export class {getTypeScriptType(type)}
 public constructor(init?: Partial<" + getTypeScriptType(type) + @">) {
 Object.assign(this, init);
 }" + System.Environment.NewLine);
-builder.Append(@"}
+            builder.Append(@"}
 ");
 
             var result = builder.ToString();
