@@ -30,6 +30,9 @@ namespace Mystery.AutoDoc
 
             var cd = this.getGlobalObject<IContentDispatcher>();
             var result = cd.GetAll<AutoDocContentType>();
+            var gone = new HashSet<AutoDocContentType>(from x in result where !all_content_type_names.Contains(x.name) select x);
+            cd.RemoveContents(gone);
+            result =  result.Except(gone);
             if (!string.IsNullOrWhiteSpace(input.namespace_name)) {
                 result = from x in result where x.type_full_name.Contains(input.namespace_name) select x;
             }
