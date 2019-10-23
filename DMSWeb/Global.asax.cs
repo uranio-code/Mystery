@@ -17,7 +17,7 @@ namespace DMSWeb
         protected void Application_Start(object sender, EventArgs e)
         {
             MongoDbConfigurationProvider.default_env_name = "DMSWeb";
-            boot.Assemblies.Add(typeof(MysteryWebLogic.Routes.GetRoutes).Assembly);
+            boot.Assemblies.Add(typeof(MysteryWebLogic.Languanges.LanguagesDictionaries).Assembly);
             boot.Assemblies.Add(typeof(MysteryDMS.Model.DMSVersion).Assembly);
             boot.Assemblies.Add(this.GetType().Assembly);
         }

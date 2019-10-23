@@ -1,4 +1,4 @@
-﻿using Mystery.Web;
+﻿using Mystery.Routes;
 using System.Collections.Generic;
 
 namespace MysteryDMS.Routes

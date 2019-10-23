@@ -5,6 +5,7 @@ using System.IO;
 using System.Reflection;
 using Mystery.Web;
 using Mystery.Applications;
+using Mystery.Routes;
 
 namespace MysteryWebUi
 {
@@ -34,7 +35,7 @@ namespace MysteryWebUi
 
         private void DoBoot()
         {
-            this.getMystery().AssemblyRegister.Register(typeof(MysteryWebLogic.Routes.GetRoutes).Assembly);
+            this.getMystery().AssemblyRegister.Register(typeof(MysteryWebLogic.Authetication.SessionService).Assembly);
             this.getMystery().AssemblyRegister.Register(this.GetType().Assembly);
 
             var modules_folder = new DirectoryInfo( Server.MapPath("~/Modules"));
@@ -49,11 +50,11 @@ namespace MysteryWebUi
             }
 
             RouteTable.Routes.Add(new Route("Dictionary", new MysteryWebLogic.Languanges.LanguagesRouteHandler()));
-            RouteTable.Routes.Add(new Route("Routes", new MysteryWebLogic.Routes.WebRouteJs()));
-            RouteTable.Routes.Add(new Route("ModulesJs", new MysteryWebLogic.Routes.ModuleJsRouteHandler()));
+            RouteTable.Routes.Add(new Route("Routes", new WebRouteJs()));
+            RouteTable.Routes.Add(new Route("ModulesJs", new ModuleJsRouteHandler()));
             
 
-            RouteTable.Routes.Add(new Route("Directive/{name}", new MysteryWebLogic.Routes.UrlToDirective()));
+            RouteTable.Routes.Add(new Route("Directive/{name}", new UrlToDirective()));
             RouteTable.Routes.Add(new Route("Logged", new Mystery.Authentication.LiveIDLoginRoute()));
             if (RouteTable.Routes["singlePage"] == null)
                 RouteTable.Routes.MapPageRoute("singlePage", "{*path}", "~/Default.aspx");

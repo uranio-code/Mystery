@@ -190,12 +190,11 @@ builder.Append(@"}
 
             StringBuilder builder = new StringBuilder();
             builder.Append($@"
-export class {getTypeScriptType(type)}
+export class {getTypeScriptType(type)} extends IContent
 ");
             builder.Append(@"{
 ");
 
-            builder.Append("guid: string;" + System.Environment.NewLine);
             builder.Append("ContentType: string;" + System.Environment.NewLine);
             builder.Append("tiny_guid: string;" + System.Environment.NewLine);
             builder.Append("data_url: string;" + System.Environment.NewLine);
@@ -208,6 +207,7 @@ export class {getTypeScriptType(type)}
             }
             builder.Append(@"
 public constructor(init?: Partial<" + getTypeScriptType(type) + @">) {
+super(init);
 Object.assign(this, init);
 }" + System.Environment.NewLine);
             builder.Append(@"}

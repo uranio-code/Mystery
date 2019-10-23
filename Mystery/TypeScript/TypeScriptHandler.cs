@@ -70,7 +70,21 @@ namespace Mystery.TypeScript
             // but they might need more nested types, so we shall generate and add those we need
             // and then go recursive
             var done = new HashSet<Type>();
-            
+
+            //first defintion we need is IContent
+            var icontent_generator = new TypeScriptClassGenerator<IContent>();
+            generators[icontent_generator.name] = icontent_generator;
+            var type_script_def = icontent_generator.getTypeScriptClass();
+            definitions.Add(type_script_def);
+
+            foreach (var ts_name in icontent_generator.other_types.Keys)
+            {
+                if (generators.ContainsKey(ts_name))//already done
+                    continue;
+                todo.Add(icontent_generator.other_types[ts_name]);
+            }
+
+            todo.Remove(typeof(IContent));
 
             while (todo.Count> 0) {
                 var next_round = new HashSet<Type>();//here I store those type necessary from this cycle
@@ -86,7 +100,7 @@ namespace Mystery.TypeScript
                     if (generator.name.Contains("[]"))
                         continue; //fake todo, it is an array not a type
                     generators[generator.name] = generator;
-                    var type_script_def = generator.getTypeScriptClass();
+                    type_script_def = generator.getTypeScriptClass();
                     definitions.Add(type_script_def);
                     foreach (var ts_name in generator.other_types.Keys) {
                         if (generators.ContainsKey(ts_name))//already done
