@@ -134,6 +134,13 @@
     <Compile Include="Routes\MysteryWebRoute.cs" />
     <Compile Include="Routes\UrlToDirective.cs" />
     <Compile Include="Routes\WebRouteJsHandler.cs" />
+    <Compile Include="Servers\MysteryServerClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Servers\MysteryServerLogin.cs" />
+    <Compile Include="Servers\GetMysteryServerAutheticationRequest.cs" />
+    <Compile Include="Servers\MysteryServerAutheticationRequest.cs" />
+    <Compile Include="Servers\MysteryServerConf.cs" />
     <Compile Include="Slack\SlackConfiguration.cs" />
     <Compile Include="Slack\SlackMessager.cs" />
     <Compile Include="TOTPAuthentication\TOTPAuthenticator.cs" />
@@ -237,13 +244,12 @@
     <Compile Include="Orgins\Utils\BarcodeGenerator.cs" />
     <Compile Include="Orgins\WCF\WebMessage.cs" />
     <Compile Include="Register\RegisterExstension.cs" />
-    <Compile Include="Web\MysteryServer.cs" />
+    <Compile Include="Servers\MysteryServer.cs" />
     <Compile Include="Web\MysteryActionRoute.cs" />
     <Compile Include="Web\MysteryServiceRoute.cs" />
     <Compile Include="Web\MysteryWebClient.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Web\ServerLogin.cs" />
     <Compile Include="Web\Session.cs" />
     <Compile Include="Web\WebActionExecutor.cs" />
   </ItemGroup>

@@ -2,8 +2,11 @@
 using Mystery.Users;
 using System.Security.Cryptography;
 
-namespace Mystery.Web
+namespace Mystery.Servers
 {
+    /// <summary>
+    /// mystery instance can be users of one each other
+    /// </summary>
     [ContentType(label = "Server", list_label = "Servers")]
     public class MysteryServer : User
     {
