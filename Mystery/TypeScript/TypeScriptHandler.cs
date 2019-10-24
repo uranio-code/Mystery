@@ -72,9 +72,28 @@ namespace Mystery.TypeScript
             var done = new HashSet<Type>();
 
             //first defintion we need is IContent
+            //but we do it our way
+
             var icontent_generator = new TypeScriptClassGenerator<IContent>();
             generators[icontent_generator.name] = icontent_generator;
             var type_script_def = icontent_generator.getTypeScriptClass();
+            //actually we want some more in the ui
+            type_script_def = @"
+export class IContent {
+  guid: string;
+  ContentType: string;
+  tiny_guid: string;
+  data_url: string;
+  MysteryUiContentConverter: boolean;
+  ReferenceText: string;
+  SearchText: string;
+
+  public constructor(init?: Partial<IContent>) {
+    Object.assign(this, init);
+  }
+}
+
+";
             definitions.Add(type_script_def);
 
             foreach (var ts_name in icontent_generator.other_types.Keys)
@@ -85,6 +104,7 @@ namespace Mystery.TypeScript
             }
 
             todo.Remove(typeof(IContent));
+            done.Add(typeof(IContent));
 
             while (todo.Count> 0) {
                 var next_round = new HashSet<Type>();//here I store those type necessary from this cycle

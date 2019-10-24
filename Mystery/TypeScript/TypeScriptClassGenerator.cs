@@ -42,6 +42,7 @@ namespace Mystery.TypeScript
             type_map[typeof(double)] = "number";
             type_map[typeof(int)] = "number";
             type_map[typeof(long)] = "number";
+            type_map[typeof(Byte)] = "number";
             type_map[typeof(float)] = "number";
             type_map[typeof(Guid)] = "string";
             type_map[typeof(Object)] = "any";
@@ -195,10 +196,6 @@ export class {getTypeScriptType(type)} extends IContent
             builder.Append(@"{
 ");
 
-            builder.Append("ContentType: string;" + System.Environment.NewLine);
-            builder.Append("tiny_guid: string;" + System.Environment.NewLine);
-            builder.Append("data_url: string;" + System.Environment.NewLine);
-            builder.Append("MysteryUiContentConverter: string;" + System.Environment.NewLine);
 
             foreach (var p in type.getMysteryPropertyAttributes<PropertyView>())
             {
