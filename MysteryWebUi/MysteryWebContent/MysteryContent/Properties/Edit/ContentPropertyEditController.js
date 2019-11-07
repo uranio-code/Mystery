@@ -17,7 +17,7 @@
                     return;
                 me.init(content.propertiesUi[me.property_name]);
             });
-        }
+        };
 
         if (angular.isDefined(me.content) && angular.isDefined(me.property_name)) {
             MysteryDownloader.loadContent(me.content, function (content) {
@@ -29,14 +29,14 @@
 
         me.cancel = function () {
             me.current_value = me.data.content[me.data.name];
-        }
+        };
 
         me.adjustTextareaHeight = function (e, id) {
             var textarea = document.getElementById(id);
             textarea.style.setProperty('height', e.target.offsetHeight + 'px');
             textarea.style.setProperty('overflow', 'auto');
             textarea.style.setProperty('resize', 'vertical');
-        }
+        };
 
         me.adjustTextareaHeightDynamic = function (id) {
             var textarea = document.getElementById(id);
@@ -45,16 +45,16 @@
             };
             textarea.addEventListener("keyup", resize(textarea), false);
             textarea.addEventListener("keydown", resize(textarea), false);
-        }
+        };
 
         me.getTemplateUrl = function (view_template_url) {
-            if (view_template_url == 'MysteryWebContent/MysteryContent/Properties/SingleReference.html')
+            if (view_template_url === 'MysteryWebContent/MysteryContent/Properties/SingleReference.html')
                 return 'MysteryWebContent/MysteryContent/Properties/Edit/SingleReferenceEdit.html';
-            if (view_template_url == 'MysteryWebContent/MysteryContent/Properties/StringProperty.html')
+            if (view_template_url === 'MysteryWebContent/MysteryContent/Properties/StringProperty.html')
                 return 'MysteryWebContent/MysteryContent/Properties/Edit/StringPropertyEdit.html';
-            if (view_template_url == 'MysteryWebContent/MysteryContent/Properties/TextProperty.html')
+            if (view_template_url === 'MysteryWebContent/MysteryContent/Properties/TextProperty.html')
                 return 'MysteryWebContent/MysteryContent/Properties/Edit/TextPropertyEdit.html';
             return view_template_url;
-        }
+        };
     }
 ]);

@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Routing;
+using System.IO.Compression;
 
 namespace Mystery.Web
 {
@@ -108,7 +109,11 @@ namespace Mystery.Web
                 var result = executor.executeAction(new T(), ()=> json_converter.readJson<InputType>(input_json));
                 var json = json_converter.getJson(result);
                 response.ContentType = "application/json; charset=utf-8";
+                response.Filter = new GZipStream(response.Filter, CompressionLevel.Optimal);
+                response.AppendHeader("Content-encoding", "gzip");
+                response.Cache.VaryByHeaders["Accept-encoding"] = true;
                 response.Write(json);
+                response.Flush();
             }
         }
     }
@@ -135,8 +140,11 @@ namespace Mystery.Web
                 var json_converter = this.getGlobalObject<MysteryJsonConverter>();
                 var result = executor.executeAction(new T());
                 var json = json_converter.getJson(result);
-                response.ContentType = "application/json; charset=utf-8";
+                response.Filter = new GZipStream(response.Filter, CompressionLevel.Optimal);
+                response.AppendHeader("Content-encoding", "gzip");
+                response.Cache.VaryByHeaders["Accept-encoding"] = true;
                 response.Write(json);
+                response.Flush();
             }
         }
     }

@@ -2,12 +2,12 @@
     var me = this;
     me.forms = [];
     me.register = function (form) {
-        if (form == null) return;
+        if (form === null) return;
         me.forms.push(form);
     };
     me.active = null;
     me.activate = function (form) {
-        if (form!=null && me.forms.indexOf(form) < 0) me.register(form);
+        if (form!==null && me.forms.indexOf(form) < 0) me.register(form);
         if (me.active !== null && me.active !== form) {
             if (angular.isDefined(me.active.commit)) me.active.commit();
             if (angular.isDefined(me.active.exitEditMode)) me.active.exitEditMode();
