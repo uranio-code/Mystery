@@ -42,8 +42,10 @@ namespace Mystery.Json
             if (type.getMysteryAttribute<ContentView>() != null)
                 result.Add("url", ct.name + "/" + c.guid.Tiny());
             var rt = c.ReferenceText;
-            if (!string.IsNullOrEmpty(rt))
-                result.Add(nameof(ReferenceText), rt);
+            //UI always expect this, and we also avoid the need to have checks there
+            if (rt == null) { rt = string.Empty; }
+            result.Add(nameof(ReferenceText), rt);
+               
             if (c is IContentWithUid)
                 result.Add(nameof(IContentWithUid.uid), ((IContentWithUid)c).uid);
             return result;
