@@ -26,7 +26,7 @@ namespace Mystery.MysteryAction
         {
             //history date is then stream directly to the view
             //for that we must make sure client data is avalible
-            var json_converter = this.getGlobalObject<MysteryJsonUiConverter>();
+            var json_converter = this.getGlobalObject<IMysteryJsonUiConverter>();
             var json = json_converter.getJson(value);
             var doc = BsonDocument.Parse(json);
             BsonSerializer.Serialize(context.Writer, doc, args: args);

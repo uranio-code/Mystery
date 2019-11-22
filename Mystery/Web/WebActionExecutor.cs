@@ -85,7 +85,7 @@ namespace Mystery.Web
             if(log!=null)
                 logs.Add(log);
             this.status = WebActionExecutorStatus.composing_result;
-            var converter = this.getGlobalObject<MysteryJsonUiConverter>();
+            var converter = this.getGlobalObject<IMysteryJsonUiConverter>();
             WebActionResult result = new WebActionResult()
             {
                 isSuccessfull = action_result.isSuccessfull,

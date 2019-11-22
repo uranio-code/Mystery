@@ -71,7 +71,7 @@ namespace Mystery.UI
             JObject jo = new JObject();
             jo.Add(nameof(IContent.guid), mono_property_content.content_reference.guid.ToString());
             jo.Add(nameof(ContentType), mono_property_content.content_reference.ContentType);
-            var converter = this.getGlobalObject<MysteryJsonUiConverter>();
+            var converter = this.getGlobalObject<IMysteryJsonUiConverter>();
 
             jo.Add(mono_property_content.property_name, 
                 JToken.Parse(converter.getJson(mono_property_content.property_value)));

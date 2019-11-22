@@ -19,7 +19,7 @@ namespace Mystery.UI.Tests
         public void MysteryJsonUiConvertergetJsonTest()
         {
             TestContentType c = TestContentType.getARandomTestContentType(enforce_a_reference: true);
-            var cov = this.getGlobalObject<MysteryJsonUiConverter>();
+            var cov = new MysteryJsonUiConverter();
             var json = cov.getJson(c);
 
             var jo = Newtonsoft.Json.JsonConvert.DeserializeObject<JObject>(json);

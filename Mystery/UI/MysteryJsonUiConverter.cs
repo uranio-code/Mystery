@@ -7,8 +7,11 @@ using Mystery.Json;
 namespace Mystery.UI
 {
 
-    [GlobalAvalibleObjectImplementation(singleton = true)]
-    public class MysteryJsonUiConverter
+    [GlobalAvalibleObject()]
+    public interface IMysteryJsonUiConverter : IMysteryJsonConverter { }
+
+    [GlobalAvalibleObjectImplementation(singleton = true,implementation_of = typeof(IMysteryJsonUiConverter))]
+    public class MysteryJsonUiConverter: IMysteryJsonUiConverter
     {
 
 

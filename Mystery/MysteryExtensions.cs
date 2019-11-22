@@ -181,7 +181,7 @@ public static class MysteryExtensions
     }
 
     public static void writeJson(this HttpResponse response, object item) {
-        var json_converter = response.getGlobalObject<MysteryJsonUiConverter>();
+        var json_converter = response.getGlobalObject<IMysteryJsonUiConverter>();
         var json = json_converter.getJson(item);
         response.ContentType = "application/json; charset=utf-8";
         response.Filter = new GZipStream(response.Filter, CompressionLevel.Optimal);
