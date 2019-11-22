@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 
-namespace Mystery.Json
+namespace Mystery.UiJson
 {
     /// <summary>
     /// json for reference property in the ui, it will add base info

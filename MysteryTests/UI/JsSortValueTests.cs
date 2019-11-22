@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Mystery.Content;
 using Mystery.Files;
-using Mystery.UI;
+using Mystery.UiJson;
 using MysteryTests.Content.Definition;
 using System;
 using System.Collections.Generic;

@@ -4,6 +4,7 @@ using Mystery.Register;
 using Mystery.Json;
 using Mystery.UI;
 using System.Collections.Generic;
+using Mystery.UiJson;
 
 namespace Mystery.Web
 {

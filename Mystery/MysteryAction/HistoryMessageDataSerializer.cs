@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Mystery.Register;
 using Mystery.UI;
 using MongoDB.Bson;
+using Mystery.UiJson;
 
 namespace Mystery.MysteryAction
 {

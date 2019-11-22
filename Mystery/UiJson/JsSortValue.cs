@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mystery.UI
+namespace Mystery.UiJson
 {
     /// <summary>
     /// provide a value which can be used in js to sort.

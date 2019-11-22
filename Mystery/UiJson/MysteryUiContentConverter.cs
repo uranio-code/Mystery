@@ -1,6 +1,7 @@
 ﻿using Mystery.Content;
 using Mystery.Json;
 using Mystery.Register;
+using Mystery.UI;
 using Mystery.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -8,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Mystery.UI
+namespace Mystery.UiJson
 {
 
     public class MonoPropertyContentJsonConverter : JsonConverter

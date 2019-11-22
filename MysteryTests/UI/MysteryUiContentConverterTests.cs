@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Mystery.UI;
 using MysteryTests.Content.Definition;
 using System;
 using System.Collections.Generic;
@@ -7,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Mystery.Register;
+using Mystery.UiJson;
+
 namespace Mystery.UI.Tests
 {
     [TestClass()]

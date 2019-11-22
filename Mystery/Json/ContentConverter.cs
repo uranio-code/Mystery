@@ -27,8 +27,9 @@ namespace Mystery.Json
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             JObject jo = JObject.FromObject(value, _serializer);
-            var c = (IContent)value;
-            jo.Merge(ReferencePropertyValueJsonUiConverter.getJsonObject(c));
+            var type = value.GetType();
+            var ct = type.getMysteryAttribute<ContentType>();
+            jo.Add(nameof(ContentType), ct?.name);
             jo.WriteTo(writer);
         }
 

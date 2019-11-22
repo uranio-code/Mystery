@@ -1,6 +1,7 @@
 using Mystery.Json;
 using Mystery.Register;
 using Mystery.UI;
+using Mystery.UiJson;
 using System;
 using System.Collections.Generic;
 using System.IO.Compression;

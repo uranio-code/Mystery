@@ -147,14 +147,14 @@
     <Compile Include="TypeScript\TypeScriptHandler.cs" />
     <Compile Include="UI\ContentGetWorkflowActionInfoAction.cs" />
     <Compile Include="UI\ContentWorkflowActionMenuAction.cs" />
-    <Compile Include="UI\DatePropertyUiJsonConverter.cs" />
+    <Compile Include="UiJson\DatePropertyUiJsonConverter.cs" />
     <Compile Include="UI\FavoriteAction.cs" />
-    <Compile Include="UI\MysteryJsonUiConverter.cs" />
+    <Compile Include="UiJson\MysteryJsonUiConverter.cs" />
     <Compile Include="Json\MysteryMongoDb.cs" />
     <Compile Include="Json\TypeConverter.cs" />
     <Compile Include="Json\ContentConverter.cs" />
     <Compile Include="Json\MysteryJsonConverter.cs" />
-    <Compile Include="Json\ReferencePropertyValueJsonUiConverter.cs" />
+    <Compile Include="UiJson\ReferencePropertyValueJsonUiConverter.cs" />
     <Compile Include="Content\Messaging\DefaultNotifier.cs" />
     <Compile Include="Content\Messaging\IMessage.cs" />
     <Compile Include="Content\Messaging\INotifier.cs" />
@@ -177,7 +177,7 @@
     <Compile Include="UI\ContentListAction.cs" />
     <Compile Include="UI\ContentTypeTableAction.cs" />
     <Compile Include="UI\ContentTypeTable.cs" />
-    <Compile Include="UI\JsSortValue.cs" />
+    <Compile Include="UiJson\JsSortValue.cs" />
     <Compile Include="UI\PropertyColumn.cs" />
     <Compile Include="UI\WhoWhatWhen.cs" />
     <Compile Include="Users\AddUser.cs" />
@@ -205,7 +205,7 @@
     <Compile Include="UI\ContentViewAction.cs" />
     <Compile Include="UI\Directive.cs" />
     <Compile Include="UI\Modal.cs" />
-    <Compile Include="UI\MysteryUiContentConverter.cs" />
+    <Compile Include="UiJson\MysteryUiContentConverter.cs" />
     <Compile Include="UI\MysteryUrl.cs" />
     <Compile Include="UI\PropertyEdit.cs" />
     <Compile Include="UI\MultiReferenceSuggestionsAction.cs" />

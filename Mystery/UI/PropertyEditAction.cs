@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Mystery.Register;
 using Mystery.Content;
 using Mystery.Json;
+using Mystery.UiJson;
 
 namespace Mystery.UI
 {

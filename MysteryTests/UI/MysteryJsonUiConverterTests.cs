@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Mystery.Register;
-using Mystery.UI;
 using MysteryTests.Content.Definition;
 using Newtonsoft.Json.Linq;
 using System;
@@ -9,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Mystery.Content;
+using Mystery.UiJson;
 
 namespace Mystery.UI.Tests
 {

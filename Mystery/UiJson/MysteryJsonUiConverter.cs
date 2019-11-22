@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Mystery.Json;
 
-namespace Mystery.UI
+namespace Mystery.UiJson
 {
 
     [GlobalAvalibleObject()]
