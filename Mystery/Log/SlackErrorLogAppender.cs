@@ -16,7 +16,7 @@ namespace Mystery.Log
         protected override void Append(LoggingEvent loggingEvent)
         {
             var sm = this.getGlobalObject<SlackMessager>();
-            var converter = this.getGlobalObject<MysteryJsonConverter>();
+            var converter = this.getGlobalObject<IMysteryJsonConverter>();
 
             var json = converter.getJson(loggingEvent);
             sm.SendMessage("error occured");

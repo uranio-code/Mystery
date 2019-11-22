@@ -104,16 +104,11 @@ namespace Mystery.Web
             
             using (WebActionExecutor executor = new WebActionExecutor())
             {
-                var json_converter = this.getGlobalObject<MysteryJsonUiConverter>();
+                var json_converter = this.getGlobalObject<IMysteryJsonConverter>();
 
                 var result = executor.executeAction(new T(), ()=> json_converter.readJson<InputType>(input_json));
-                var json = json_converter.getJson(result);
-                response.ContentType = "application/json; charset=utf-8";
-                response.Filter = new GZipStream(response.Filter, CompressionLevel.Optimal);
-                response.AppendHeader("Content-encoding", "gzip");
-                response.Cache.VaryByHeaders["Accept-encoding"] = true;
-                response.Write(json);
-                response.Flush();
+                response.writeJson(result);
+
             }
         }
     }
@@ -137,14 +132,9 @@ namespace Mystery.Web
 
             using (WebActionExecutor executor = new WebActionExecutor())
             {
-                var json_converter = this.getGlobalObject<MysteryJsonConverter>();
+                
                 var result = executor.executeAction(new T());
-                var json = json_converter.getJson(result);
-                response.Filter = new GZipStream(response.Filter, CompressionLevel.Optimal);
-                response.AppendHeader("Content-encoding", "gzip");
-                response.Cache.VaryByHeaders["Accept-encoding"] = true;
-                response.Write(json);
-                response.Flush();
+                response.writeJson(result);
             }
         }
     }

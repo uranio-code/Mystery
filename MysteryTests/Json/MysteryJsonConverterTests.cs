@@ -19,14 +19,14 @@ namespace Mystery.Json.Tests
         [TestMethod()]
         public void ShouldBeAbleToSerializeAContent()
         {
-            MysteryJsonConverter converter = new MysteryJsonConverter();
+            IMysteryJsonConverter converter = new MysteryJsonConverter();
             string result = converter.getJson(TestContentType.getARandomTestContentType(enforce_a_reference: false));
             Assert.IsTrue(result.Length > 0);
         }
         [TestMethod()]
         public void ShouldBeAbleToAvoidRecursion()
         {
-            MysteryJsonConverter converter = new MysteryJsonConverter();
+            IMysteryJsonConverter converter = new MysteryJsonConverter();
             TestContentType adriano = TestContentType.getARandomTestContentType(enforce_a_reference: false);
             adriano.single_reference = adriano;
             string result = converter.getJson(adriano);
@@ -35,7 +35,7 @@ namespace Mystery.Json.Tests
         [TestMethod()]
         public void ShouldBeAbleToDeserializeToANotContent()
         {
-            MysteryJsonConverter converter = new MysteryJsonConverter();
+            IMysteryJsonConverter converter = new MysteryJsonConverter();
             TestContentType adri = TestContentType.getARandomTestContentType(enforce_a_reference: true);
             string json = converter.getJson(adri);
             TestNotContentType nc_adri = Newtonsoft.Json.JsonConvert.DeserializeObject<TestNotContentType>(json);
@@ -50,7 +50,7 @@ namespace Mystery.Json.Tests
         [TestMethod()]
         public void readContentTestWithoutReference()
         {
-            MysteryJsonConverter converter = new MysteryJsonConverter();
+            IMysteryJsonConverter converter = new MysteryJsonConverter();
             TestContentType adriano = TestContentType.getARandomTestContentTypeWithoutreference();
             string json = converter.getJson(adriano);
             TestContentType result = converter.readJson<TestContentType>(json);
@@ -59,7 +59,7 @@ namespace Mystery.Json.Tests
         [TestMethod()]
         public void readContentTestWithOrWithoutReference()
         {
-            MysteryJsonConverter converter = new MysteryJsonConverter();
+            IMysteryJsonConverter converter = new MysteryJsonConverter();
             TestContentType adriano = TestContentType.getARandomTestContentType(enforce_a_reference: false);
             string json = converter.getJson(adriano);
             TestContentType result = converter.readJson<TestContentType>(json);
@@ -68,7 +68,7 @@ namespace Mystery.Json.Tests
         [TestMethod()]
         public void readContentTestWithReference()
         {
-            MysteryJsonConverter converter = new MysteryJsonConverter();
+            IMysteryJsonConverter converter = new MysteryJsonConverter();
             TestContentType adriano = TestContentType.getARandomTestContentType(enforce_a_reference: true);
             string json = converter.getJson(adriano);
             TestContentType result = converter.readJson<TestContentType>(json);
@@ -77,7 +77,7 @@ namespace Mystery.Json.Tests
         [TestMethod()]
         public void shouldBeAbleToKnowTheTypeFromJson()
         {
-            MysteryJsonConverter converter = new MysteryJsonConverter();
+            IMysteryJsonConverter converter = new MysteryJsonConverter();
             TestContentType adriano = TestContentType.getARandomTestContentType(enforce_a_reference: true);
             string json = converter.getJson(adriano);
             IContent result = converter.readJson<IContent>(json);
@@ -87,7 +87,7 @@ namespace Mystery.Json.Tests
         [TestMethod()]
         public void getJsonShouldBeHandleNullTest()
         {
-            MysteryJsonConverter converter = new MysteryJsonConverter();
+            IMysteryJsonConverter converter = new MysteryJsonConverter();
             Assert.IsNotNull(converter.getJson(null));
             TestContentType adriano = null;
             Assert.IsNotNull(converter.getJson(adriano));
@@ -95,7 +95,7 @@ namespace Mystery.Json.Tests
         [TestMethod()]
         public void getJsonShouldBeHandleNullInputTest()
         {
-            MysteryJsonConverter converter = new MysteryJsonConverter();
+            IMysteryJsonConverter converter = new MysteryJsonConverter();
             Assert.IsNull(converter.readJson<object>(null));
             Assert.IsNull(converter.readJson<object>(string.Empty));
 
@@ -104,7 +104,7 @@ namespace Mystery.Json.Tests
         [TestMethod()]
         public void MysteryJsonConvertergetEmptyObjectJsonTest()
         {
-            MysteryJsonConverter converter = new MysteryJsonConverter();
+            IMysteryJsonConverter converter = new MysteryJsonConverter();
             string json = converter.getJson(new object());
             Assert.AreEqual(json,"{}");
         }

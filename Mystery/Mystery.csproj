@@ -116,6 +116,7 @@
     <Compile Include="Json\ContentsDatabase.cs" />
     <Compile Include="Json\GuidValueJsonConverter.cs" />
     <Compile Include="Json\DatePropertyValueJsonConverter.cs" />
+    <Compile Include="Json\IMysteryJsonConverter.cs" />
     <Compile Include="Json\MongoCollection.cs" />
     <Compile Include="Json\ReferencePropertyValueJsonBLLConverter.cs" />
     <Compile Include="Content\Messaging\BaseCodifiedMessage.cs" />

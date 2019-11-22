@@ -26,7 +26,7 @@ namespace Mystery.UI
         public string scopes { get; set; } 
 
         public string getJs() {
-            var converter = this.getGlobalObject<MysteryJsonConverter>();
+            var converter = this.getGlobalObject<IMysteryJsonConverter>();
             string result = "app.directive(" + converter.getJson(name) + ", function() {return {restrict: 'E',";
 
             if (!string.IsNullOrEmpty(this.scopes)) {

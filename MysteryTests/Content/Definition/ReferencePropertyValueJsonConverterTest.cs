@@ -19,14 +19,14 @@ namespace MysteryTests.Content.Definition
         public void canCovertContentReference()
         {
             var json = "{}";
-            var converter = this.getGlobalObject<MysteryJsonConverter>();
+            var converter = this.getGlobalObject<IMysteryJsonConverter>();
             Assert.IsNotNull(converter.readJson<testClass>(json));
             Assert.IsNull(converter.readJson<testClass>(json).reference);
         }
         [TestMethod]
         public void ContentReferenceAreNotNullOutOfDb()
         {
-            var converter = this.getGlobalObject<MysteryJsonConverter>();
+            var converter = this.getGlobalObject<IMysteryJsonConverter>();
             //when we deserialize for convenience we instance it
             var json = "{reference:null}";
             Assert.IsNotNull(converter.readJson<testClass>(json).reference);
@@ -34,7 +34,7 @@ namespace MysteryTests.Content.Definition
         [TestMethod]
         public void ContentReferenceCanBeEmptyObjects()
         {
-            var converter = this.getGlobalObject<MysteryJsonConverter>();
+            var converter = this.getGlobalObject<IMysteryJsonConverter>();
             //when we deserialize for convenience we instance it
             var json = "{reference:{}}";
             Assert.IsNotNull(converter.readJson<testClass>(json).reference);
@@ -43,7 +43,7 @@ namespace MysteryTests.Content.Definition
         [TestMethod]
         public void ContentReferenceCanContainEmptyGuid()
         {
-            var converter = this.getGlobalObject<MysteryJsonConverter>();
+            var converter = this.getGlobalObject<IMysteryJsonConverter>();
             //when we deserialize for convenience we instance it
             var json = "{reference:{guid:null}}";
             Assert.IsNotNull(converter.readJson<testClass>(json).reference);
@@ -52,7 +52,7 @@ namespace MysteryTests.Content.Definition
         [TestMethod]
         public void ContentReferenceCanContainEmptyStringGuid()
         {
-            var converter = this.getGlobalObject<MysteryJsonConverter>();
+            var converter = this.getGlobalObject<IMysteryJsonConverter>();
             //when we deserialize for convenience we instance it
             var json = "{reference:{guid:''}}";
             Assert.IsNotNull(converter.readJson<testClass>(json).reference);

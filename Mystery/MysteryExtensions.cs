@@ -1,8 +1,11 @@
 using Mystery.Json;
 using Mystery.Register;
+using Mystery.UI;
 using System;
 using System.Collections.Generic;
+using System.IO.Compression;
 using System.Threading.Tasks;
+using System.Web;
 
 public static class MysteryExtensions
 {
@@ -24,7 +27,7 @@ public static class MysteryExtensions
     {
         if (current_object == null)
             return default(T);
-        var converter = current_object.getGlobalObject<MysteryJsonConverter>();
+        var converter = current_object.getGlobalObject<IMysteryJsonConverter>();
         return converter.readJson<T>(converter.getJson(current_object));
     }
     /// <summary>
@@ -37,7 +40,7 @@ public static class MysteryExtensions
     {
         if (current_object == null)
             return default(T);
-        var converter = current_object.getGlobalObject<MysteryJsonConverter>();
+        var converter = current_object.getGlobalObject<IMysteryJsonConverter>();
         return converter.readJson<T>(converter.getJson(current_object));
     }
 
@@ -175,6 +178,17 @@ public static class MysteryExtensions
         }
         
         return task.Result;
+    }
+
+    public static void writeJson(this HttpResponse response, object item) {
+        var json_converter = response.getGlobalObject<MysteryJsonUiConverter>();
+        var json = json_converter.getJson(item);
+        response.ContentType = "application/json; charset=utf-8";
+        response.Filter = new GZipStream(response.Filter, CompressionLevel.Optimal);
+        response.AppendHeader("Content-encoding", "gzip");
+        response.Cache.VaryByHeaders["Accept-encoding"] = true;
+        response.Write(json);
+        response.Flush();
     }
     
 

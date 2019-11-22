@@ -44,7 +44,7 @@ namespace Mystery.Web
             var result = new List<object>();
             var left = new List<int>();
             ParameterInfo[] parameters = method.GetParameters();
-            var json_converter = result.getGlobalObject<MysteryJsonConverter>();
+            var json_converter = result.getGlobalObject<IMysteryJsonConverter>();
             for (var i = 0; i < parameters.Length; i++) {
                 var pi = parameters[i];
                 if (request[pi.Name] != null)
@@ -121,7 +121,7 @@ namespace Mystery.Web
                 _instace, 
                 RetriveMethodParamenters(method_info,request));
             if (!method_info.ReturnType.Equals(typeof(void))) {
-                var converter = this.getGlobalObject<MysteryJsonConverter>();
+                var converter = this.getGlobalObject<IMysteryJsonConverter>();
                 var json = converter.getJson(result);
                 response.ContentType = "application/json; charset=utf-8";
                 response.Write(json);

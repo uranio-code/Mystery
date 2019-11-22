@@ -26,7 +26,7 @@ namespace Mystery.Slack
                 return false;
             var c = new WebClient();
             var slack_message = new SlackMessage() { text = message };
-            var jc = this.getGlobalObject<MysteryJsonConverter>();
+            var jc = this.getGlobalObject<IMysteryJsonConverter>();
             var json = jc.getJson(slack_message);
             var result = c.UploadString(conf.Webhook_URL, json);
             return true;

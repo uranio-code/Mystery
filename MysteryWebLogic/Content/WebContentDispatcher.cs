@@ -223,7 +223,7 @@ namespace MysteryWebLogic.Content
 
             //we use json as history tracking, since we do that
             //we can also use it to instance the new content
-            MysteryJsonConverter js = this.getGlobalObject<MysteryJsonConverter>();
+            IMysteryJsonConverter js = this.getGlobalObject<IMysteryJsonConverter>();
             string json = js.getJson(common);
             _original_values[common.guid] = json;
             mine = js.readJson<T>(json);

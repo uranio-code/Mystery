@@ -58,7 +58,7 @@ namespace Mystery.Configuration
                 else
                 {
                     doc.Remove("_id");
-                    result = this.getGlobalObject<MysteryJsonConverter>().readJson<T>(doc.ToJson());
+                    result = this.getGlobalObject<IMysteryJsonConverter>().readJson<T>(doc.ToJson());
                 }
 
                 _instances[type] = result;
@@ -68,7 +68,7 @@ namespace Mystery.Configuration
 
         public void setConfiguration<T>(T conf)
         {
-            string json = this.getGlobalObject<MysteryJsonConverter>().getJson(conf);
+            string json = this.getGlobalObject<IMysteryJsonConverter>().getJson(conf);
             BsonDocument doc = BsonDocument.Parse(json);
             var update = new BsonDocument();
             var conf_name = conf.GetType().Name;

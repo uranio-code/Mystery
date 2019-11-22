@@ -33,7 +33,7 @@ namespace MysteryWebLogic.Languanges
             dicts.ensure();
             HttpResponse response = context.Response;
             response.Write("var dicts = angular.fromJson(");
-            var converter = this.getGlobalObject<MysteryJsonConverter>();
+            var converter = this.getGlobalObject<IMysteryJsonConverter>();
             response.Write(converter.getJson(converter.getJson(dicts.data)));
             response.Write(");");
         }

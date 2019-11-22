@@ -33,7 +33,7 @@ namespace Mystery.UI
             if (reader.TokenType == JsonToken.Null)
                 return result;
             JObject jo = JObject.Load(reader);
-            var converter = this.getGlobalObject<MysteryJsonConverter>();
+            var converter = this.getGlobalObject<IMysteryJsonConverter>();
             result.content_reference = ContentReference.tryGetContentReferece(
                 jo.GetValue(nameof(ContentType)).Value<string>(),
                 jo.GetValue(nameof(IContent.guid)).Value<string>());

@@ -52,7 +52,7 @@ namespace Mystery.UI
             if (property == null)
                 return ActionResultTemplates<ContentActionOutput>.InvalidInput;
 
-            var converter = this.getGlobalObject<MysteryJsonConverter>();
+            var converter = this.getGlobalObject<IMysteryJsonConverter>();
 
             //we make a json comparision to see if we actually edit it
             var before = converter.getJson(content);

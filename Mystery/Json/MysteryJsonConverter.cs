@@ -6,8 +6,8 @@ using Newtonsoft.Json.Converters;
 namespace Mystery.Json
 {
 
-    [GlobalAvalibleObjectImplementation(singleton = true)]
-    public class MysteryJsonConverter
+    [GlobalAvalibleObjectImplementation(singleton = true,implementation_of =typeof(IMysteryJsonConverter))]
+    public class MysteryJsonConverter : IMysteryJsonConverter
     {
 
 

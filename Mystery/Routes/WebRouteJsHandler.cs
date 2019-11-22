@@ -43,7 +43,7 @@ namespace Mystery.Routes
                 var routes = executor.executeAction(new GetRoutes());
                 //we have now a string ready to be js but we what it to became an object
                 //we need one more parse
-                result += this.getGlobalObject<MysteryJsonConverter>().getJson(routes.json_output);
+                result += this.getGlobalObject<IMysteryJsonConverter>().getJson(routes.json_output);
             };
             result += ");";
             response.Write(result);

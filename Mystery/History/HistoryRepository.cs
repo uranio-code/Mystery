@@ -25,7 +25,7 @@ namespace Mystery.History
         }
         public void Add(HistoryEntry he)
         {
-            MysteryJsonConverter js = this.getGlobalObject<MysteryJsonConverter>();
+            IMysteryJsonConverter js = this.getGlobalObject<IMysteryJsonConverter>();
             string he_json = js.getJson(he);
             _history.Add(he);
         }

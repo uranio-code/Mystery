@@ -42,7 +42,7 @@ namespace Mystery.Servers
         public ResultType Invoke<InputType, ResultType, ActionType>(InputType input) where ActionType : BaseMysteryAction<InputType, ResultType>{
             var action_url = _url + "/" + typeof(ActionType).
                 getMysteryAttribute<PublishedAction>().url;
-            var converter = this.getGlobalObject<Json.MysteryJsonConverter>();
+            var converter = this.getGlobalObject<Json.IMysteryJsonConverter>();
             var json = converter.getJson(input);
             var result_json = this.UploadString(action_url, json);
             var action_result = converter.readJson<WebActionResult>(result_json);

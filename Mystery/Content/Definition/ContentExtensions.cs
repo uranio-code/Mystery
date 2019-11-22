@@ -128,7 +128,7 @@ namespace Mystery.Content
                 return false;
             if (ReferenceEquals(source_content, target_content))
                 return true;
-            var converter = source_content.getGlobalObject<MysteryJsonConverter>();
+            var converter = source_content.getGlobalObject<IMysteryJsonConverter>();
             var result = converter.getJson(source_content) == converter.getJson(target_content);
             return result;
         }
@@ -143,7 +143,7 @@ namespace Mystery.Content
         {
             if (source_content.isJsonEquivalent(target_content))
                 return new List<string>();
-            var converter = source_content.getGlobalObject<MysteryJsonConverter>();
+            var converter = source_content.getGlobalObject<IMysteryJsonConverter>();
             var source_json = converter.getJson(source_content);
             var target_json = converter.getJson(target_content);
 

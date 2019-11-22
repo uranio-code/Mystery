@@ -38,7 +38,7 @@ namespace MysteryWebLogic.Content
         public ContentTypeButtonsOuput ContentTypeButtons()
         {
             var result = new ContentTypeButtonsOuput();
-            var converter = this.getGlobalObject<MysteryJsonConverter>();
+            var converter = this.getGlobalObject<IMysteryJsonConverter>();
             foreach (var type in this.getMystery().AssemblyRegister.getTypesMarkedWith<ContentTypeButton>())
             {
                 var ctb = type.getMysteryAttribute<ContentTypeButton>();

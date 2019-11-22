@@ -84,7 +84,7 @@ namespace Mystery.Encryption
             RMCrypto.GenerateIV();
             RMCrypto.GenerateKey();
 
-            byte[] result_message = RMCrypto.getGlobalObject<MysteryJsonConverter>().getJson(message).getBytes();
+            byte[] result_message = RMCrypto.getGlobalObject<IMysteryJsonConverter>().getJson(message).getBytes();
 
             var ms = new MemoryStream();
             CryptoStream CryptStream = new CryptoStream(ms, RMCrypto.CreateEncryptor(RMCrypto.Key, RMCrypto.IV), CryptoStreamMode.Write);
@@ -185,7 +185,7 @@ namespace Mystery.Encryption
             }
 
             //OK message certificated and decrypted!
-            BodyType message_object = sender_rsa.getGlobalObject<MysteryJsonConverter>().readJson<BodyType>(received_message.getString());
+            BodyType message_object = sender_rsa.getGlobalObject<IMysteryJsonConverter>().readJson<BodyType>(received_message.getString());
             
 
             return message_object;

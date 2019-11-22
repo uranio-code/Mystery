@@ -48,7 +48,7 @@ namespace MysteryWebLogic.Languanges
                     X509Chain chain, SslPolicyErrors sslPolicyErrors) => true;
                     var c = this.getGlobalObject<MysteryWebClient>();
                     var dicts = c.DownloadString("https://uranio.eu/LanguageService/Dictionaries?root_name=main");
-                    var converter = this.getGlobalObject<MysteryJsonConverter>();
+                    var converter = this.getGlobalObject<IMysteryJsonConverter>();
                     this.data = converter.readJson<Dictionary<string,object>>(dicts);
                     this.download_date = DateTime.Now;
                     downloaded = true;
