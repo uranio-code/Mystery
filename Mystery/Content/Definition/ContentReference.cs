@@ -280,8 +280,6 @@ namespace Mystery.Content
             if (Content.ContentType.getType(content_type_name) == null)
                 return null;
             Guid parsed = guid_or_tiny.fromTiny();
-            if (parsed == Guid.Empty && !Guid.TryParse(guid_or_tiny, out parsed))
-                return null;
             if (parsed == Guid.Empty)
                 return null;
             return new ContentReference(content_type_name, parsed);

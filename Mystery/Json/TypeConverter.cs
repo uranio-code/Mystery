@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace Mystery.Json
 {
-    class TypeConverter : JsonConverter
+    public class TypeConverter : JsonConverter
     {
         public static PropertyInfo[] GetPublicProperties( Type type)
         {

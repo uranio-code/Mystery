@@ -10,7 +10,7 @@ namespace Mystery.UiJson
     [GlobalAvalibleObject()]
     public interface IMysteryJsonUiConverter : IMysteryJsonConverter { }
 
-    [GlobalAvalibleObjectImplementation(singleton = true,implementation_of = typeof(IMysteryJsonUiConverter))]
+    [GlobalAvalibleObjectImplementation(singleton = true,implementation_of = typeof(IMysteryJsonUiConverter), overrides_exsisting = false)]
     public class MysteryJsonUiConverter: IMysteryJsonUiConverter
     {
 

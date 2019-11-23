@@ -21,7 +21,7 @@ namespace Mystery.AccessHistory
         protected override ActionResult<bool> ActionImplemetation()
         {
             Guid parsed = input.tiny_guid.fromTiny();
-            if (parsed == Guid.Empty && !Guid.TryParse(input.tiny_guid, out parsed))
+            if (parsed == Guid.Empty)
                 return ActionResultTemplates<bool>.InvalidInput;
 
             var session = this.getGlobalObject<MysterySession>();

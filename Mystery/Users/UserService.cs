@@ -64,8 +64,6 @@ namespace Mystery.Users
         public WebActionResult ActivityStream(string guid)
         {
             Guid parsed = guid.fromTiny();
-            if (parsed == Guid.Empty && !Guid.TryParse(guid, out parsed))
-                return WebActionResultTemplates.InvalidInput;
             if (parsed == Guid.Empty)
                 return WebActionResultTemplates.InvalidInput;
 

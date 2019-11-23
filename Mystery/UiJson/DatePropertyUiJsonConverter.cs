@@ -5,7 +5,7 @@ using System;
 
 namespace Mystery.UiJson
 {
-    class DatePropertyUiJsonConverter : JsonConverter
+    public class DatePropertyUiJsonConverter : JsonConverter
     {
 
         private class helper {

@@ -7,7 +7,7 @@ namespace Mystery.Json
     /// <summary>
     /// allow also the base64 tiny representation
     /// </summary>
-    class GuidValueJsonConverter : JsonConverter
+    public class GuidValueJsonConverter : JsonConverter
     {
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
@@ -24,10 +24,7 @@ namespace Mystery.Json
             if (reader.Value is string)
             {
                 string value = (string)reader.Value;
-                Guid parsed = value.fromTiny();
-                if (parsed == Guid.Empty && !Guid.TryParse(value, out parsed))
-                    return Guid.Empty;
-                return parsed;
+                return value.fromTiny();
             }
             else if(!(reader.Value == null))
             {
