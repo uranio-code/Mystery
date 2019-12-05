@@ -48,6 +48,7 @@ namespace Mystery.Authentication
         }
     }
 
+    [PublishedAction(input_type:null,output_type:typeof(User),url =nameof(GetMe))]
     public class GetMe : BaseMysteryAction<User>, ICanRunWithOutLogin
     {
         protected override ActionResult<User> ActionImplemetation()
