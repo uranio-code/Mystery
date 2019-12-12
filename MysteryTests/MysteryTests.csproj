@@ -66,6 +66,7 @@
     <Compile Include="Content\Definition\TestContentType.cs" />
     <Compile Include="Json\MysteryJsonConverterTests.cs" />
     <Compile Include="MysteryExtensionsTests.cs" />
+    <Compile Include="MysteryTestHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\DirectiveTests.cs" />
     <Compile Include="UI\JsSortValueTests.cs" />
