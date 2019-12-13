@@ -66,7 +66,7 @@ namespace IntegrationTests
             using (WebActionExecutor e = new WebActionExecutor())
             {
                 string json = e.executeAction(new CreateAContentInDb<TestContentType>()).json_output;
-                MysteryJsonConverter converter = this.getGlobalObject<MysteryJsonConverter>();
+                IMysteryJsonConverter converter = this.getGlobalObject<IMysteryJsonConverter>();
                 guid = converter.readJson<Guid>(json);
             }
             
@@ -85,7 +85,7 @@ namespace IntegrationTests
             using (WebActionExecutor e = new WebActionExecutor())
             {
                 string json = e.executeAction(new CreateAContentInDb<TestContentType>()).json_output;
-                MysteryJsonConverter converter = this.getGlobalObject<MysteryJsonConverter>();
+                IMysteryJsonConverter converter = this.getGlobalObject<IMysteryJsonConverter>();
                 guid = converter.readJson<Guid>(json);
             }
             using (WebActionExecutor e = new WebActionExecutor())

@@ -3,6 +3,7 @@ using Mystery.Content;
 using Mystery.Json;
 using Mystery.Register;
 using Mystery.UI;
+using Mystery.UiJson;
 using Mystery.Web;
 using MysteryTests.Content.Definition;
 using MysteryWebLogic.Authetication;
@@ -39,7 +40,7 @@ namespace IntegrationTests.Content
             var uid = c.guid.Tiny();
             var s = new ContentService();
             var service_result = s.ContentView(nameof(TestContentType),uid);
-            var converter = this.getGlobalObject<MysteryJsonUiConverter>();
+            var converter = this.getGlobalObject<IMysteryJsonUiConverter>();
             Assert.IsTrue(converter.readJson<IContent>(service_result.json_output) is TestContentType);
         }
 
@@ -54,7 +55,7 @@ namespace IntegrationTests.Content
             var uid = c.guid.Tiny();
             var s = new ContentService();
             var service_result = s.ContentView(nameof(TestContentType),uid);
-            var converter = this.getGlobalObject<MysteryJsonUiConverter>();
+            var converter = this.getGlobalObject<IMysteryJsonUiConverter>();
             var cui = converter.readJson<ContentUi>(service_result.json_output);
             foreach (PropertyView property_view in typeof(TestContentType).getMysteryPropertyAttributes<PropertyView>())
             {

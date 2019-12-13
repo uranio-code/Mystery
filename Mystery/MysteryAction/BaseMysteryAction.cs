@@ -110,7 +110,7 @@ namespace Mystery.MysteryAction
             if (!_authorized) return default(ActionResultType);
             action.input = input;
             action.user = user;
-            action.authenticated_user = action.authenticated_user;
+            action.authenticated_user = authenticated_user;
             //we do not care if authorized or not we are already in an authorized action, 
             //but the implementation might do something necessary for the action execution
             action.Authorize();

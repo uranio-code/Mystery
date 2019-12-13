@@ -64,6 +64,10 @@ namespace Mystery.Register
             else
                 _overrides.Remove(typeof(T));
         }
+        public static void resetGlobalObjects(this object current)
+        {
+            _overrides = new Dictionary<Type, object>();
+        }
 
 
         public static MethodInfo getFirstMethodWithAttribute<T>(this Type current) where T : Attribute

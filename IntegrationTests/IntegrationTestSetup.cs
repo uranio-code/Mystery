@@ -78,7 +78,7 @@ namespace IntegrationTests
             client.DropDatabase("testDb");
             var mongo_db = client.GetDatabase("testDb");
             collection = mongo_db.GetCollection<BsonDocument>(nameof(TestContentType));
-            var converter = context.getGlobalObject<MysteryJsonConverter>();
+            var converter = context.getGlobalObject<IMysteryJsonConverter>();
             collection.InsertOne(BsonDocument.Parse(converter.getJson(c)));
         }
 
