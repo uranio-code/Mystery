@@ -179,6 +179,8 @@ namespace Mystery.UiJson
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var c = (IContent)value;
+            //before going into json it shall be sealed
+            c?.seal();
             MysterySession session = this.getGlobalObject<MysterySession>();
             var content_ui = this.getContentUi(c, session.user);
             JObject jo = JObject.FromObject(content_ui, serializer);
