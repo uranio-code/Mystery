@@ -135,10 +135,7 @@ namespace Mystery.Web
 
             foreach (MysterySession session in toClean)
             {
-                if (SessionEnd != null)
-                {
-                    SessionEnd(session);
-                }
+                SessionEnd?.Invoke(session);
             }
 
 
@@ -208,6 +205,9 @@ namespace Mystery.Web
                 string result = Guid.NewGuid().ToString().Replace("-", "");
                 cookie = new HttpCookie("MysterySessionID", Encrypt(HttpContext.Current.Request.UserHostAddress + result));
                 HttpContext.Current.Response.Cookies.Add(cookie);
+                //this request might not be done asking for the session
+                //the coockie shall be added there to to avoid generating and change it
+                HttpContext.Current.Request.Cookies.Add(cookie);
                 return result;
             }
         }
@@ -226,24 +226,24 @@ namespace Mystery.Web
 
         private static RijndaelManaged RMCrypto;
 
-        private static object _ecnrypt_lock = new object();
+        private static object _encrypt_lock = new object();
+
+        private static void ensureRMCrypto() {
+            if (RMCrypto != null)
+                return;
+            lock (_encrypt_lock)
+            {
+                if (RMCrypto != null)
+                    return;
+                RMCrypto = new RijndaelManaged();
+                RMCrypto.GenerateIV();
+                RMCrypto.GenerateKey();
+            }
+        }
 
         public static string Encrypt(string input)
         {
-            if (RMCrypto == null)
-            {
-                lock (_ecnrypt_lock)
-                {
-                    if (RMCrypto == null)
-                    {
-                        RMCrypto = new RijndaelManaged();
-                        RMCrypto.GenerateIV();
-                        RMCrypto.GenerateKey();
-                    }
-                }
-            }
-
-
+            ensureRMCrypto();
             using (MemoryStream ms = new MemoryStream())
             {
                 byte[] bites = input.getBytes();
@@ -261,10 +261,7 @@ namespace Mystery.Web
 
         public static string Decrypt(string input)
         {
-            if (RMCrypto == null)
-            {
-                return string.Empty;
-            }
+            ensureRMCrypto();
 
             MemoryStream ms = new MemoryStream(input.getBytesBase64());
             CryptoStream CryptStream = new CryptoStream(ms, RMCrypto.CreateDecryptor(RMCrypto.Key, RMCrypto.IV), CryptoStreamMode.Read);
