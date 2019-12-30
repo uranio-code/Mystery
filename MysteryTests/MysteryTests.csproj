@@ -64,6 +64,7 @@
     <Compile Include="Content\Definition\MultiContentReferenceTests.cs" />
     <Compile Include="Content\Definition\ReferencePropertyValueJsonConverterTest.cs" />
     <Compile Include="Content\Definition\TestContentType.cs" />
+    <Compile Include="Encryption\EncryptionTest.cs" />
     <Compile Include="Json\MysteryJsonConverterTests.cs" />
     <Compile Include="MysteryExtensionsTests.cs" />
     <Compile Include="MysteryTestHelper.cs" />

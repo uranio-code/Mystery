@@ -204,6 +204,8 @@ namespace Mystery.Web
                 }
                 string result = Guid.NewGuid().ToString().Replace("-", "");
                 cookie = new HttpCookie("MysterySessionID", Encrypt(HttpContext.Current.Request.UserHostAddress + result));
+                cookie.HttpOnly = true;
+
                 HttpContext.Current.Response.Cookies.Add(cookie);
                 //this request might not be done asking for the session
                 //the coockie shall be added there to to avoid generating and change it
